@@ -1,0 +1,32 @@
+{
+  "title": "Interface Management",
+  "subtitle": "Manage system interfaces",
+  "message": "Relation Interface",
+  "headerTable": {
+    "sourceCode": "Source Code",
+    "sourceClass": "Source Class",
+    "destinationCode": "Destination Code",
+    "destinationClass": "Destination Class",
+    "value": "Value",
+    "actions": "Actions"
+  },
+  "form": {
+    "sourceCode": "Source Code",
+    "sourceClass": "Source Class",
+    "destinationCode": "Destination Code",
+    "destinationClass": "Destination Class",
+    "value": "Value"
+  },
+  "placeholders": {
+    "sourceCode": "Enter source code",
+    "sourceClass": "Enter source class",
+    "destinationCode": "Enter destination code",
+    "destinationClass": "Enter destination class",
+    "value": "Enter value"
+  },
+  "actions": {
+    "create": "Create Interface",
+    "edit": "Edit",
+    "delete": "Delete"
+  }
+}

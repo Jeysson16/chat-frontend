@@ -1,0 +1,78 @@
+{
+    "title": "Accounting Entries Registration",
+    "subtitle": "Management and registration of accounting entries",
+    "message": "Accounting Entries List",
+    "addAccountingEntry": "New Entry",
+    "filters": {
+      "module": "Module",
+      "accountingGroup": "Accounting Group",
+      "status": "Status",
+      "entryDate": "Entry Date"
+    },
+    "placeholders": {
+      "module": "Select module",
+      "accountingGroup": "Select accounting group",
+      "status": "Select status",
+      "entryDate": "Select date"
+    },
+    "columns": {
+      "entryCode": "Entry No.",
+      "entryDate": "Date",
+      "accountingOriginName": "Entry Origin",
+      "totalDebitLines": "Total Lines",
+      "debitAmount": "Debit Amount",
+      "creditAmount": "Credit Amount",
+      "entryStatusName": "Entry Status",
+      "actions": "Actions"
+    },
+    "titles": {
+      "addEntry": "New Accounting Entry",
+      "editEntry": "Edit Accounting Entry",
+      "viewEntry": "View Accounting Entry"
+    },
+    "sections": {
+      "entryData": "Accounting Entry Data"
+    },
+    "fields": {
+      "company": "Company",
+      "exerciseYear": "Exercise Year",
+      "exerciseMonth": "Exercise Month",
+      "accountingOrigin": "Accounting Origin",
+      "entryDate": "Entry Date",
+      "entryCode": "Entry Code",
+      "accountingGroup": "Accounting Group",
+      "entryType": "Entry Type",
+      "entryStatus": "Entry Status",
+      "gloss": "Entry Gloss",
+      "reference": "Reference",
+      "exchangeRate": "Exchange Rate",
+      "detailLines": "Detail Lines No.",
+      "automaticGeneration": "Generate Automatic Entry",
+      "totalDebit": "Total Debit Amount",
+      "totalCredit": "Total Credit Amount"
+    },
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "view": "View",
+      "delete": "Delete"
+    },
+    "validations": {
+      "required": "This field is required",
+      "maxLength": "Maximum {{max}} characters",
+      "minValue": "Minimum value is {{min}}"
+    },
+    "messages": {
+      "saveSuccess": "Accounting entry saved successfully",
+      "saveError": "Error saving accounting entry",
+      "deleteSuccess": "Accounting entry deleted successfully",
+      "deleteError": "Error deleting accounting entry",
+      "loadError": "Error loading data"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "rejected": "Rejected"
+    }
+}

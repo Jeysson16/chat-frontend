@@ -1,0 +1,55 @@
+{
+    "title": "Contabilidad General",
+    "subtitle": "Gestión Contable > Contabilidad General",
+    "message": "Asiento Contable",
+    "headerTable": {
+        "entryNumber": "Número Asiento",
+        "description": "Descripción",
+        "entryDate": "Fecha Asiento",
+        "amount": "Monto",
+        "entryType": "Tipo",
+        "status": "Estado",
+        "actions": "Acciones",
+        "account": "Cuenta",
+        "currency": "Moneda"
+    },
+    "form": {
+        "entryNumber": "Número de Asiento",
+        "description": "Descripción",
+        "entryDate": "Fecha del Asiento",
+        "currency": "Moneda",
+        "amount": "Monto",
+        "entryType": "Tipo de Asiento",
+        "account": "Cuenta",
+        "debitAmount": "Monto Débito",
+        "creditAmount": "Monto Crédito",
+        "reference": "Referencia",
+        "comment": "Comentario"
+    },
+    "icons": {
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "approve": "Aprobar",
+        "post": "Contabilizar"
+    },
+    "options": {
+        "add": "Agregar Asiento Contable",
+        "edit": "Editar Asiento Contable",
+        "approve": "Aprobar Asiento",
+        "post": "Contabilizar Asiento"
+    },
+    "stats": {
+        "totalEntries": "Total Asientos",
+        "approvedEntries": "Asientos Aprobados",
+        "pendingEntries": "Asientos Pendientes",
+        "automaticEntries": "Asientos Automáticos"
+    },
+    "totalAmount": "Monto Total",
+    "dailyEntries": "Asientos Registrados por Día",
+    "monthlyEntries": "Asientos Registrados por Mes",
+    "entriesRegisteredPerModule": "Asientos Registrados por Módulos",
+    "automaticEntries": "Asientos de modo Automático",
+    "entryTrends": "Tendencias de Asientos",
+    "accountsByStatus": "Cuentas por Estado"
+}

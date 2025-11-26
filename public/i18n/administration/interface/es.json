@@ -1,0 +1,71 @@
+{
+    "title": "Gestión de Interfaces",
+    "subtitle": "Administrar interfaces del sistema",
+    "message": "Interface",
+    "placeholder": {
+        "group": "Seleccione o escriba una clase de grupo"
+    },
+    "filters": {
+        "group": "Grupo"
+    },
+    "form": {
+        "class": "Clase",
+        "hierarchy": "Jerarquía",
+        "name": "Nombre",
+        "description": "Descripción",
+        "type": "Tipo",
+        "image": "Agregar imagen de la interfaz",
+        "addEffectiveDate": "Agregar Fecha Efectiva",
+        "imageType": "Tipo de Imagen",
+        "fileCode": "Código de Archivo",
+        "date": "Fecha",
+        "sequence": "Secuencia",
+        "status": "Estado",
+        "comment": "Comentario",
+        "text": "Texto",
+        "value": "Valor",
+        "dragOrClick": "Arrastra una imagen o haz clic para seleccionar",
+        "dropImage": "Suelta la imagen aquí",
+        "formats": "Formatos: JPG, PNG, GIF (máx. 5MB)",
+        "effectiveDate": {
+            "title": "Fecha Efectiva"
+        },
+        "namePlaceholder": "Ingrese el nombre de la interfaz",
+        "descriptionPlaceholder": "Ingrese una descripción detallada",
+        "selectType": "Seleccione un tipo",
+        "typeWeb": "Web",
+        "typeMobile": "Mobile",
+        "typeDesktop": "Desktop",
+        "extensionDataPlaceholder": "Ingrese los datos de extensión",
+        "identificationTextPlaceholder": "Texto de identificación",
+        "referenceTextPlaceholder": "Valor de referencia",
+        "intExtension": {
+            "title": "Extensión de Interface",
+            "item": "Número de Item",
+            "data": "Datos de Extensión",
+            "subClass": "Sub Clase"
+        },
+        "intDetail": {
+            "title": "Detalle de Interface",
+            "item": "Número de Item",
+            "subItem": "Sub Item",
+            "identificationText": "Texto de Identificación",
+            "referenceText": "Texto de Referencia"
+        }
+    },
+    "actions": {
+        "add": "Agregar Interfaz",
+        "addGroup": "Agregar Grupo",
+        "edit": "Editar Interfaz",
+        "editGroup": "Editar Grupo",
+        "delete": "Eliminar Interfaz",
+        "deleteGroup": "Eliminar Grupo"
+    },
+    "validation": {
+        "selectGroup": {
+            "title": "Seleccione un Grupo",
+            "message": "Por favor, seleccione un grupo"
+        },
+        "nameRequired": "El nombre es requerido"
+    }
+}

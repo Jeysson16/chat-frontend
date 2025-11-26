@@ -1,0 +1,78 @@
+{
+    "title": "Registro de Asientos Contables",
+    "subtitle": "Gestión y registro de asientos contables",
+    "message": "Lista de Asientos Contables",
+    "addAccountingEntry": "Nuevo Asiento",
+    "filters": {
+      "module": "Módulo",
+      "accountingGroup": "Grupo Contable",
+      "status": "Estado",
+      "entryDate": "Fecha de Asiento"
+    },
+    "placeholders": {
+      "module": "Seleccionar módulo",
+      "accountingGroup": "Seleccionar grupo contable",
+      "status": "Seleccionar estado",
+      "entryDate": "Seleccionar fecha"
+    },
+    "columns": {
+      "entryCode": "Nº Asiento",
+      "entryDate": "Fecha",
+      "accountingOriginName": "Origen de Asiento",
+      "totalDebitLines": "Total de Líneas",
+      "debitAmount": "Importe Debe",
+      "creditAmount": "Importe Haber",
+      "entryStatusName": "Estado Asiento",
+      "actions": "Acciones"
+    },
+    "titles": {
+      "addEntry": "Nuevo Asiento Contable",
+      "editEntry": "Editar Asiento Contable",
+      "viewEntry": "Ver Asiento Contable"
+    },
+    "sections": {
+      "entryData": "Datos del Asiento Contable"
+    },
+    "fields": {
+      "company": "Empresa",
+      "exerciseYear": "Año del Ejercicio",
+      "exerciseMonth": "Mes del Ejercicio",
+      "accountingOrigin": "Origen Contable",
+      "entryDate": "Fecha de Asiento",
+      "entryCode": "Código Asiento",
+      "accountingGroup": "Grupo Contable",
+      "entryType": "Tipo de Asiento",
+      "entryStatus": "Estado Asiento",
+      "gloss": "Glosa Asiento",
+      "reference": "Referencia",
+      "exchangeRate": "Tipo de Cambio",
+      "detailLines": "Nº Líneas en Detalle",
+      "automaticGeneration": "Generar Asiento Automático",
+      "totalDebit": "Importe Total Debe",
+      "totalCredit": "Importe Total Haber"
+    },
+    "actions": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "view": "Ver",
+      "delete": "Eliminar"
+    },
+    "validations": {
+      "required": "Este campo es requerido",
+      "maxLength": "Máximo {{max}} caracteres",
+      "minValue": "El valor mínimo es {{min}}"
+    },
+    "messages": {
+      "saveSuccess": "Asiento contable guardado exitosamente",
+      "saveError": "Error al guardar el asiento contable",
+      "deleteSuccess": "Asiento contable eliminado exitosamente",
+      "deleteError": "Error al eliminar el asiento contable",
+      "loadError": "Error al cargar los datos"
+    },
+    "status": {
+      "approved": "Aprobado",
+      "pending": "Pendiente",
+      "rejected": "Rechazado"
+    }
+}

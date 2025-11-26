@@ -1,0 +1,13 @@
+{
+    "matDatepickerParse": "Incorrect date format",
+    "required": "This field is required",
+    "min": "Please select an option",
+    "minValue": "The value must be at least {{minValue}}",
+    "minlength": "The field must have at least {{requiredLength}} characters",
+    "maxlength": "The field must not exceed {{requiredLength}} characters",
+    "pattern": "The format is invalid",
+    "rangeDateInvalid": "Cannot be earlier than the start date",
+    "customError": "{{customError}}",
+    "invalidOption": "Select an option",
+    "requiredEmail": "Invalid email format"
+}

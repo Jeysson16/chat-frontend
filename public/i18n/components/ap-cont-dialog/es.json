@@ -1,0 +1,12 @@
+{
+    "add": "Registro",
+    "edit": "Edición",
+    "close": "Cerrar",
+    "register": "Registrar",
+    "update": "Editar",
+    "cancel": "Cancelar",
+    "logs": {
+        "create": "Creación: ",
+        "update": "Actualización: "
+    }
+}

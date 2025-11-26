@@ -1,0 +1,23 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist/chat-frontend"
+      }
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "env": {
+    "NG_APP_SIGNALR_HUB_URL": "https://chat-backend-a9fscg.fly.dev/chathub"
+  },
+  "build": {
+    "env": {
+      "NG_APP_SIGNALR_HUB_URL": "https://chat-backend-a9fscg.fly.dev/chathub"
+    }
+  }
+}

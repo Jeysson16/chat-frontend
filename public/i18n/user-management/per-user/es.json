@@ -1,0 +1,25 @@
+{
+    "title": "Gestion - Usuarios",
+    "subtitle": "Administración > Gestión usuarios > usuarios",
+    "title-table": "Listado de Usuarios",
+    "title-bu": "Nuevo Usuario",
+    "showWarning": "Implemente las politicas de contraseña para la empresa",
+    "table": {
+        "code":"Codigo",
+        "typeDoc":"Tipo de documento",
+        "doc": "Documento",
+        "fullName": "Nombre Completo",
+        "user": "Usuario",
+        "options": "Opciones"
+    },
+    "form": {
+        "user": "Usuario: *",
+        "password": "Contraseña: *",
+        "repeatPaswword": "Repetir Contraseña: *",
+        "placeholder":"Buscar persona",
+        "msgUser":"Usuario disponible!"
+    },
+    "options":{
+        "edit":"Editar Usuario"
+    }
+}

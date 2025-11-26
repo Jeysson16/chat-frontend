@@ -1,0 +1,16 @@
+{
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "activate": "Are you sure you want to activate {{type}} <strong>{{name}}</strong>?",
+    "deactivate": "Are you sure you want to deactivate {{type}} <strong>{{name}}</strong>?",
+    "delete": "Are you sure you want to delete {{type}} <strong>{{name}}</strong>?",
+    "move": "Are you sure you want to move {{type}} <strong>{{name}}</strong>?",
+    "information": "Are you sure you want to continue? <br> {{information}}",
+    "title": {
+        "activate": "Confirm Activation",
+        "deactivate": "Confirm Deactivation",
+        "delete": "Confirm Deletion",
+        "information": "Information",
+        "move": "Confirm move"
+    }
+}

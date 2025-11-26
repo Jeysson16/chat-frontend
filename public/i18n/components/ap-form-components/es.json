@@ -1,0 +1,9 @@
+{
+  "confirm_delete": "Confirmar eliminación",
+  "are_you_sure_delete_record": "¿Está seguro que desea eliminar este registro?",
+  "info_message": "Mensaje de información",
+  "cannot_delete_phone_required": "No puede eliminar este teléfono, porque se requiere al menos uno activo.",
+  "cannot_delete_email_required": "No puede eliminar este correo electrónico, porque se requiere al menos uno activo.",
+  "cannot_delete_language_required": "No puede eliminar este idioma, porque se requiere al menos uno activo.",
+  "cannot_delete_address_required": "No puede eliminar esta dirección, porque se requiere al menos uno activo."
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Exchange rate",
+  "subtitle": "Administration > Exchange rate",
+  "message": "Exchange rate",
+  "headerTable": {
+    "day": "Day",
+    "currency": "Currency",
+    "month": "Month",
+    "year": "Year",
+    "purchasePrice": "P Purchase",
+    "salePrice": "P Sale",
+    "tcPurchase": "ER Purchase",
+    "tcSale": "ER Sale",
+    "description": "Description",
+    "actions": "Actions"
+  },
+  "filters": {
+    "currency": "Currency",
+    "month": "Month",
+    "year": "Year"
+  },
+  "placeholder": {
+    "currency": "Select a currency",
+    "month": "Select a month",
+    "year": "Select a year"
+  },
+  "form": {
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
+    "currency": "Currency",
+    "purchasePrice": "Purchase price",
+    "salePrice": "Sale price",
+    "tcPurchase": "ER Purchase",
+    "tcSale": "ER Sale",
+    "description": "Description",
+    "state": "State"
+  },
+  "icons": {
+    "edit": "Edit"
+  },
+  "messages": {
+    "noData": "No data for the selected filters"
+  }
+}

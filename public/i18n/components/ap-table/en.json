@@ -1,0 +1,36 @@
+{
+    "icons": {
+        "search": "Search",
+        "reset": "Reset"
+    },
+    "toggle": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "on": "Enable",
+        "off": "Disable"
+    },
+    "paginator": {
+        "items": "Items per page",
+        "previous": "Previous page",
+        "next": "Next page",
+        "of": "of",
+        "page": "Page",
+        "firstPage": "First page",
+        "lastPage": "Last page"
+    },
+    "messages" : {
+        "data" : "No data found",
+        "expirationDate": "Expiration date"
+    },
+    "typeBoolean": {
+        "yes": "Yes",
+        "no": "No"
+    },
+    "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+    },
+    "url": {
+        "view": "View"
+    }
+}

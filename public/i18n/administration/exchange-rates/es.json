@@ -1,0 +1,45 @@
+{
+  "title": "Tipo de cambio",
+  "subtitle": "Administración > Tipo de cambio",
+  "message": "Tipo de cambio",
+  "headerTable": {
+    "day": "Día",
+    "currency": "Moneda",
+    "month": "Mes",
+    "year": "Año",
+    "purchasePrice": "P Compra",
+    "salePrice": "P Venta",
+    "tcPurchase": "TC Compra",
+    "tcSale": "TC Venta",
+    "description": "Descripción",
+    "actions": "Acciones"
+  },
+  "filters": {
+    "currency": "Moneda",
+    "month": "Mes",
+    "year": "Año"
+  },
+  "placeholder": {
+    "currency": "Seleccione una moneda",
+    "month": "Seleccione un mes",
+    "year": "Seleccione un año"
+  },
+  "form": {
+    "day": "Día",
+    "month": "Mes",
+    "year": "Año",
+    "currency": "Moneda",
+    "purchasePrice": "Precio de compra",
+    "salePrice": "Precio de venta",
+    "tcPurchase": "TC Compra",
+    "tcSale": "TC Venta",
+    "description": "Descripción",
+    "state": "Estado"
+  },
+  "icons": {
+    "edit": "Editar"
+  },
+  "messages": {
+    "noData": "No hay datos para los filtros seleccionados"
+  }
+}

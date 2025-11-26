@@ -1,0 +1,19 @@
+{
+    "title": "Asset Classes",
+    "subtitle": "Asset Management > Asset Classification",
+    "message": "Asset Class",
+    "form": {
+        "name": "Name",
+        "effectiveDate": "Effective Date",
+        "hierarchy": "Belongs to",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "options": {
+        "add": "Add Class"
+    }
+}

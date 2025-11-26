@@ -1,0 +1,35 @@
+{
+    "title": "Politicas de contraseña",
+    "subtitle": "Administracion > Gestion-usuarios > Politica",
+    "title-table": "Registro de politica",
+    "title-ap-save": "Nueva Politica",
+    "title-ap-edit": "Editar Politica",
+    "text": {
+        "min": "Mínimo de caracteres",
+        "max": "Máximo de caracteres",
+        "num": "Requiere al menos un número",
+        "uppercase": "Requiere al menos una letra mayúscula",
+        "lowercase": "Requiere al menos una letra minúscula",
+        "specialChar": "Requiere al menos un carácter especial",
+        "expiryDays": "Días de vigencia de la contraseña",
+        "historyCount": "Contraseñas anteriores no repetibles",
+        "confi": "Aún no hay una política de contraseña configurada.",
+        "yes": "Sí",
+        "not": "No"
+    },
+    "dialog": {
+        "title": "Politica"
+    },
+    "form": {
+        "min": "Cantidad mínima de caracteres *",
+        "max": "Cantidad máxima de caracteres *",
+        "num": "Requiere al menos un número *",
+        "uppercase": "Requiere al menos una letra mayúscula *",
+        "lowercase": "Requiere al menos un letra minúscula *",
+        "specialChar": "Requiere al menos caracter especial *",
+        "expiryDays": "Días de vigencia de la contraseña *",
+        "historyCount": "Cantidad de contraseñas anteriores no repetibles *"
+    },
+    "minLengthGreaterThanMax": "El valor mínimo ({{min}}) no debe ser mayor que el máximo ({{max}}).",
+    "maxLengthLessThanMin": "El valor máximo ({{max}}) no debe ser menor que el mínimo ({{min}})."
+}

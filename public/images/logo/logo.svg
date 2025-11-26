@@ -1,0 +1,25 @@
+<svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexágono exterior -->
+  <path d="M60 10L95 30V70L60 90L25 70V30L60 10Z" stroke="#233559" stroke-width="4" fill="none"/>
+  
+  <!-- Puntos de conexión -->
+  <circle cx="60" cy="10" r="6" fill="#233559"/>
+  <circle cx="95" cy="30" r="6" fill="#233559"/>
+  <circle cx="95" cy="70" r="6" fill="#233559"/>
+  <circle cx="60" cy="90" r="6" fill="#233559"/>
+  <circle cx="25" cy="70" r="6" fill="#233559"/>
+  <circle cx="25" cy="30" r="6" fill="#233559"/>
+  
+  <!-- Hexágono interior -->
+  <path d="M60 25L80 35V55L60 65L40 55V35L60 25Z" fill="#233559"/>
+  
+  <!-- Icono de chat -->
+  <rect x="48" y="38" width="24" height="16" rx="4" />
+  <circle cx="52" cy="48" r="2" fill="white"/>
+  <circle cx="60" cy="48" r="2" fill="white"/>
+  <circle cx="68" cy="48" r="2" fill="white"/>
+  
+  <!-- Líneas de conexión -->
+  <line x1="60" y1="90" x2="60" y2="110" stroke="#233559" stroke-width="3"/>
+  <circle cx="60" cy="115" r="6" fill="#233559"/>
+</svg>

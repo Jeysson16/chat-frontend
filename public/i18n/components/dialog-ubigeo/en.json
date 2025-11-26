@@ -1,0 +1,16 @@
+{
+    "title": "Ubigeo",
+    "send": "Send",
+    "form": {
+      "country": "Country",
+      "department": "Department",
+      "province": "Province",
+      "district": "District",
+      "placeHolder": {
+        "country": "Select an option",
+        "department": "Select an option",
+        "province": "Select an option",
+        "district": "Select an option"
+      }
+    }
+  }

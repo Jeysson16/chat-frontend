@@ -1,0 +1,62 @@
+{
+    "title": "Configuración de Cierre de Cuentas",
+    "subtitle": "Gestión de configuraciones para el cierre automático de cuentas contables",
+    "filters": {
+        "processNumber": "Nro Proceso",
+        "sourceAccount": "Cuenta Origen (DEBE)",
+        "destinationAccount": "Cuenta Destino (HABER)"
+    },
+    "placeholder": {
+        "sourceAccount": "Seleccione cuenta origen",
+        "destinationAccount": "Seleccione cuenta destino"
+    },
+    "placeholders": {
+        "processNumber": "Ingrese número de proceso",
+        "selectSourceAccount": "Seleccione cuenta origen",
+        "selectDestinationAccount": "Seleccione cuenta destino"
+    },
+    "form": {
+        "legalPersonCode": "Código Persona Jurídica",
+        "systemProcessCode": "Código Proceso Sistema",
+        "sourceAccount": "Cuenta Origen",
+        "destinationAccount": "Cuenta Destino",
+        "processType": "Tipo de Proceso",
+        "processStatus": "Estado del Proceso",
+        "processNumber": "Número de Proceso"
+    },
+    "table": {
+        "id": "ID",
+        "processNumber": "Nro Proceso",
+        "sourceAccountName": "Nombre Cuenta Origen",
+        "sourceAccountDescription": "Descripcion Cuenta Origen",
+        "destinationAccountName": "Nombre Cuenta Destino",
+        "destinationAccountDescription": "Descripción Cuenta Destino",
+        "processType": "TIPO DE PROCESO",
+        "actions": "Acciones",
+        "headers": {
+            "id": "ID",
+            "processNumber": "Nro Proceso",
+            "sourceAccountName": "Nombre Cuenta Origen",
+            "sourceAccountDescription": "Descripcion Cuenta Origen",
+            "destinationAccountName": "Nombre Cuenta Destino",
+            "destinationAccountDescription": "Descripción Cuenta Destino",
+            "processType": "TIPO DE PROCESO",
+            "actions": "Acciones"
+        }
+    },
+    "actions": {
+        "add": "Agregar Configuración",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "save": "Guardar",
+        "cancel": "Cancelar"
+    },
+    "messages": {
+        "saveSuccess": "Configuración guardada exitosamente",
+        "deleteSuccess": "Configuración eliminada exitosamente",
+        "saveError": "Error al guardar la configuración",
+        "deleteError": "Error al eliminar la configuración",
+        "confirmDelete": "¿Está seguro de que desea eliminar esta configuración?",
+        "noData": "No hay datos disponibles"
+    }
+}

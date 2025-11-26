@@ -1,0 +1,25 @@
+{
+    "title": "Asset Types",
+    "subtitle": "Asset Management > Asset Types",
+    "message": "Asset Type",
+    "headerTable": {
+        "code": "Code",
+        "name": "Name",
+        "description": "Description",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "effectiveDate": "Effective Date",
+        "hierarchy": "Belongs to",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "options": {
+        "add": "Add Type"
+    }
+}

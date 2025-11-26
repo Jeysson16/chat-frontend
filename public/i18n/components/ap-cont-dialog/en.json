@@ -1,0 +1,12 @@
+{
+    "add": "Registration",
+    "edit": "Edition",
+    "close": "Close",
+    "register": "Register",
+    "update": "Edit",
+    "cancel": "Cancel",
+    "logs": {
+        "create": "Creation: ",
+        "update": "Update: "
+    }
+}

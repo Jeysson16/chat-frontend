@@ -1,0 +1,119 @@
+{
+    "title": "Dashboard Advances",
+    "subtitle": "Accounting Management > Dashboard Advances",
+    "message": "Advances Analysis",
+    "headerTable": {
+        "name": "Advance Name",
+        "type": "Advance Type",
+        "description": "Description",
+        "amount": "Amount",
+        "currency": "Currency",
+        "requestDate": "Request Date",
+        "dueDate": "Due Date",
+        "category": "Category",
+        "status": "Status",
+        "employeeId": "Employee ID",
+        "order": "Order",
+        "active": "Active",
+        "actions": "Actions"
+    },
+    "form": {
+        "advanceName": "Advance Name",
+        "advanceType": "Advance Type",
+        "description": "Description",
+        "amount": "Amount",
+        "currency": "Currency",
+        "requestDate": "Request Date",
+        "dueDate": "Due Date",
+        "category": "Category",
+        "status": "Status",
+        "employeeId": "Employee ID",
+        "order": "Order",
+        "active": "Active",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete",
+        "view": "View",
+        "export": "Export",
+        "refresh": "Refresh"
+    },
+    "options": {
+        "add": "Add Advance",
+        "edit": "Edit Advance",
+        "view": "View Details",
+        "export": "Export Data",
+        "refresh": "Refresh Dashboard",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "stats": {
+        "totalAdvances": "Total Advances",
+        "activeAdvances": "Active Advances",
+        "pendingAdvances": "Pending Advances",
+        "approvedAdvances": "Approved Advances",
+        "rejectedAdvances": "Rejected Advances",
+        "paidAdvances": "Paid Advances",
+        "requestRegistration": "Request Registration",
+        "pendingRequests": "Pending Requests",
+        "weeklyAdvances": "Weekly Advances",
+        "monthlyAdvances": "Monthly Advances"
+    },
+    "dashboard": {
+        "monthlyAdvances": "Monthly Advances",
+        "weeklyRequests": "Weekly Requests",
+        "chartTitle": "Monthly Analysis - Expenses and Trips",
+        "metricsTitle": "Key Metrics",
+        "statusAnalysis": "Status Analysis",
+        "performanceIndicators": "Performance Indicators"
+    },
+    "types": {
+        "travel": "Travel",
+        "operational": "Operational",
+        "emergency": "Emergency",
+        "project": "Project",
+        "personal": "Personal"
+    },
+    "periods": {
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+        "annual": "Annual"
+    },
+    "categories": {
+        "travel": "Travel Expenses",
+        "supplies": "Office Supplies",
+        "equipment": "Equipment",
+        "services": "Services",
+        "maintenance": "Maintenance"
+    },
+    "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "paid": "Paid",
+        "cancelled": "Cancelled"
+    },
+    "currencies": {
+        "pen": "PEN",
+        "usd": "USD",
+        "eur": "EUR"
+    },
+    "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+    }
+}

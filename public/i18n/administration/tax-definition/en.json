@@ -1,0 +1,50 @@
+{
+    "title": "Tax Definition",
+    "subtitle": "System tax definitions management",
+    "message": "Tax Definition",
+    "filters": {
+        "country": "Country",
+        "type": "Type"
+    },
+    "placeholder": {
+        "country": "Select country",
+        "type": "Select type",
+        "code": "Enter code",
+        "description": "Enter description",
+        "percentage": "Enter percentage",
+        "active": "Select state",
+        "name": "Enter name",
+        "value": "Enter value",
+        "legalEntityCode": "Enter legal entity code",
+        "accountCode": "Enter account code",
+        "accountName": "Account name",
+        "accountDescription": "Account description",
+        "searchAccount": "Search account..."
+    },
+    "form": {
+        "code": "Code",
+        "description": "Description",
+        "country": "Country",
+        "taxType": "Type",
+        "name": "Name",
+        "accountCode": "Account Code",
+        "accountName": "Account Name",
+        "accountDescription": "Account Description",
+        "registerDate": "Register Date"
+    },
+    "headerTable": {
+        "description": "Description",
+        "country": "Country",
+        "taxType": "Tax Type",
+        "percent": "Percentage",
+        "accountCode": "Account Code",
+        "accountDescription": "Account Description",
+        "name": "Name",
+        "actions": "Actions"
+    },
+    "addTaxDefinition": "Add Tax Definition",
+    "actions": {
+        "edit": "Edit",
+        "view": "View details"
+    }
+}

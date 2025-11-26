@@ -1,0 +1,36 @@
+{
+    "maskCodeInventory": {
+        "title": "Inventory Code Mask",
+        "petitionsSection": {
+            "title": "Mandatory Petitions in Article",
+            "generateLineTypes": "Generate line types",
+            "deletePaymentLine": "Delete payment line",
+            "annualSequence": "Annual sequence",
+            "templateType": "Template type"
+        },
+        "selectionSection": {
+            "title": "Selection",
+            "provision": "Provision",
+            "cancellation": "Cancellation",
+            "withProvision": "With provision",
+            "showEntryCode": "Show entry code",
+            "showEntrySequence": "Show entry sequence",
+            "serviceCategory": "Service category",
+            "fixedAssetCategory": "Fixed asset category",
+            "advancePayment": "Advance payment"
+        },
+        "actions": {
+            "modifyConfiguration": "Modify Configuration",
+            "save": "Save",
+            "cancel": "Cancel",
+            "reset": "Reset"
+        },
+        "messages": {
+            "loadingPetitions": "Loading petitions...",
+            "loadingSelections": "Loading selections...",
+            "configurationUpdated": "Configuration updated successfully",
+            "errorUpdating": "Error updating configuration",
+            "noChanges": "No changes to save"
+        }
+    }
+}

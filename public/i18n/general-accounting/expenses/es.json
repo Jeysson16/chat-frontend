@@ -1,0 +1,94 @@
+{
+    "title": "Gastos",
+    "subtitle": "Gestión Contable > Gastos",
+    "message": "Gestión de Gastos",
+    "form": {
+        "sections": {
+            "basicInfo": "Información Básica",
+            "financialInfo": "Información Financiera",
+            "statusInfo": "Estado y Notas"
+        },
+        "fields": {
+            "name": {
+                "label": "Nombre del Gasto",
+                "placeholder": "Ingrese el nombre del gasto"
+            },
+            "description": {
+                "label": "Descripción",
+                "placeholder": "Ingrese la descripción del gasto"
+            },
+            "amount": {
+                "label": "Monto",
+                "placeholder": "0.00"
+            },
+            "currency": {
+                "label": "Moneda"
+            },
+            "category": {
+                "label": "Categoría"
+            },
+            "status": {
+                "label": "Estado"
+            },
+            "expenseDate": {
+                "label": "Fecha del Gasto"
+            },
+            "vendor": {
+                "label": "Proveedor",
+                "placeholder": "Ingrese el nombre del proveedor"
+            },
+            "notes": {
+                "label": "Notas",
+                "placeholder": "Notas adicionales"
+            }
+        },
+        "actions": {
+            "save": "Guardar",
+            "update": "Actualizar",
+            "cancel": "Cancelar"
+        }
+    },
+    "modal": {
+        "add": {
+            "title": "Agregar Nuevo Gasto"
+        },
+        "edit": {
+            "title": "Editar Gasto"
+        },
+        "close": "Cerrar"
+    },
+    "options": {
+        "add": "Agregar Gasto",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "stats": {
+        "totalExpenses": "Total de Gastos",
+        "pendingExpenses": "Gastos Pendientes",
+        "monthlyExpenses": "Gastos Mensuales",
+        "yearlyExpenses": "Gastos Anuales"
+    },
+    "dashboard": {
+        "chartTitle": "Resumen de Gastos",
+        "metricsTitle": "Métricas Principales"
+    },
+    "list": {
+        "title": "Gastos Recientes"
+    },
+    "categories": {
+        "office": "Suministros de Oficina",
+        "travel": "Viajes",
+        "meals": "Comidas y Entretenimiento",
+        "equipment": "Equipamiento",
+        "software": "Software",
+        "utilities": "Servicios Públicos",
+        "marketing": "Marketing",
+        "other": "Otros"
+    },
+    "status": {
+        "pending": "Pendiente",
+        "approved": "Aprobado",
+        "rejected": "Rechazado",
+        "paid": "Pagado"
+    }
+}

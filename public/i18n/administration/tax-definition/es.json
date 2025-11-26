@@ -1,0 +1,59 @@
+{
+    "title": "Definición de Impuestos",
+    "subtitle": "Gestión de definiciones de impuestos del sistema",
+    "message": "Definición de Impuesto",
+    "addTaxDefinition": "Agregar Impuesto",
+    "filters": {
+        "country": "País",
+        "type": "Tipo"
+    },
+    "placeholders": {
+        "code": "Ingrese código",
+        "description": "Ingrese descripción",
+        "country": "Seleccione país",
+        "type": "Seleccione tipo",
+        "percent": "Ingrese porcentaje",
+        "state": "Seleccione estado",
+        "name": "Ingrese nombre",
+        "value": "Ingrese valor",
+        "legalEntityCode": "Ingrese código persona jurídica",
+        "accountCode": "Ingrese cuenta contable",
+        "accountName": "Nombre de la cuenta",
+        "accountDescription": "Descripción de la cuenta",
+        "searchAccount": "Buscar cuenta contable..."
+    },
+    "form": {
+        "code": "Código",
+        "description": "Descripción",
+        "country": "País",
+        "taxType": "Tipo",
+        "percent": "Porcentaje",
+        "state": "Estado",
+        "name": "Nombre",
+        "value": "Valor",
+        "legalEntityCode": "Código Persona Jurídica",
+        "accountCode": "Cuenta Contable",
+        "accountName": "Nombre Cuenta",
+        "registerDate": "Fecha de Registro",
+        "accountDescription": "Descripción Cuenta"
+    },
+    "headerTable": {
+        "code": "Código",
+        "name": "Nombre",
+        "accountCode": "Cuenta Contable",
+        "description": "Descripción",
+        "accountDescription": "Descripción de Cuenta",
+        "country": "País",
+        "type": "Tipo",
+        "percent": "Porcentaje",
+        "state": "Estado",
+        "registerDate": "Fecha de Registro",
+        "updateDate": "Fecha de Actualización",
+        "actions": "Acciones"
+    },
+    "actions": {
+        "edit": "Editar",
+        "view": "Ver detalles"
+    },
+    "delete": "Eliminar"
+}

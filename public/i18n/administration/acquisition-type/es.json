@@ -1,0 +1,54 @@
+{
+    "title": "Tipos de Adquisición",
+    "subtitle": "Administración > Tipos de Adquisición",
+    "message": "Tipo de Adquisición",
+    "headerTable": {
+        "code": "Código",
+        "name": "Nombre",
+        "parentCode": "Código Padre",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario",
+        "registerDate": "Fecha de Registro",
+        "registerUser": "Usuario de Registro",
+        "status": "Estado",
+        "actions": "Acciones"
+    },
+    "form": {
+        "code": "Código",
+        "name": "Nombre",
+        "parentCode": "Código Padre",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario",
+        "allowMultiplePayments": "Permite Múltiples Pagos"
+    },
+    "options": {
+        "add": "Agregar Tipo de Adquisición",
+        "edit": "Editar Tipo de Adquisición",
+        "delete": "Eliminar Tipo de Adquisición",
+        "view": "Ver Tipo de Adquisición",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "close": "Cerrar",
+        "confirm": "Confirmar",
+        "back": "Volver",
+        "next": "Siguiente",
+        "previous": "Anterior",
+        "search": "Buscar",
+        "clear": "Limpiar",
+        "filter": "Filtrar",
+        "export": "Exportar",
+        "import": "Importar",
+        "print": "Imprimir",
+        "refresh": "Actualizar",
+        "new": "Nuevo",
+        "update": "Actualizar",
+        "remove": "Eliminar"
+    },
+    "messages": {
+        "success": "Operación realizada con éxito",
+        "error": "Error al realizar la operación",
+        "warning": "Advertencia",
+        "info": "Información",
+        "confirm": "¿Está seguro de realizar esta operación?"
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "title": "Document Types",
+    "subtitle": "Administration > Document Types",
+    "message": "Document Type",
+    "headerTable": {
+        "code": "Code",
+        "name": "Name",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment",
+        "registerDate": "Register Date",
+        "registerUser": "Register User",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "code": "Code",
+        "name": "Name",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "options": {
+        "add": "Add Document Type"
+    },
+    "validation": {
+        "required": "This field is required",
+        "codeRequired": "Code is required",
+        "nameRequired": "Name is required",
+        "effectiveDateRequired": "Effective date is required"
+    },
+    "messages": {
+        "saveSuccess": "Document type saved successfully",
+        "updateSuccess": "Document type updated successfully",
+        "deleteSuccess": "Document type deleted successfully",
+        "error": "An error occurred while processing the request"
+    }
+}

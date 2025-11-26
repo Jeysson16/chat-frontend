@@ -1,0 +1,25 @@
+{
+    "title": "User Management",
+    "subtitle": "Administration > User Management > Users",
+    "title-table": "User List",
+    "title-bu": "New User",
+    "showWarning": "Implement password policies for the company",
+    "table": {
+        "code": "Code",
+        "typeDoc": "Document Type",
+        "doc": "Document",
+        "fullName": "Full Name",
+        "user": "User",
+        "options": "Options"
+    },
+    "form": {
+        "user": "User: *",
+        "password": "Password: *",
+        "repeatPaswword": "Repeat Password: *",
+        "placeholder": "Search person",
+        "msgUser": "User available!"
+    },
+    "options":{
+        "edit":"Edit User"
+    }
+}

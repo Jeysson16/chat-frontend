@@ -1,0 +1,67 @@
+{
+    "title": "Asset Attributes",
+    "subtitle": "Asset Management > Asset Attributes",
+    "message": "Asset Attribute",
+    "headerTable": {
+        "code": "Code",
+        "name": "Name",
+        "assetCode": "Asset Code",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment",
+        "registerDate": "Register Date",
+        "registerUser": "Register User",
+        "status": "Status",
+        "actions": "Actions",
+        "attributeValue": "Attribute Value",
+        "dataType": "Data Type",
+        "isRequired": "Required",
+        "isActive": "Active"
+    },
+    "filters": {
+        "categoryAsset": "Asset Category"
+    },
+    "placeholder": {
+        "categoryAsset": "Select an asset category"
+    },
+    "form": {
+        "name": "Name",
+        "assetCode": "Asset Code",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment",
+        "attributeValue": "Attribute Value",
+        "dataType": "Data Type",
+        "isRequired": "Required",
+        "isActive": "Active"
+    },
+    "dataTypes": {
+        "text": "Text",
+        "integer": "Integer",
+        "decimal": "Decimal",
+        "date": "Date",
+        "boolean": "Boolean"
+    },
+    "placeholders": {
+        "name": "Enter attribute name",
+        "assetCode": "Select asset code",
+        "effectiveDate": "Select effective date",
+        "comment": "Enter a comment",
+        "attributeValue": "Enter attribute value",
+        "dataType": "Select data type"
+    },
+    "validations": {
+        "required": "This field is required",
+        "invalidNumber": "Must be a valid number",
+        "invalidDecimal": "Must be a valid decimal number",
+        "invalidDate": "Must be a valid date"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "options": {
+        "add": "Add Attribute",
+        "yes": "Yes",
+        "no": "No"
+    }
+}

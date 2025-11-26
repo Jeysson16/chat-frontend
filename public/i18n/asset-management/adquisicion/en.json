@@ -1,0 +1,69 @@
+{
+    "title": "Acquisition Management",
+    "message": "Acquisition",
+    "table": {
+        "code": "Code",
+        "legalPersonCode": "Legal Person Code",
+        "activeCode": "Active Code",
+        "personCode": "Person Code",
+        "acquisitionTypeCode": "Acquisition Type",
+        "acquisitionStartDate": "Start Date",
+        "acquisitionEndDate": "End Date",
+        "acquisitionAmount": "Acquisition Amount",
+        "periodicityCode": "Periodicity Code",
+        "acquisitionStatusCode": "Acquisition Status",
+        "contractDescription": "Contract Description",
+        "actions": "Actions"
+    },
+    "form": {
+        "code": "Code",
+        "legalPersonCode": "Legal Person Code",
+        "activeCode": "Active Code",
+        "personCode": "Person Code",
+        "acquisitionTypeCode": "Acquisition Type",
+        "acquisitionStartDate": "Start Date",
+        "acquisitionEndDate": "End Date",
+        "acquisitionAmount": "Acquisition Amount",
+        "periodicityCode": "Periodicity Code",
+        "acquisitionStatusCode": "Acquisition Status",
+        "contractDescription": "Contract Description"
+    },
+    "placeholders": {
+        "legalPersonCode": "Select legal person",
+        "activeCode": "Enter active code",
+        "personCode": "Enter person code",
+        "acquisitionTypeCode": "Enter acquisition type",
+        "acquisitionAmount": "Enter acquisition amount",
+        "periodicityCode": "Enter periodicity code",
+        "acquisitionStatusCode": "Enter acquisition status",
+        "contractDescription": "Enter contract description",
+        "acquisitionStartDate": "Select start date",
+        "acquisitionEndDate": "Select end date"
+    },
+    "options": {
+        "add": "Add Acquisition",
+        "edit": "Edit acquisition",
+        "delete": "Delete acquisition",
+        "view": "View acquisition"
+    },
+    "validations": {
+        "required": "This field is required",
+        "invalidAmount": "Must be a valid amount greater than 0",
+        "invalidDate": "Must be a valid date",
+        "maxLength": "Text is too long"
+    },
+    "actions": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "create": "Create",
+        "update": "Update"
+    },
+    "filters": {
+        "category": "Filter by category",
+        "allCategories": "All categories"
+    },
+    "dialog": {
+        "newTitle": "New Acquisition",
+        "editTitle": "Edit Acquisition"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "title": "Permission List",
+    "subtitle": "Administration > User Management > Permission List",
+    "title-table": "Permission Listing",
+    "title-bu": "New Permission",
+    "messageChangeStatus": {
+        "title": "Confirm status change",
+        "message": "Are you sure you want to change the status of this record?"
+    },
+
+    "table": {
+        "code":"code",
+        "name": "name",
+        "status": "status",
+        "options":"options"
+    },
+    "bu": {
+        "view": "Module list",
+        "edit": "Edit list module",
+        "delete": "Delete list module",
+        "delete-o": "Delete module"
+    },
+    "form": {
+        "name": "Name"
+    }
+}

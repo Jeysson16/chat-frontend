@@ -1,0 +1,43 @@
+{
+  "title": "Accounting Keys",
+  "subtitle": "System accounting keys management",
+  "interfaceSelection": "Interface Selection",
+  "departmentRegistration": "Accounting Class Registration",
+  "configurationsList": "Configurations List: Accounting Class",
+  "selectInterface": "Select Accounting Class",
+  "relatedInterfaces": "Related Interfaces",
+  "noRelatedInterfaces": "No related interfaces",
+  "selectInterfaceToView": "Select an interface to view related ones",
+  "code": "Code",
+  "class": "Class",
+  "name": "Name",
+  "description": "Description",
+  "type": "Type",
+  "interfaceCode": "Interface Code",
+  "property": "Property",
+  "detailProperty": "Detail Property",
+  "effectiveDate": "Effective Date",
+  "activeState": "Active State",
+  "save": "Save",
+  "cancel": "Cancel",
+  "update": "Update",
+  "edit": "Edit",
+  "delete": "Delete",
+  "noRecords": "No records available",
+  "headerTable": {
+    "class": "Class",
+    "name": "Name",
+    "description": "Description",
+    "property": "Property",
+    "detailProperty": "Detail Property",
+    "effectiveDate": "Effective Date",
+    "actions": "Actions"
+  },
+  "actions": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "configure": "Configure"
+  },
+  "selectActionToActivateForm": "Select an action to activate the form"
+}

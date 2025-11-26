@@ -1,0 +1,63 @@
+{
+    "title": "Tax Detail Management",
+    "subtitle": "Manage tax details applicable to articles and services",
+    "filters": {
+        "country": "Country",
+        "type": "Tax Type"
+    },
+    "placeholder": {
+        "country": "Select country",
+        "type": "Select type"
+    },
+    "message": "Complete the required information to configure the tax detail.",
+    "form": {
+        "name": "Name",
+        "effectiveDate": "Effective Date",
+        "group": "Group",
+        "sequence": "Sequence",
+        "operationType": "Operation Type",
+        "unitOfMeasure": "Unit of Measure",
+        "percentage": "Percentage",
+        "rate": "Rate",
+        "amount": "Amount",
+        "default": "Default",
+        "serviceType": "Service Type",
+        "masterCode": "Master Code",
+        "taxType": "Tax Type",
+        "retentionRateCode": "Retention Rate Code",
+        "masterClass": "Master Class",
+        "countryCode": "Country Code",
+        "affected": "Affected",
+        "effectiveDate": "Effective Date",
+        "unitCode": "Unit Code",
+        "percentage": "Percentage",
+        "topAmount": "Top Amount",
+        "defaultAffected": "Default Affected",
+        "taxAmount": "Tax Amount",
+        "classAccountCode": "Class Account Code",
+        "affectedAccountCode": "Affected Account Code"
+    },
+    "headerTable": {
+        "companyCode": "Company Code",
+        "serviceType": "Service Type",
+        "code": "Code",
+        "taxType": "Tax Type",
+        "country": "Country",
+        "percentage": "Percentage",
+        "effectiveDate": "Effective Date",
+        "defaultAffected": "Default Affected",
+        "actions": "Actions"
+    },
+    "buttons": {
+        "create": "Create New",
+        "edit": "Edit",
+        "delete": "Delete",
+        "save": "Save",
+        "update": "Update",
+        "cancel": "Cancel"
+    },
+    "dialog": {
+        "createTitle": "Create New Tax Detail",
+        "editTitle": "Edit Tax Detail"
+    }
+}

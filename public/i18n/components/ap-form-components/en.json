@@ -1,0 +1,9 @@
+{
+  "confirm_deletion": "Confirm deletion",
+  "are_you_sure_delete_record": "Are you sure you want to delete this record?",
+  "information_message": "Information message",
+  "cannot_delete_phone_one_active_required": "You cannot delete this phone, because at least one active phone is required.",
+  "cannot_delete_email_one_active_required": "You cannot delete this email, because at least one active email is required.",
+  "cannot_delete_language_one_active_required": "You cannot delete this language, because at least one active language is required.",
+  "cannot_delete_address_one_active_required": "You cannot delete this address, because at least one active address is required."
+}

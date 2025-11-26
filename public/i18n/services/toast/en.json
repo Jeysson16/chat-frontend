@@ -1,0 +1,20 @@
+{
+    "added": "Registration successful",
+    "edited": "Update successful",
+    "deleted": "Deletion successful",
+    "activated": "Activation successful",
+    "deactivated": "Deactivation successful",
+    "published": "Successful publication",
+    "moved": "Move successful",
+    "0": {
+        "activated": "{{type}} was activated successfully",
+        "deactivated": "{{type}} was deactivated successfully",
+        "deleted": "{{type}} was deleted successfully",
+        "moved": "{{type}} was moved successfully",
+        "published": "{{type}} was published successfully"
+    },
+    "1": {
+        "added": "{{type}} was added successfully",
+        "edited": "{{type}} was edited successfully"
+    }
+}

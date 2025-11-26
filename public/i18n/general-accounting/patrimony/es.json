@@ -1,0 +1,14 @@
+{
+    "title": "Información de Patrimonio",
+    "subtitle": "Gestión Contable > Patrimonio",
+    "chart": {
+        "title": "Activos Anuales",
+        "legend": "Activos Anuales"
+    },
+    "metrics": {
+        "assetsToEnter": "Activos por Ingresar",
+        "assetsWithAccountingValue": "Activos con valor contable",
+        "depreciatedAssets": "Activos Depreciados",
+        "universityAssets": "Activos Universitarios"
+    }
+}

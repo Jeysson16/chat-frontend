@@ -1,0 +1,45 @@
+{
+    "title": "Structure and Content",
+    "subtitle": "Administration > User Management > Content Structure",
+    "title-table": "Modules",
+    "title-bu": "New Module",
+    "bu": {
+        "add": "Add Module",
+        "edit": "Edit Module",
+        "delete": "Delete Module"
+    },
+    "table": {
+        "name": "Name",
+        "title": "Title",
+        "description": "Description",
+        "status": "Status",
+        "actions": "Options"
+    },
+    "text": {
+        "min": "Minimum characters",
+        "max": "Maximum characters",
+        "num": "Requires at least one number",
+        "uppercase": "Requires at least one uppercase letter",
+        "lowercase": "Requires at least one lowercase letter",
+        "specialChar": "Requires at least one special character",
+        "expiryDays": "Password validity days",
+        "historyCount": "Non-repeatable previous passwords",
+        "confi": "No password policy configured yet.",
+        "yes": "Yes",
+        "not": "Not"
+    },
+    "dialog": {
+        "title": "Policy"
+    },
+    "form": {
+        "name": "Module Name",
+        "description": "Description",
+        "moduleCode": "Module ID",
+        "title": "Title",
+        "subTitle": "Subtitle",
+        "type": "Navigation Type",
+        "iconCode": "Icon",
+        "link": "Link",
+        "image": "Image"
+    }
+}

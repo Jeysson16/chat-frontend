@@ -1,0 +1,24 @@
+{
+    "title": "Asset Categories",
+    "subtitle": "Asset Management > Asset Categories",
+    "message": "Category Asset",
+    "headerTable": {
+        "code": "Code",
+        "name": "Name",
+        "description": "Description",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "effectiveDate": "Effective Date",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "options": {
+        "add": "Add Type"
+    }
+}

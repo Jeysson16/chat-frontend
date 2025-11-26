@@ -1,0 +1,19 @@
+{
+    "title": "Clases de Activos",
+    "subtitle": "Gestión de Activos > Clasificación de Activos",
+    "message": "Clase de Activo",
+    "form": {
+        "name": "Nombre",
+        "effectiveDate": "Fecha Efectiva",
+        "hierarchy": "Pertenece a",
+        "comment": "Comentario"
+    },
+    "icons": {
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "options": {
+        "add": "Agregar Clase"
+    }
+}

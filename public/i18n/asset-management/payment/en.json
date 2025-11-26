@@ -1,0 +1,64 @@
+{
+    "title": "Payment Management",
+    "message": "Payment",
+    "table": {
+        "code": "Code",
+        "legalPersonCode": "Legal Person Code",
+        "acquisitionCode": "Acquisition Code",
+        "paymentDate": "Payment Date",
+        "paymentAmount": "Payment Amount",
+        "currencyCode": "Currency Code",
+        "paymentMethodCode": "Payment Method Code",
+        "paymentStatusCode": "Payment Status Code",
+        "observations": "Observations",
+        "dueDate": "Due Date"
+    },
+    "form": {
+        "code": "Code",
+        "legalPersonCode": "Legal Person Code",
+        "acquisitionCode": "Acquisition Code",
+        "paymentDate": "Payment Date",
+        "paymentAmount": "Payment Amount",
+        "currencyCode": "Currency Code",
+        "paymentMethodCode": "Payment Method",
+        "paymentStatusCode": "Payment Status",
+        "observations": "Observations",
+        "dueDate": "Due Date"
+    },
+    "placeholders": {
+        "legalPersonCode": "Select legal person",
+        "acquisitionCode": "Select acquisition",
+        "paymentAmount": "Enter payment amount",
+        "currencyCode": "Select currency",
+        "paymentMethodCode": "Select payment method",
+        "paymentStatusCode": "Select payment status",
+        "observations": "Enter observations",
+        "paymentDate": "Select payment date",
+        "dueDate": "Select due date"
+    },
+    "options": {
+        "add": "Add Payment",
+        "edit": "Edit payment",
+        "delete": "Delete payment",
+        "view": "View payment"
+    },
+    "validations": {
+        "required": "This field is required",
+        "invalidAmount": "Must be a valid amount greater than 0",
+        "invalidDate": "Must be a valid date"
+    },
+    "actions": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "create": "Create",
+        "update": "Update"
+    },
+    "filters": {
+        "category": "Filter by category",
+        "allCategories": "All categories"
+    },
+    "dialog": {
+        "newTitle": "New Payment",
+        "editTitle": "Edit Payment"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "title": "Lista de Permisos - Modulos",
+    "message": "Modulo de la lista de permisos",
+    "subtitle": "Administracion > Gestion usuarios > Lista permisos > Módulos ",
+    "title-table": "Listado de permisos de módulo",
+    "title-bu": "Nueva Módulo",
+    "messageChangeStatus": {
+        "title": "Confirmar cambio de estado",
+        "message": "¿Esta seguro que desea cambiar el estado de este registro?"
+    },
+    "showWarning": "Implemente las politicas de contraseña para la empresa",
+    "table": {
+        "code": "Código",
+        "name": "Nombre",
+        "add": "Permitir agregar",
+        "options": "Opciones"
+    },
+    "bu": {
+        "add": "Agregar Módulo",
+        "edit": "Editar Módulo",
+        "delete": "Eliminar Módulo",
+        "detail": "Ver listas de permisos que incluyen el módulo."
+    },
+    "form": {
+        "permission": "Lista de permisos"
+    },
+    "module":{
+        "title": "Lista de permisos por modulo",
+        "title-table": "El módulo {{nameModule}} está registrado en estas listas de permisos.",
+        "title-bu": "Ir a definición de módulos"
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "title": "Estructura y Contenido",
+    "subtitle": "Administracion > Gestion usuarios > Estructura de contenido",
+    "title-table": "Módulos",
+    "table": {
+        "name": "Nombre",
+        "title": "Título",
+        "description": "Descripción",
+        "status": "Estado",
+        "actions": "Opciones"
+    },
+    "title-bu": "Nuevo Modulo",
+    "bu": {
+        "add": "Agregar Módulo",
+        "edit": "Editar Módulo",
+        "delete": "Eliminar Módulo"
+    },
+    "text": {
+        "min": "Mínimo de caracteres",
+        "max": "Máximo de caracteres",
+        "num": "Requiere al menos un número",
+        "uppercase": "Requiere al menos una letra mayúscula",
+        "lowercase": "Requiere al menos una letra minúscula",
+        "specialChar": "Requiere al menos un carácter especial",
+        "expiryDays": "Días de vigencia de la contraseña",
+        "historyCount": "Contraseñas anteriores no repetibles",
+        "confi": "Aún no hay una política de contraseña configurada.",
+        "yes": "Sí",
+        "not": "No"
+    },
+    "dialog": {
+        "title": "Politica"
+    },
+    "form": {
+        "name": "Nombre del Módulo",
+        "description": "Descripción",
+        "moduleCode": "Id Módulo",
+        "title": "Título",
+        "subTitle": "Sub título",
+        "type": "Tipo de Navegación",
+        "iconCode": "Icono",
+        "link": "Link",
+        "image": "Imagen"
+    },
+    "icons": {
+        "edit": "Editar Persona",
+        "delete": "Eliminar Persona"
+    }
+}

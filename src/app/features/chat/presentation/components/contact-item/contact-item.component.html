@@ -1,0 +1,47 @@
+<div 
+  [class]="contactItemClasses"
+  (click)="onContactClick()"
+>
+  <!-- Avatar with online status -->
+  <div class="relative">
+    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-medium text-sm">
+      {{ getInitials(conversation.name || getOtherParticipantName()) }}
+    </div>
+    <!-- Online status indicator -->
+    <div 
+      *ngIf="getOtherParticipant()?.isOnline" 
+      class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full"
+    ></div>
+  </div>
+  
+  <!-- Contact Info -->
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center justify-between">
+      <h3 [class]="nameClasses">
+        {{ conversation.name || getOtherParticipantName() }}
+      </h3>
+      <span class="text-xs text-gray-400 ml-2 flex-shrink-0">
+        {{ formatLastMessageTime(conversation.lastMessage?.timestamp) }}
+      </span>
+    </div>
+    
+    <div class="flex items-center justify-between mt-0">
+      <p [class]="lastMessageClasses">
+        <span *ngIf="conversation.lastMessage; else noMessages">
+          {{ conversation.lastMessage.content }}
+        </span>
+        <ng-template #noMessages>
+          <span class="italic">No messages yet</span>
+        </ng-template>
+      </p>
+      
+      <!-- Unread count badge -->
+      <div 
+        *ngIf="(conversation.unreadCount || 0) > 0"
+        class="bg-blue-500 text-white text-xs rounded-full min-w-[18px] h-4 flex items-center justify-center px-1 font-medium"
+      >
+        {{ (conversation.unreadCount || 0) > 99 ? '99+' : (conversation.unreadCount || 0) }}
+      </div>
+    </div>
+  </div>
+</div>

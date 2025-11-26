@@ -1,0 +1,32 @@
+{
+  "title": "Gestión de Interfaces",
+  "subtitle": "Administrar interfaces del sistema",
+  "message": "Relación de Interface",
+  "headerTable": {
+    "sourceCode": "Código Origen",
+    "sourceClass": "Clase Origen",
+    "destinationCode": "Código Destino",
+    "destinationClass": "Clase Destino",
+    "value": "Valor",
+    "actions": "Acciones"
+  },
+  "form": {
+    "sourceCode": "Código Origen",
+    "sourceClass": "Clase Origen",
+    "destinationCode": "Código Destino",
+    "destinationClass": "Clase Destino",
+    "value": "Valor"
+  },
+  "placeholders": {
+    "sourceCode": "Ingrese código origen",
+    "sourceClass": "Ingrese clase origen",
+    "destinationCode": "Ingrese código destino",
+    "destinationClass": "Ingrese clase destino",
+    "value": "Ingrese valor"
+  },
+  "actions": {
+    "add": "Crear Interfaz",
+    "edit": "Editar",
+    "delete": "Eliminar"
+  }
+}

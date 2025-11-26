@@ -1,0 +1,36 @@
+{
+  "maskCodeInventory": {
+    "title": "Máscara código inventario",
+    "petitionsSection": {
+      "title": "Peticiones obligatoria en artículo",
+      "generateLineTypes": "Generar tipo de líneas",
+      "deletePaymentLine": "Eliminación de línea de pago",
+      "annualSequence": "Secuencia anual",
+      "templateType": "Tipo de Plantilla"
+    },
+    "selectionSection": {
+      "title": "Selección",
+      "provision": "Provisión",
+      "cancellation": "Cancelación",
+      "withProvision": "Con provisión",
+      "showEntryCode": "Mostrar código asiento",
+      "showEntrySequence": "Mostrar secuencia asiento",
+      "serviceCategory": "Categoría de servicio",
+      "fixedAssetCategory": "Categoría de activo fijo",
+      "advancePayment": "Pago anticipado"
+    },
+    "actions": {
+      "modifyConfiguration": "Modificar Configuración",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "reset": "Restablecer"
+    },
+    "messages": {
+      "loadingPetitions": "Cargando peticiones...",
+      "loadingSelections": "Cargando selecciones...",
+      "configurationUpdated": "Configuración actualizada exitosamente",
+      "errorUpdating": "Error al actualizar la configuración",
+      "noChanges": "No hay cambios para guardar"
+    }
+  }
+}

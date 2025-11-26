@@ -1,0 +1,13 @@
+{
+    "matDatepickerParse": "Formato de fecha incorrecta",
+    "required": "El campo es requerido",
+    "min": "Por favor seleccione una opción",
+    "minValue": "El valor debe ser al menos {{minValue}}",
+    "minlength": "El campo debe tener como mínimo {{requiredLength}} caracteres",
+    "maxlength": "El campo no debe exceder de los {{requiredLength}} caracteres",
+    "pattern": "El formato no es válido",
+    "rangeDateInvalid": "No puede ser menor a la fecha de inicio",
+    "customError": "{{customError}}",
+    "invalidOption": "Seleccione una opción",
+    "requiredEmail": "Formato de correo inválido"
+}

@@ -1,0 +1,70 @@
+{
+    "title": "Interface Management",
+    "subtitle": "Manage system interfaces",
+    "message": "Interface",
+    "placeholder": {
+        "group": "Select or type a group class"
+    },
+    "filters": {
+        "group": "Group"
+    },
+    "form": {
+        "class": "Class",
+        "hierarchy": "Hierarchy",
+        "name": "Name",
+        "description": "Description",
+        "type": "Type",
+        "value": "Value",
+        "image": "Add interface image",
+        "imageType": "Image Type",
+        "fileCode": "File Code",
+        "addEffectiveDate": "Add Effective Date",
+        "effectiveDate": {
+            "title": "Effective Date"
+        },
+        "date": "Date",
+        "sequence": "Sequence",
+        "status": "Status",
+        "comment": "Comment",
+        "dragOrClick": "Drag an image or click to select",
+        "dropImage": "Drop the image here",
+        "formats": "Formats: JPG, PNG, GIF (max. 5MB)",
+        "namePlaceholder": "Enter the interface name",
+        "descriptionPlaceholder": "Enter a detailed description",
+        "selectType": "Select a type",
+        "typeWeb": "Web",
+        "typeMobile": "Mobile",
+        "typeDesktop": "Desktop",
+        "extensionDataPlaceholder": "Enter extension data",
+        "identificationTextPlaceholder": "Identification text",
+        "referenceTextPlaceholder": "Reference value",
+        "intExtension": {
+            "title": "Interface Extension",
+            "item": "Item Number",
+            "data": "Extension Data",
+            "subClass": "Sub Class"
+        },
+        "intDetail": {
+            "title": "Interface Detail",
+            "item": "Item Number",
+            "subItem": "Sub Item",
+            "identificationText": "Identification Text",
+            "referenceText": "Reference Text"
+        }
+    },
+    "actions": {
+        "add": "Add Interface",
+        "addGroup": "Add Group",
+        "edit": "Edit Interface",
+        "editGroup": "Edit Group",
+        "delete": "Delete Interface",
+        "deleteGroup": "Delete Group"
+    },
+    "validation": {
+        "selectGroup": {
+            "title": "Select Group",
+            "message": "Please select a group"
+        },
+        "nameRequired": "Name is required"
+    }
+}

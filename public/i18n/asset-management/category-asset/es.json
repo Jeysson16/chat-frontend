@@ -1,0 +1,24 @@
+{
+    "title": "Categorías de Activos",
+    "subtitle": "Gestión de Activos > Categorías de Activos",
+    "message": "Categoría de Activo",
+    "headerTable": {
+        "code": "Código",
+        "name": "Nombre",
+        "description": "Descripción",
+        "status": "Estado",
+        "actions": "Acciones"
+    },
+    "form": {
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario"
+    },
+    "icons": {
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "options": {
+        "add": "Agregar Categoría"
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "title": "Accounting Configuration",
+    "subtitle": "Administration > Accounting Configuration",
+    "message": "Accounting Configuration",
+    "headerTable": {
+        "companyCode": "Company",
+        "configureApproval": "Configure Approval",
+        "interfaceWithPlanning": "Interface with Planning",
+        "intercompanyTransfers": "Intercompany Transfers",
+        "accountingKeysDependencies": "Accounting Keys Dependencies",
+        "sucursal": "Branch",
+        "sede": "Headquarters",
+        "departamento": "Department",
+        "actividad": "Activity",
+        "bien": "Asset",
+        "presupuesto": "Budget",
+        "destinationClass9": "Destination Class 9",
+        "directProductionEntry": "Direct Production Entry",
+        "entryGenerationType": "Entry Generation Type",
+        "actions": "Actions"
+    },
+    "form": {
+        "company": "Company",
+        "systemConfigFlowEntry": "System Entry Flow Configuration",
+        "constantCode": "Constant Code",
+        "configurationCodes": "Configuration Codes",
+        "organizationalUnitCode": "Organizational Unit Code",
+        "operationCode": "Operation Code",
+        "branchCode": "Branch Code",
+        "headquartersCode": "Headquarters Code",
+        "projectCode": "Project Code",
+        "subsidiaryCode": "Subsidiary Code",
+        "activityCode": "Activity Code",
+        "assetCode": "Asset Code",
+        "directProductionEntry": "Direct Production Entry",
+        "productionEntryType": "Production Entry Type",
+        "configureApproval": "Configure Approval",
+        "interfaceWithPlanning": "Interface with Planning",
+        "intercompanyTransfers": "Use of intercompany transfers",
+        "accountingKeysDependencies": "Use of accounting keys dependencies",
+        "charfieldConfig": "Configure Charfield",
+        "sucursal": "Branch",
+        "sede": "Headquarters",
+        "departamento": "Department",
+        "actividad": "Activity",
+        "bien": "Asset",
+        "presupuesto": "Budget",
+        "destinationClass9": "Configure Destination Class 9",
+        "massiveDestinationGeneration": "Massive Destination Class 9 Generation",
+        "sequentialGeneration": "Sequential Generation"
+    },
+    "placeholders": {
+        "company": "Select a company",
+        "destinationClass9": "Select destination class 9"
+    },
+    "actions": {
+        "new": "New",
+        "add": "Add Configuration",
+        "edit": "Edit Configuration",
+        "delete": "Delete Configuration",
+        "save": "Save",
+        "update": "Update",
+        "cancel": "Cancel",
+        "modify": "Modify Configuration"
+    },
+    "dialog": {
+        "createTitle": "Create New Accounting Configuration",
+        "editTitle": "Edit Accounting Configuration"
+    },
+    "validation": {
+        "companyRequired": "Company is required"
+    },
+    "messages": {
+        "success": "Configuration saved successfully",
+        "error": "Error saving configuration",
+        "deleteConfirm": "Are you sure you want to delete this configuration?"
+    }
+}

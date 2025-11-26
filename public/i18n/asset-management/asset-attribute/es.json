@@ -1,0 +1,67 @@
+{
+    "title": "Atributos de Activos",
+    "subtitle": "Gestión de Activos > Atributos de Activos",
+    "message": "Atributo de Activo",
+    "headerTable": {
+        "code": "Código",
+        "name": "Nombre",
+        "assetCode": "Código de Activo",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario",
+        "registerDate": "Fecha de Registro",
+        "registerUser": "Usuario de Registro",
+        "status": "Estado",
+        "actions": "Acciones",
+        "attributeValue": "Valor del Atributo",
+        "dataType": "Tipo de Dato",
+        "isRequired": "Requerido",
+        "isActive": "Activo"
+    },
+    "filters": {
+        "categoryAsset": "Categoría de Activo"
+    },
+    "placeholder": {
+        "categoryAsset": "Selecciona una categoría"
+    },
+    "form": {
+        "name": "Nombre",
+        "assetCode": "Código de Activo",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario",
+        "attributeValue": "Valor del Atributo",
+        "dataType": "Tipo de Dato",
+        "isRequired": "Requerido",
+        "isActive": "Activo"
+    },
+    "dataTypes": {
+        "text": "Texto",
+        "integer": "Entero",
+        "decimal": "Decimal",
+        "date": "Fecha",
+        "boolean": "Booleano"
+    },
+    "placeholders": {
+        "name": "Ingrese el nombre del atributo",
+        "assetCode": "Seleccione el código de activo",
+        "effectiveDate": "Seleccione la fecha efectiva",
+        "comment": "Ingrese un comentario",
+        "attributeValue": "Ingrese el valor del atributo",
+        "dataType": "Seleccione el tipo de dato"
+    },
+    "validations": {
+        "required": "Este campo es requerido",
+        "invalidNumber": "Debe ser un número válido",
+        "invalidDecimal": "Debe ser un número decimal válido",
+        "invalidDate": "Debe ser una fecha válida"
+    },
+    "icons": {
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "options": {
+        "add": "Agregar Atributo",
+        "yes": "Sí",
+        "no": "No"
+    }
+}

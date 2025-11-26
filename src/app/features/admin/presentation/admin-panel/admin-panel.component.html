@@ -1,0 +1,187 @@
+<div class="admin-panel">
+  <mat-toolbar color="primary" class="admin-header">
+    <mat-icon>admin_panel_settings</mat-icon>
+    <span class="title">Panel de Administración</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar Sesión</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <div class="admin-container">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav mode="side" opened class="sidenav">
+        <mat-nav-list>
+          <h3 matSubheader>Navegación</h3>
+          
+          <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
+            <mat-icon matListIcon>dashboard</mat-icon>
+            <span>Dashboard</span>
+          </a>
+          
+          <a mat-list-item routerLink="/admin/aplicaciones" routerLinkActive="active">
+            <mat-icon matListIcon>apps</mat-icon>
+            <span>Aplicaciones</span>
+          </a>
+          
+          <a mat-list-item routerLink="/admin/empresas" routerLinkActive="active">
+            <mat-icon matListIcon>business</mat-icon>
+            <span>Empresas</span>
+          </a>
+          
+          <a mat-list-item routerLink="/admin/configuraciones" routerLinkActive="active">
+            <mat-icon matListIcon>settings</mat-icon>
+            <span>Configuraciones</span>
+          </a>
+          
+          <a mat-list-item routerLink="/admin/usuarios-chat" routerLinkActive="active">
+            <mat-icon matListIcon>people</mat-icon>
+            <span>Usuarios Chat</span>
+          </a>
+
+          <mat-divider></mat-divider>
+          
+          <a mat-list-item routerLink="/" routerLinkActive="active">
+            <mat-icon matListIcon>chat</mat-icon>
+            <span>Ir al Chat</span>
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="main-content">
+        <!-- Dashboard Content -->
+        <div *ngIf="showDashboard" class="dashboard-content">
+          <div class="dashboard-header">
+            <h1>Dashboard de Administración</h1>
+            <p>Resumen general del sistema</p>
+          </div>
+
+          <!-- Statistics Cards -->
+          <div class="stats-grid">
+            <mat-card class="stat-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar>apps</mat-icon>
+                <mat-card-title>Aplicaciones</mat-card-title>
+                <mat-card-subtitle>Total registradas</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="stat-number">{{ estadisticas.totalAplicaciones || 0 }}</div>
+                <div class="stat-detail">
+                  <span class="active">{{ estadisticas.aplicacionesActivas || 0 }} activas</span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="stat-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar>business</mat-icon>
+                <mat-card-title>Empresas</mat-card-title>
+                <mat-card-subtitle>Total registradas</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="stat-number">{{ estadisticas.totalEmpresas || 0 }}</div>
+                <div class="stat-detail">
+                  <span class="active">{{ estadisticas.empresasActivas || 0 }} activas</span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="stat-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar>people</mat-icon>
+                <mat-card-title>Usuarios Chat</mat-card-title>
+                <mat-card-subtitle>Total registrados</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="stat-number">{{ estadisticas.totalUsuarios || 0 }}</div>
+                <div class="stat-detail">
+                  <span class="active">{{ estadisticas.usuariosActivos || 0 }} activos</span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="stat-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar>chat</mat-icon>
+                <mat-card-title>Conversaciones</mat-card-title>
+                <mat-card-subtitle>Total del sistema</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="stat-number">{{ estadisticas.totalConversaciones || 0 }}</div>
+                <div class="stat-detail">
+                  <span class="active">{{ estadisticas.conversacionesHoy || 0 }} hoy</span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="recent-activity">
+            <mat-card>
+              <mat-card-header>
+                <mat-icon mat-card-avatar>history</mat-icon>
+                <mat-card-title>Actividad Reciente</mat-card-title>
+                <mat-card-subtitle>Últimas acciones en el sistema</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-list *ngIf="actividadReciente.length > 0; else noActivity">
+                  <mat-list-item *ngFor="let actividad of actividadReciente">
+                    <mat-icon matListIcon>{{ getActivityIcon(actividad.tipo) }}</mat-icon>
+                    <div matLine>{{ actividad.descripcion }}</div>
+                    <div matLine class="activity-time">{{ actividad.fecha | date:'short' }}</div>
+                  </mat-list-item>
+                </mat-list>
+                <ng-template #noActivity>
+                  <div class="no-activity">
+                    <mat-icon>info</mat-icon>
+                    <p>No hay actividad reciente</p>
+                  </div>
+                </ng-template>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+            <mat-card>
+              <mat-card-header>
+                <mat-icon mat-card-avatar>flash_on</mat-icon>
+                <mat-card-title>Acciones Rápidas</mat-card-title>
+                <mat-card-subtitle>Tareas comunes de administración</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="action-buttons">
+                  <button mat-raised-button color="primary" routerLink="/admin/aplicaciones">
+                    <mat-icon>add</mat-icon>
+                    Nueva Aplicación
+                  </button>
+                  <button mat-raised-button color="accent" routerLink="/admin/empresas">
+                    <mat-icon>add_business</mat-icon>
+                    Nueva Empresa
+                  </button>
+                  <button mat-raised-button routerLink="/admin/usuarios-chat">
+                    <mat-icon>person_add</mat-icon>
+                    Nuevo Usuario
+                  </button>
+                  <button mat-raised-button routerLink="/admin/configuraciones">
+                    <mat-icon>tune</mat-icon>
+                    Configurar Sistema
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+        <!-- Router Outlet for Child Components -->
+        <router-outlet *ngIf="!showDashboard"></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

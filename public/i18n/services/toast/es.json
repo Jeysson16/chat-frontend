@@ -1,0 +1,22 @@
+{
+    "added": "Registro exitoso",
+    "edited": "Actualización exitosa",
+    "deleted": "Eliminación exitosa",
+    "sent": "Envío exitoso",
+    "activated": "Activación exitosa",
+    "deactivated": "Desactivación exitosa",
+    "published": "Publicación exitosa",
+    "moved": "Movimiento exitoso",
+    "0": {
+        "activated": "{{type}} se activó correctamente",
+        "deactivated": "{{type}} se desactivó correctamente",
+        "deleted": "{{type}} se eliminó correctamente",
+        "moved": "{{type}} se movió correctamente",
+        "published": "{{type}} se publicó correctamente",
+        "sent": "{{type}} se envió correctamente"
+    },
+    "1": {
+        "added": "{{type}} se agregó correctamente",
+        "edited": "{{type}} se editó correctamente"
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "title": "Password Policies",
+    "subtitle": "Administration > User Management > Policy",
+    "title-table": "Policy Record",
+    "title-ap-save": "New Policy",
+    "title-ap-edit": "Edit Policy",
+    "text": {
+        "min": "Minimum characters",
+        "max": "Maximum characters",
+        "num": "Requires at least one number",
+        "uppercase": "Requires at least one uppercase letter",
+        "lowercase": "Requires at least one lowercase letter",
+        "specialChar": "Requires at least one special character",
+        "expiryDays": "Password validity days",
+        "historyCount": "Non-repeatable previous passwords",
+        "confi": "No password policy configured yet.",
+        "yes": "Yes",
+        "not": "Not"
+    },
+    "dialog": {
+        "title": "Policy"
+    },
+    "form": {
+        "min": "Minimum number of characters *",
+        "max": "Maximum number of characters *",
+        "num": "Requires at least one number *",
+        "uppercase": "Requires at least one uppercase letter *",
+        "lowercase": "Requires at least one lowercase letter *",
+        "specialChar": "Requires at least one special character *",
+        "expiryDays": "Password validity days *",
+        "historyCount": "Number of non-repeatable previous passwords *"
+    }
+}

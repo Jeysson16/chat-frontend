@@ -1,0 +1,54 @@
+{
+    "title": "Acquisition Types",
+    "subtitle": "Administration > Acquisition Types",
+    "message": "Acquisition Type",
+    "headerTable": {
+        "code": "Code",
+        "name": "Name",
+        "parentCode": "Parent Code",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment",
+        "registerDate": "Register Date",
+        "registerUser": "Register User",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "code": "Code",
+        "name": "Name",
+        "parentCode": "Parent Code",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment",
+        "allowMultiplePayments": "Allow Multiple Payments"
+    },
+    "options": {
+        "add": "Add Acquisition Type",
+        "edit": "Edit Acquisition Type",
+        "delete": "Delete Acquisition Type",
+        "view": "View Acquisition Type",
+        "save": "Save",
+        "cancel": "Cancel",
+        "close": "Close",
+        "confirm": "Confirm",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "search": "Search",
+        "clear": "Clear",
+        "filter": "Filter",
+        "export": "Export",
+        "import": "Import",
+        "print": "Print",
+        "refresh": "Refresh",
+        "new": "New",
+        "update": "Update",
+        "remove": "Remove"
+    },
+    "messages": {
+        "success": "Operation completed successfully",
+        "error": "Error performing operation",
+        "warning": "Warning",
+        "info": "Information",
+        "confirm": "Are you sure you want to perform this operation?"
+    }
+}

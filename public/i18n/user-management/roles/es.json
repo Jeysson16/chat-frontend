@@ -1,0 +1,41 @@
+{
+    "title": "Seguridad - Rol",
+    "subtitle": "Administracion > Gestion Usuarios > Roles",
+    "title-table": "Rol de Usuarios",
+    "title-bu": "Nueva lista",
+    "name": "Rol - {{name}}",
+    "showWarning": "Ya se agregaron todas las listas de permisos.",
+    "table": {
+        "code": "Código",
+        "name": "Nombre",
+        "description": "Descripción",
+        "state": "Estado",
+        "options": "Opcciones"
+    },
+    "bu": {
+        "view": "Ver listas de permisos",
+        "edit": "Editar Rol",
+        "delete": "Eliminar Rol",
+        "delete-o": "Eliminar lista de permisos",
+        "detail": "Ver roles que incluyen esta lista de permiso."
+    },
+    "form": {
+        "title": "Asignación Lista de permisos",
+        "name": "Nombre",
+        "description": "Descripción",
+        "selection": "Selecciones una lista",
+        "p":{
+            "name": "Ingrese un nombre",
+            "description": "Ingrese una descripción"
+        }
+    },
+    "listPermission": {
+        "title": "Lista de roles por lista de permiso",
+        "title-table": "La lista de permiso {{namePermissionList}} está registrado en estos roles.",
+        "title-bu": "Ir a definición de listas de permiso"
+    },
+    "messageChangeStatus": {
+           "title": "Confirmar cambio de estado",
+           "message": "¿Esta seguro que desea cambiar el estado de este registro?"
+        }
+}

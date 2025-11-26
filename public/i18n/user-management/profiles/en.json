@@ -1,0 +1,78 @@
+{
+    "messageDelete": {
+        "title": "Confirm deletion",
+        "message": "Are you sure you want to delete this record?"
+    },
+    "addRolesPerson": {
+            "title": "role to user",
+            "role": "Role",
+            "permanent": "Permanent role",
+            "effectiveDate": "Effective date",
+            "access": "Access level",
+            "placeHolder" : {
+                "dateStart": "Date start",
+                "dateEnd": "Date end"
+            }
+    },
+    "levelAccess": {
+            "register": "Register access for",
+            "access": "Access level",
+            "btnRegister": "Register",
+            "btnDelete": "Delete access",
+            "btnDeleteReg": "Delete register",
+            "btnAdd": "Add",
+            "form": {
+                "campus": "Campus",
+                "level": "Level",
+                "subLevel": "Sublevel",
+                "acdGroups": "academic groups",
+                "acdProgram": "academic programs",
+                "permanentPermit": "Permanent",
+                "placeHolder": {
+                    "access": "Select an option",
+                    "campus": "Select an option",
+                    "level": "Select an option",
+                    "subLevel": "Select an option",
+                    "acdGroups": "Select an option",
+                    "acdProgram": "Select an option"
+                }
+            },
+            "messages": {
+                "titleDelete":"¡Information!",
+                "messageDelete":"When you delete access levels, all recorded settings will be lost. Do you wish to continue?",
+                "deleteTable": "Permission"
+            },
+            "tableHeader": {
+                "campus": "Campus",
+                "level": "Level",
+                "subLevel": "Sublevel",
+                "acdGroups": "academic groups",
+                "acdProgram": "academic programs",
+                "permanent": "Permanent",
+                "dateStart": "Date start",
+                "dateEnd": "Date end",
+                "options": "Options",
+                "optionsTable": {
+                    "delete": "Delete"
+                }
+            }
+        },
+
+  "title": "Profiles",
+  "subtitle": "Administration > User Management > Profiles",
+  "general": "General",
+  "relationshipType": "Relationship Type",
+  "selectAnOption": "Select an option",
+  "profile": "Profile:",
+  "selectAProfile": "Select a Profile",
+  "register": "Register",
+  "assignedProfiles": "Assigned Profile(s)",
+  "generatePdf": "Generate PDF",
+  "pdf": "PDF",
+  "viewPermissionsList": "View Permissions List",
+  "deleteProfile": "Delete Profile",
+  "noProfilesFound": "No profiles found.",
+  "fullNamePlaceholder": "Full Name",
+  "code": "Code:",
+  "document": "Document"
+}

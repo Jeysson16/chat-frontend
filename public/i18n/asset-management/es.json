@@ -1,0 +1,250 @@
+{
+    "title": "Gestión de Activos",
+    "element": "Activo",
+    "message": "Activos",
+    "selectType": "Seleccionar Tipo",
+    "options": {
+        "add": "Agregar Activo",
+        "edit": "Editar activo",
+        "delete": "Eliminar activo",
+        "view": "Ver activo",
+        "location1": "Almacén",
+        "location2": "Oficina",
+        "location3": "Campo"
+    },
+    "table": {
+        "code": "Código",
+        "photo": "Foto",
+        "description": "Descripción",
+        "typeAsset": "Tipo de Activo",
+        "classAsset": "Clase de Activo",
+        "categoryAsset": "Categoría de Activo",
+        "statusAsset": "Estado del Activo",
+        "acquisitionDate": "Fecha de Adquisición",
+        "acquisitionValue": "Valor de Adquisición",
+        "currentValue": "Valor Actual",
+        "locationCode": "Ubicación",
+        "nature": "Naturaleza",
+        "contractualStatus": "Situación Contractual",
+        "legalStatus": "Situación Legal",
+        "accountingStatus": "Situación Contable",
+        "options": "Opciones"
+    },
+    "filters": {
+        "category": "Filtrar por categoría",
+        "allCategories": "Todas las categorías",
+        "status": "Filtrar por estado",
+        "allStatuses": "Todos los estados"
+    },
+    "actions": {
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "create": "Crear",
+        "update": "Actualizar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "view": "Ver"
+    },
+    "dialog": {
+        "newTitle": "Nuevo Activo",
+        "editTitle": "Editar Activo",
+        "deleteTitle": "Eliminar Activo",
+        "deleteMessage": "¿Está seguro de que desea eliminar este activo?"
+    },
+    "form": {
+        "description": "Descripción",
+        "typeAssetCode": "Tipo de Activo",
+        "classAssetCode": "Clase de Activo",
+        "categoryAssetCode": "Categoría",
+        "acquisitionDate": "Fecha de Adquisición",
+        "acquisitionValue": "Valor de Adquisición",
+        "currentValue": "Valor Actual",
+        "locationCode": "Ubicación",
+        "customAttributes": "Atributos Personalizados"
+    },
+    "placeholders": {
+        "description": "Ingrese la descripción del activo",
+        "acquisitionValue": "Ingrese el valor de adquisición",
+        "currentValue": "Ingrese el valor actual"
+    },
+    "errors": {
+        "acquisitionValueRequired": "El valor de adquisición es requerido",
+        "currentValueRequired": "El valor actual es requerido",
+        "valueGreaterThanZero": "El valor debe ser mayor a 0",
+        "invalidValue": "Valor inválido",
+        "issueDateRequired": "La fecha de emisión es requerida",
+        "expirationDateRequired": "La fecha de vencimiento es requerida",
+        "dateCannotBeFuture": "La fecha no puede ser futura",
+        "expirationDateCannotBePast": "La fecha de vencimiento no puede ser pasada",
+        "invalidDate": "Fecha inválida"
+    },
+    "tabs": {
+        "general": "General",
+        "documents": "Documentos",
+        "acquisition": "Adquisición"
+    },
+    "documents": {
+        "title": "Documentos",
+        "addNew": "Agregar Nuevo Documento",
+        "edit": "Editar Documento",
+        "name": "Nombre del Documento",
+        "type": "Tipo de Documento",
+        "number": "Número del Documento",
+        "issueDate": "Fecha de Emisión",
+        "expirationDate": "Fecha de Vencimiento",
+        "file": "Archivo",
+        "observations": "Observaciones",
+        "selectFile": "Seleccionar Archivo",
+        "removeFile": "Remover Archivo",
+        "cancel": "Cancelar",
+        "existing": "Documentos Existentes",
+        "or": "o",
+        "issued": "Emitido",
+        "editTooltip": "Editar documento",
+        "deleteTooltip": "Eliminar documento",
+        "downloadTooltip": "Descargar documento",
+        "placeholders": {
+            "name": "Ingrese el nombre del documento",
+            "number": "Número del documento",
+            "issueDate": "Seleccionar fecha de emisión",
+            "expirationDate": "Seleccionar fecha de vencimiento",
+            "observations": "Observaciones adicionales"
+        },
+        "fields": {
+            "name": "Nombre del Documento",
+            "type": "Tipo de Documento",
+            "number": "Número del Documento",
+            "issueDate": "Fecha de Emisión",
+            "expirationDate": "Fecha de Vencimiento",
+            "file": "Archivo",
+            "observations": "Observaciones"
+        },
+        "dragDrop": "Arrastra y suelta archivos aquí o haz clic para seleccionar",
+        "allowedFormats": "Formatos permitidos: PDF, DOC, DOCX, JPG, PNG",
+        "messages": {
+            "fileTypeNotAllowed": "Tipo de archivo no permitido. Solo se permiten PDF, imágenes y documentos de Word",
+            "fileTooLarge": "El archivo es demasiado grande. Máximo 10MB permitido"
+        },
+        "types": {
+            "invoice": "Factura",
+            "warranty": "Garantía",
+            "manual": "Manual",
+            "certificate": "Certificado",
+            "unknown": "Desconocido"
+        }
+    },
+    "acquisition": {
+        "title": "Adquisición",
+        "edit": "Editar Adquisición",
+        "save": "Guardar Adquisición",
+        "clear": "Limpiar",
+        "legalPersonCode": "Código de Persona Legal",
+        "acquisitionType": "Tipo de Adquisición",
+        "date": "Fecha de Adquisición",
+        "amount": "Monto",
+        "status": "Estado",
+        "description": "Descripción",
+        "fields": {
+            "legalPersonCode": "Código de Persona Legal",
+            "acquisitionType": "Tipo de Adquisición",
+            "date": "Fecha de Adquisición",
+            "amount": "Monto",
+            "status": "Estado",
+            "description": "Descripción"
+        },
+        "payments": {
+            "title": "Pagos",
+            "showHide": "Mostrar/Ocultar Pagos",
+            "addPayment": "Agregar Pago",
+            "editPayment": "Editar Pago",
+            "addNewPayment": "Agregar Nuevo Pago",
+            "paymentNumber": "Pago #",
+            "paymentDate": "Fecha de Pago",
+            "paymentAmount": "Monto del Pago",
+            "paymentMethod": "Método de Pago",
+            "currency": "Moneda",
+            "observations": "Observaciones",
+            "date": "Fecha",
+            "amount": "Monto",
+            "method": "Método",
+            "editTooltip": "Editar pago",
+            "deleteTooltip": "Eliminar pago",
+            "cancel": "Cancelar",
+            "update": "Actualizar",
+            "add": "Agregar",
+            "payment": "Pago",
+            "registered": "registrado",
+            "registeredPlural": "registrados",
+            "placeholders": {
+                "selectDate": "Seleccionar fecha",
+                "amount": "0.00",
+                "observations": "Observaciones adicionales"
+            },
+            "methods": {
+                "cash": "Efectivo",
+                "transfer": "Transferencia",
+                "check": "Cheque",
+                "creditCard": "Tarjeta de Crédito",
+                "debitCard": "Tarjeta de Débito"
+            },
+            "currencies": {
+                "usd": "USD",
+                "eur": "EUR",
+                "cop": "COP"
+            },
+            "validations": {
+                "dateRequired": "La fecha de pago es requerida",
+                "dateInvalid": "Fecha inválida",
+                "futureDateNotAllowed": "La fecha no puede ser futura",
+                "amountRequired": "El monto es requerido",
+                "amountInvalid": "Monto inválido",
+                "amountMustBePositive": "El monto debe ser mayor a 0",
+                "amountTooHigh": "El monto del pago es demasiado alto. Por favor, verifique el valor ingresado"
+            },
+            "messages": {
+                "added": "Pago agregado correctamente",
+                "updated": "Pago actualizado correctamente",
+                "deleted": "Pago eliminado correctamente",
+                "formError": "Por favor corrija los errores en el formulario de pago",
+                "exceedsAcquisition": "El total de pagos excede el monto de adquisición"
+            }
+        },
+        "summary": {
+            "acquisitionAmount": "Monto de Adquisición",
+            "totalPaid": "Total Pagado",
+            "pendingBalance": "Saldo Pendiente",
+            "excessPaid": "Exceso Pagado"
+        },
+        "validations": {
+            "acquisitionDateRequired": "La fecha de adquisición es requerida",
+            "acquisitionDateInvalid": "Fecha inválida",
+            "futureDateNotAllowed": "La fecha no puede ser futura",
+            "acquisitionAmountRequired": "El monto de adquisición es requerido",
+            "acquisitionAmountInvalid": "Monto inválido",
+            "acquisitionAmountMustBePositive": "El monto de adquisición debe ser mayor a 0",
+            "acquisitionAmountTooHigh": "El monto de adquisición es demasiado alto. Por favor, verifique el valor ingresado",
+            "acquisitionAmountLowerThanPayments": "El monto de adquisición no puede ser menor al total de pagos registrados",
+            "acquisitionDescriptionPlaceholder": "Descripción de la adquisición"
+        },
+        "showPayments": "Mostrar Pagos",
+        "hidePayments": "Ocultar Pagos"
+    },
+    "image": {
+        "loading": "Cargando imagen...",
+        "preview": "Vista previa de la imagen del activo",
+        "clickToZoom": "Haga clic para hacer zoom",
+        "addPhoto": "Añadir foto del activo",
+        "dropHere": "Soltar imagen aquí",
+        "dragDropOrClick": "Arrastra una imagen o haz clic para seleccionar",
+        "supportedFormats": "Formatos: JPG, PNG, GIF (max. 5MB)",
+        "selectImage": "Seleccionar imagen",
+        "removeImage": "Remover imagen",
+        "fileInput": "Seleccionar imagen",
+        "invalidFormat": "Formato de imagen no válido. Use JPG, PNG, GIF o WebP.",
+        "fileTooLarge":  "Imagen demasiado grande. Máximo 5MB.",
+        "uploadSuccess": "Imagen cargada correctamente",
+        "uploadError": "Error al cargar la imagen",
+        "success": "Éxito",
+        "error": "Error"
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "title": "Cuentas por Pagar",
+    "subtitle": "Gestión Financiera > Cuentas por Pagar",
+    "message": "Cuenta por Pagar",
+    "headerTable": {
+        "code": "Código",
+        "supplierName": "Proveedor",
+        "invoiceNumber": "Factura",
+        "amount": "Monto",
+        "currency": "Moneda",
+        "dueDate": "Fecha Vencimiento",
+        "paymentDate": "Fecha Pago",
+        "status": "Estado",
+        "actions": "Acciones"
+    },
+    "form": {
+        "supplierName": "Nombre del Proveedor",
+        "invoiceNumber": "Número de Factura",
+        "amount": "Monto",
+        "currency": "Moneda",
+        "dueDate": "Fecha de Vencimiento",
+        "paymentDate": "Fecha de Pago",
+        "paymentMethod": "Método de Pago",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario"
+    },
+    "icons": {
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "approve": "Aprobar",
+        "pay": "Pagar"
+    },
+    "options": {
+        "add": "Agregar Cuenta por Pagar",
+        "edit": "Editar Cuenta por Pagar",
+        "approve": "Aprobar Pago",
+        "pay": "Realizar Pago"
+    },
+    "stats": {
+        "totalPending": "Total Pendiente",
+        "totalApproved": "Total Aprobado",
+        "totalPaid": "Total Pagado",
+        "overduePayments": "Pagos Vencidos"
+    },
+        "totalAmount": "Monto Total",
+        "pendingPayments": "Pagos Pendientes",
+        "anticipatedExpenses": "Gastos Anticipados",
+        "voucherQuantity": "Cantidad de Comprobantes",
+        "paymentTrends": "Tendencias de Pagos",
+        "suppliersByStatus": "Proveedores por Estado"
+    
+}

@@ -1,0 +1,94 @@
+{
+    "title": "Expenses",
+    "subtitle": "Accounting Management > Expenses",
+    "message": "Expenses Management",
+    "form": {
+        "sections": {
+            "basicInfo": "Basic Information",
+            "financialInfo": "Financial Information",
+            "statusInfo": "Status & Notes"
+        },
+        "fields": {
+            "name": {
+                "label": "Expense Name",
+                "placeholder": "Enter expense name"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Enter expense description"
+            },
+            "amount": {
+                "label": "Amount",
+                "placeholder": "0.00"
+            },
+            "currency": {
+                "label": "Currency"
+            },
+            "category": {
+                "label": "Category"
+            },
+            "status": {
+                "label": "Status"
+            },
+            "expenseDate": {
+                "label": "Expense Date"
+            },
+            "vendor": {
+                "label": "Vendor",
+                "placeholder": "Enter vendor name"
+            },
+            "notes": {
+                "label": "Notes",
+                "placeholder": "Additional notes"
+            }
+        },
+        "actions": {
+            "save": "Save",
+            "update": "Update",
+            "cancel": "Cancel"
+        }
+    },
+    "modal": {
+        "add": {
+            "title": "Add New Expense"
+        },
+        "edit": {
+            "title": "Edit Expense"
+        },
+        "close": "Close"
+    },
+    "options": {
+        "add": "Add Expense",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "stats": {
+        "totalExpenses": "Total Expenses",
+        "pendingExpenses": "Pending Expenses",
+        "monthlyExpenses": "Monthly Expenses",
+        "yearlyExpenses": "Yearly Expenses"
+    },
+    "dashboard": {
+        "chartTitle": "Expenses Overview",
+        "metricsTitle": "Key Metrics"
+    },
+    "list": {
+        "title": "Recent Expenses"
+    },
+    "categories": {
+        "office": "Office Supplies",
+        "travel": "Travel",
+        "meals": "Meals & Entertainment",
+        "equipment": "Equipment",
+        "software": "Software",
+        "utilities": "Utilities",
+        "marketing": "Marketing",
+        "other": "Other"
+    },
+    "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "paid": "Paid"
+    }
+}

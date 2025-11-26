@@ -1,0 +1,14 @@
+{
+  "title": "Patrimony Information",
+  "subtitle": "Management Contable > Patrimony",
+  "chart": {
+    "title": "Annual Assets",
+    "legend": "Annual Assets"
+  },
+  "metrics": {
+    "assetsToEnter": "Assets to Enter",
+    "assetsWithAccountingValue": "Assets with Accounting Value",
+    "depreciatedAssets": "Depreciated Assets",
+    "universityAssets": "University Assets"
+  }
+}

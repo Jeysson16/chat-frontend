@@ -1,0 +1,10 @@
+{
+  "title": "Seleccionar Imagen",
+  "subtitle": "",
+  "continueButton": "Continuar",
+  "description": "Arrastra y suelta una imagen o haz clic para seleccionar",
+  "selectImage": "Selecciona una imagen",
+  "dragDropHere": "o arrastra y suelta aquí",
+  "fileFormats": "PNG, JPG, GIF hasta 10MB",
+  "preview": "Vista previa"
+}

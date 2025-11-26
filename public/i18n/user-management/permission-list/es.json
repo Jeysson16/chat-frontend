@@ -1,0 +1,25 @@
+{
+    "title": "Lista de permisos",
+    "subtitle": "Administracion > Gestion usuarios > Lista permisos",
+    "title-table": "Listado de permisos",
+    "title-bu": "Nuevo Permiso",
+    "messageChangeStatus": {
+        "title": "Confirmar cambio de estado",
+        "message": "¿Esta seguro que desea cambiar el estado de este registro?"
+    },
+    "table": {
+        "code":"Código",
+        "name": "Nombre",
+        "status": "Estado",
+        "options":"Opciones"
+    },
+    "bu": {
+        "view": "Lista de Módulos",
+        "edit": "Editar lista Módulos",
+        "delete": "Eliminar lista de Módulos",
+        "delete-o": "Elimnar módulo"
+    },
+    "form": {
+        "name": "Nombre"
+    }
+}

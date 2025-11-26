@@ -1,0 +1,118 @@
+{
+    "title": "Gastos y Viajes",
+    "subtitle": "Gestión Contable > Gastos y Viajes",
+    "message": "Análisis de Anticipos",
+    "headerTable": {
+        "name": "Nombre",
+        "type": "Tipo",
+        "amount": "Monto",
+        "currency": "Moneda",
+        "requestDate": "Fecha Solicitud",
+        "dueDate": "Fecha Vencimiento",
+        "category": "Categoría",
+        "status": "Estado",
+        "employeeId": "ID Empleado",
+        "order": "Orden",
+        "active": "Activo",
+        "actions": "Acciones"
+    },
+    "types": {
+        "travel": "Viaje",
+        "operational": "Operacional",
+        "emergency": "Emergencia",
+        "project": "Proyecto",
+        "personal": "Personal"
+    },
+    "periods": {
+        "daily": "Diario",
+        "weekly": "Semanal",
+        "monthly": "Mensual",
+        "quarterly": "Trimestral",
+        "annual": "Anual"
+    },
+    "categories": {
+        "travel": "Gastos de Viaje",
+        "supplies": "Suministros de Oficina",
+        "equipment": "Equipamiento",
+        "services": "Servicios",
+        "maintenance": "Mantenimiento"
+    },
+    "status": {
+        "pending": "Pendiente",
+        "approved": "Aprobado",
+        "rejected": "Rechazado",
+        "paid": "Pagado",
+        "cancelled": "Cancelado"
+    },
+    "currencies": {
+        "pen": "PEN",
+        "usd": "USD",
+        "eur": "EUR"
+    },
+    "form": {
+        "name": "Nombre del Anticipo",
+        "type": "Tipo de Anticipo",
+        "description": "Descripción",
+        "amount": "Monto",
+        "currency": "Moneda",
+        "requestDate": "Fecha de Solicitud",
+        "dueDate": "Fecha de Vencimiento",
+        "category": "Categoría",
+        "status": "Estado",
+        "employeeId": "ID del Empleado",
+        "order": "Orden",
+        "active": "Activo",
+        "comment": "Comentario"
+    },
+    "options": {
+        "yes": "Sí",
+        "no": "No",
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "view": "Ver",
+        "export": "Exportar",
+        "refresh": "Actualizar"
+    },
+    "icons": {
+        "dashboard": "dashboard",
+        "advances": "advances",
+        "chart": "bar-chart",
+        "metric": "trending-up"
+    },
+    "dashboard": {
+        "monthlyAdvances": "Anticipos Mensuales",
+        "weeklyRequests": "Solicitudes Semanales",
+        "chartTitle": "Análisis Mensual - Gastos y Viajes",
+        "metricsTitle": "Métricas Principales",
+        "statusAnalysis": "Análisis de Estados",
+        "performanceIndicators": "Indicadores de Rendimiento"
+    },
+    "stats": {
+        "requestRegistration": "Registro de Solicitudes",
+        "pendingRequests": "Solicitudes Pendientes",
+        "weeklyAdvances": "Anticipos Semanales",
+        "monthlyAdvances": "Anticipos Mensuales",
+        "totalAdvances": "Total Anticipos",
+        "activeAdvances": "Anticipos Activos",
+        "pendingAdvances": "Anticipos Pendientes",
+        "approvedAdvances": "Anticipos Aprobados",
+        "rejectedAdvances": "Anticipos Rechazados",
+        "paidAdvances": "Anticipos Pagados",
+        "lastUpdate": "Última Actualización"
+    },
+    "months": {
+        "january": "Enero",
+        "february": "Febrero",
+        "march": "Marzo",
+        "april": "Abril",
+        "may": "Mayo",
+        "june": "Junio",
+        "july": "Julio",
+        "august": "Agosto",
+        "september": "Septiembre",
+        "october": "October",
+        "november": "Noviembre",
+        "december": "Diciembre"
+    }
+}

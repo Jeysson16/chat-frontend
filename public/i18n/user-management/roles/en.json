@@ -1,0 +1,41 @@
+{
+    "title": "Security - Role",
+    "subtitle": "Administration > User Management > Roles",
+    "title-table": "User Roles",
+    "title-bu": "New List",
+    "name": "Role - {{name}}",
+    "showWarning": "All permission lists have already been added.",
+    "table": {
+        "code": "Code",
+        "name": "Name",
+        "description": "Description",
+        "state": "state",
+        "options": "Options"
+    },
+    "bu": {
+        "view": "View permission list",
+        "edit": "Edit Role",
+        "delete": "Delete Role",
+        "delete-o": "Delete permission list",
+        "detail": "See roles that include this list of permissions."
+    },
+    "form": {
+        "title": "assignment permission list",
+        "name": "Name",
+        "description": "Description",
+        "selection": "List a selection",
+        "p":{
+            "name": "Enter name",
+            "description": "Enter description"
+        }
+    },
+    "listPermission": {
+        "title": "List of roles by permission list",
+        "title-table": "The permission list {{namePermissionList}} is registered in these roles.",
+        "title-bu": "Go to permission list definition"
+    },
+    "messageChangeStatus": {
+            "title": "Confirm Status Change",
+            "message": "Are you sure you want to change the status of this record?"
+        }
+}

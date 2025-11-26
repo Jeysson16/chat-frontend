@@ -1,0 +1,78 @@
+{
+    "messageDelete": {
+        "title": "Confirmar eliminación",
+        "message": "¿Esta seguro que desea eliminar este registro?"
+    },
+    "addRolesPerson": {
+            "title": "rol al usuario",
+            "role": "Rol",
+            "permanent": "Rol permanente",
+            "effectiveDate": "Fecha de vigencia",
+            "access": "Nivel de acceso",
+            "placeHolder" : {
+                "dateStart": "Fecha inicio",
+                "dateEnd": "Fecha final"
+            }
+    },
+    "levelAccess": {
+            "register": "Registrar acceso por",
+            "access": "Nivel de acceso",
+            "btnRegister": "Registrar",
+            "btnDelete": "Eliminar accesso",
+            "btnDeleteReg": "Eliminar registro",
+            "btnAdd": "Agregar",
+            "form": {
+                "campus": "Campus",
+                "level": "Nivel",
+                "subLevel": "Subnivel",
+                "acdGroups": "Grupos académicos",
+                "acdProgram": "Programas académicos",
+                "permanentPermit": "Permanente",
+                "placeHolder": {
+                    "access": "Seleccione una opción",
+                    "campus": "Seleccione una opción",
+                    "level": "Seleccione una opción",
+                    "subLevel": "Seleccione una opción",
+                    "acdGroups": "Seleccione una opción",
+                    "acdProgram": "Seleccione una opción"
+                }
+            },
+            "messages": {
+                "titleDelete":"Información!",
+                "messageDelete":"Al eliminar los niveles de acceso, se perderán todas las configuraciones registradas. ¿Desea continuar?",
+                "deleteTable": "Permiso"
+            },
+            "tableHeader": {
+                "campus": "Campus",
+                "level": "Nivel",
+                "subLevel": "Subnivel",
+                "acdGroups": "Grupos académicos",
+                "acdProgram": "Programas académicos",
+                "permanent": "Permanente",
+                "dateStart": "Fecha inicio",
+                "dateEnd": "Fecha fin",
+                "options": "Opciones",
+                "optionsTable": {
+                    "delete": "Eliminar"
+                }
+            }
+        },
+        "title": "Perfiles",
+        "subtitle": "Administration > User Management > Perfiles",
+        "general": "General",
+        "relationshipType": "Tipo relación",
+        "selectAnOption": "Seleccione una opción",
+        "profile": "Perfil:",
+        "selectAProfile": "Seleccione un Perfil",
+        "register": "Registrar",
+        "assignedProfiles": "Perfil(es) asignado(s)",
+        "generatePdf": "Generar PDF",
+        "pdf": "PDF",
+        "viewPermissionsList": "Ver Listas de permisos",
+        "deleteProfile": "Eliminar Perfil",
+        "noProfilesFound": "No se encontró perfiles.",
+        "fullNamePlaceholder": "Apellidos y Nombres",
+        "code": "Código:",
+        "document": "Documento"
+
+}

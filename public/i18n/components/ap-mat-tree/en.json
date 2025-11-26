@@ -1,0 +1,13 @@
+{
+    "header": {
+        "description": "Description",
+        "options": "Options"
+    },
+    "notData": "No recorded data found.",
+    "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+    },
+    "enable": "Enable",
+    "disable": "Disable"
+}

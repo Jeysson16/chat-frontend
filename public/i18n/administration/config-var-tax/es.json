@@ -1,0 +1,44 @@
+{
+    "title": "Gestión de Variables de Configuración de Impuestos",
+    "subtitle": "Administra las variables de configuración para impuestos del sistema",
+    "filters": {
+        "country": "País",
+        "type": "Tipo de Impuesto"
+    },
+    "placeholder": {
+        "country": "Seleccionar país",
+        "type": "Seleccionar tipo"
+    },
+    "message": "Complete la información requerida para configurar la variable de impuesto.",
+    "form": {
+        "code": "Código",
+        "country": "País",
+        "type": "Tipo de Impuesto",
+        "name": "Nombre",
+        "key": "Clave",
+        "status": "Estado",
+        "registerDate": "Fecha de Registro"
+    },
+    "headerTable": {
+        "code": "Código",
+        "country": "País",
+        "type": "Tipo",
+        "name": "Nombre",
+        "key": "Clave",
+        "status": "Estado",
+        "registerDate": "Fecha Registro",
+        "actions": "Acciones"
+    },
+    "buttons": {
+        "create": "Crear Nuevo",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "save": "Guardar",
+        "update": "Actualizar",
+        "cancel": "Cancelar"
+    },
+    "dialog": {
+        "createTitle": "Crear Nueva Variable de Configuración de Impuesto",
+        "editTitle": "Editar Variable de Configuración de Impuesto"
+    }
+}

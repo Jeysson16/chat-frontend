@@ -1,0 +1,44 @@
+{
+    "title": "Tax Configuration Variables Management",
+    "subtitle": "Manage system tax configuration variables",
+    "filters": {
+        "country": "Country",
+        "type": "Tax Type"
+    },
+    "placeholder": {
+        "country": "Select country",
+        "type": "Select type"
+    },
+    "message": "Complete the required information to configure the tax variable.",
+    "form": {
+        "code": "Code",
+        "country": "Country",
+        "type": "Tax Type",
+        "name": "Name",
+        "key": "Key",
+        "status": "Status",
+        "registerDate": "Register Date"
+    },
+    "headerTable": {
+        "code": "Code",
+        "country": "Country",
+        "type": "Type",
+        "name": "Name",
+        "key": "Key",
+        "status": "Status",
+        "registerDate": "Register Date",
+        "actions": "Actions"
+    },
+    "buttons": {
+        "create": "Create New",
+        "edit": "Edit",
+        "delete": "Delete",
+        "save": "Save",
+        "update": "Update",
+        "cancel": "Cancel"
+    },
+    "dialog": {
+        "createTitle": "Create New Tax Configuration Variable",
+        "editTitle": "Edit Tax Configuration Variable"
+    }
+}

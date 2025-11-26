@@ -1,0 +1,130 @@
+{
+    "title": "Gestión de Activos",
+    "message": "Activos",
+    "selectType": "Seleccionar Tipo",
+    "options": {
+        "add": "Agregar Activo",
+        "edit": "Editar activo",
+        "delete": "Eliminar activo",
+        "view": "Ver activo",
+        "location1": "Almacén",
+        "location2": "Oficina",
+        "location3": "Campo"
+    },
+    "table": {
+        "code": "Código",
+        "photo": "Foto",
+        "description": "Descripción",
+        "typeAsset": "Tipo de Activo",
+        "classAsset": "Clase de Activo",
+        "categoryAsset": "Categoría de Activo",
+        "statusAsset": "Estado del Activo",
+        "acquisitionDate": "Fecha de Adquisición",
+        "acquisitionValue": "Valor de Adquisición",
+        "currentValue": "Valor Actual",
+        "locationCode": "Ubicación",
+        "nature": "Naturaleza",
+        "contractualStatus": "Situación Contractual",
+        "legalStatus": "Situación Legal",
+        "accountingStatus": "Situación Contable",
+        "options": "Opciones"
+    },
+    "filters": {
+        "category": "Filtrar por categoría",
+        "allCategories": "Todas las categorías",
+        "status": "Filtrar por estado",
+        "allStatuses": "Todos los estados"
+    },
+    "actions": {
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "create": "Crear",
+        "update": "Actualizar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "view": "Ver"
+    },
+    "dialog": {
+        "newTitle": "Nuevo Activo",
+        "editTitle": "Editar Activo",
+        "deleteTitle": "Eliminar Activo",
+        "deleteMessage": "¿Está seguro de que desea eliminar este activo?"
+    },
+    "form": {
+        "description": "Descripción",
+        "typeAssetCode": "Tipo de Activo",
+        "classAssetCode": "Clase de Activo",
+        "categoryAssetCode": "Categoría",
+        "acquisitionDate": "Fecha de Adquisición",
+        "acquisitionValue": "Valor de Adquisición",
+        "currentValue": "Valor Actual",
+        "locationCode": "Ubicación"
+    },
+    "placeholders": {
+        "description": "Ingrese la descripción del activo",
+        "acquisitionValue": "Ingrese el valor de adquisición",
+        "currentValue": "Ingrese el valor actual"
+    },
+    "tabs": {
+        "general": "General",
+        "documents": "Documentos",
+        "acquisition": "Adquisición"
+    },
+    "documents": {
+        "title": "Documentos",
+        "addNew": "Agregar Nuevo Documento",
+        "edit": "Editar Documento",
+        "name": "Nombre del Documento",
+        "type": "Tipo de Documento",
+        "number": "Número del Documento",
+        "issueDate": "Fecha de Emisión",
+        "expirationDate": "Fecha de Vencimiento",
+        "file": "Archivo",
+        "observations": "Observaciones",
+        "fields": {
+            "name": "Nombre del Documento",
+            "type": "Tipo de Documento",
+            "number": "Número del Documento",
+            "issueDate": "Fecha de Emisión",
+            "expirationDate": "Fecha de Vencimiento",
+            "file": "Archivo",
+            "observations": "Observaciones"
+        },
+        "dragDrop": "Arrastra y suelta archivos aquí o haz clic para seleccionar",
+        "allowedFormats": "Formatos permitidos: PDF, DOC, DOCX, JPG, PNG",
+        "types": {
+            "invoice": "Factura",
+            "warranty": "Garantía",
+            "manual": "Manual",
+            "certificate": "Certificado",
+            "unknown": "Desconocido"
+        }
+    },
+    "acquisition": {
+        "title": "Adquisición",
+        "edit": "Editar Adquisición",
+        "save": "Guardar Adquisición",
+        "clear": "Limpiar",
+        "legalPersonCode": "Código de Persona Legal",
+        "acquisitionType": "Tipo de Adquisición",
+        "date": "Fecha de Adquisición",
+        "amount": "Monto",
+        "status": "Estado",
+        "description": "Descripción",
+        "fields": {
+            "legalPersonCode": "Código de Persona Legal",
+            "acquisitionType": "Tipo de Adquisición",
+            "date": "Fecha de Adquisición",
+            "amount": "Monto",
+            "status": "Estado",
+            "description": "Descripción"
+        },
+        "payments": {
+            "title": "Pagos",
+            "showHide": "Mostrar/Ocultar Pagos",
+            "addPayment": "Agregar Pago"
+        },
+        "showPayments": "Mostrar Pagos",
+        "hidePayments": "Ocultar Pagos"
+    }
+}

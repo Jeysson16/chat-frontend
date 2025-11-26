@@ -1,0 +1,28 @@
+{
+    "title": "Asset Status",
+    "subtitle": "Asset Management > Asset Status",
+    "message": "Asset Status",
+    "headerTable": {
+        "code": "Code",
+        "name": "Name",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment",
+        "registerDate": "Register Date",
+        "registerUser": "Register User",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "name": "Name",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "options": {
+        "add": "Add Status"
+    }
+}

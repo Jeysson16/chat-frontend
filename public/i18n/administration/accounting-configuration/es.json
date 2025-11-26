@@ -1,0 +1,81 @@
+{
+  "title": "Configuración de Asientos",
+  "subtitle": "Administración > Configuración de Asientos",
+  "message": "Configuración de Asientos",
+  "headerTable": {
+    "companyCode": "Empresa",
+    "configureApproval": "Configurar Aprobación",
+    "interfaceWithPlanning": "Interfaz con Planificación",
+    "intercompanyTransfers": "Transferencias Interfiliales",
+    "accountingKeysDependencies": "Dependencias de Claves Contables",
+    "sucursal": "Sucursal",
+    "sede": "Sede",
+    "departamento": "Departamento",
+    "actividad": "Actividad",
+    "bien": "Bien",
+    "presupuesto": "Presupuesto",
+    "destinationClass9": "Destino Clase 9",
+    "directProductionEntry": "Asiento de Producción Directo",
+    "entryGenerationType": "Tipo de Generación de Asiento",
+    "actions": "Acciones"
+  },
+  "form": {
+    "company": "Empresa",
+    "systemConfigFlowEntry": "Configuración de Flujo de Asiento del Sistema",
+    "constantCode": "Código de Constante",
+    "configurationCodes": "Códigos de Configuración",
+    "organizationalUnitCode": "Código de Unidad Organizacional",
+    "operationCode": "Código de Operación",
+    "branchCode": "Código de Sucursal",
+    "headquartersCode": "Código de Sede",
+    "projectCode": "Código de Proyecto",
+    "subsidiaryCode": "Código de Subsidiaria",
+    "activityCode": "Código de Actividad",
+    "assetCode": "Código de Activo",
+    "directProductionEntry": "Asiento de Producción Directo",
+    "productionEntryType": "Tipo de Asiento de Producción",
+    "configureApproval": "Configurar Aprobación",
+    "interfaceWithPlanning": "Interfaz con Planificación",
+    "intercompanyTransfers": "Uso de transferencias interfiliales",
+    "accountingKeysDependencies": "Uso de dependencias de claves contables",
+    "charfieldConfig": "Configurar Charfield",
+    "sucursal": "Sucursal",
+    "sede": "Sede",
+    "departamento": "Departamento",
+    "actividad": "Actividad",
+    "bien": "Bien",
+    "presupuesto": "Presupuesto",
+    "destinationClass9": "Configurar Destino Clase 9",
+    "entryGenerationType": "Tipo de Generación de Asiento",
+    "massiveDestinationGeneration": "Generación Masivo Destino Clase 9",
+    "sequentialGeneration": "Generación Secuencial"
+  },
+  "placeholders": {
+    "company": "Seleccione una empresa",
+    "destinationClass9": "Seleccione destino clase 9",
+    "productionEntryType": "Seleccionar tipo de asiento",
+    "entryGenerationType": "Seleccionar tipo de generación"
+  },
+  "actions": {
+    "new": "Nuevo",
+    "add": "Agregar Configuración",
+    "edit": "Editar Configuración",
+    "delete": "Eliminar Configuración",
+    "save": "Guardar",
+    "update": "Actualizar",
+    "cancel": "Cancelar",
+    "modify": "Modificar Configuración"
+  },
+  "dialog": {
+    "createTitle": "Crear Nueva Configuración de Asientos",
+    "editTitle": "Editar Configuración de Asientos"
+  },
+  "validation": {
+    "companyRequired": "La empresa es requerida"
+  },
+  "messages": {
+    "success": "Configuración guardada exitosamente",
+    "error": "Error al guardar la configuración",
+    "deleteConfirm": "¿Está seguro de eliminar esta configuración?"
+  }
+}

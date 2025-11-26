@@ -1,0 +1,61 @@
+{
+    "title": "Gestión de Detalles de Impuestos",
+    "subtitle": "Administra los detalles de impuestos aplicables a artículos y servicios",
+    "filters": {
+        "country": "País",
+        "type": "Tipo de Impuesto"
+    },
+    "placeholder": {
+        "country": "Seleccionar país",
+        "type": "Seleccionar tipo"
+    },
+    "message": "Complete la información requerida para configurar el detalle de impuesto.",
+    "form": {
+        "name": "Nombre",
+        "group": "Grupo",
+        "sequence": "Secuencia",
+        "operationType": "Tipo de Operación",
+        "unitOfMeasure": "Unidad de Medida",
+        "rate": "Tasa",
+        "amount": "Importe",
+        "default": "Por Defecto",
+        "serviceType": "Tipo de Servicio",
+        "masterCode": "Código Maestro",
+        "taxType": "Tipo de Impuesto",
+        "retentionRateCode": "Código de Tasa de Retención",
+        "masterClass": "Clase Maestra",
+        "countryCode": "Código de País",
+        "affected": "Afecto",
+        "effectiveDate": "Fecha Efectiva",
+        "unitCode": "Código de Unidad",
+        "percentage": "Porcentaje",
+        "topAmount": "Monto Tope",
+        "defaultAffected": "Afectado por Defecto",
+        "taxAmount": "Monto de Impuesto",
+        "classAccountCode": "Código de Cuenta de Clase",
+        "affectedAccountCode": "Código de Cuenta Afectada"
+    },
+    "headerTable": {
+        "companyCode": "Código Empresa",
+        "serviceType": "Tipo Servicio",
+        "code": "Código",
+        "taxType": "Tipo Impuesto",
+        "country": "País",
+        "percentage": "Porcentaje",
+        "effectiveDate": "Fecha Efectiva",
+        "defaultAffected": "Afecto por Defecto",
+        "actions": "Acciones"
+    },
+    "buttons": {
+        "create": "Crear Nuevo",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "save": "Guardar",
+        "update": "Actualizar",
+        "cancel": "Cancelar"
+    },
+    "dialog": {
+        "createTitle": "Crear Nuevo Detalle de Impuesto",
+        "editTitle": "Editar Detalle de Impuesto"
+    }
+}

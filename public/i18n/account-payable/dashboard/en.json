@@ -1,0 +1,52 @@
+{
+    "title": "Accounts Payable",
+    "subtitle": "Financial Management > Accounts Payable",
+    "message": "Account Payable",
+    "headerTable": {
+        "code": "Code",
+        "supplierName": "Supplier",
+        "invoiceNumber": "Invoice",
+        "amount": "Amount",
+        "currency": "Currency",
+        "dueDate": "Due Date",
+        "paymentDate": "Payment Date",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "supplierName": "Supplier Name",
+        "invoiceNumber": "Invoice Number",
+        "amount": "Amount",
+        "currency": "Currency",
+        "dueDate": "Due Date",
+        "paymentDate": "Payment Date",
+        "paymentMethod": "Payment Method",
+        "effectiveDate": "Effective Date",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete",
+        "approve": "Approve",
+        "pay": "Pay"
+    },
+    "options": {
+        "add": "Add Account Payable",
+        "edit": "Edit Account Payable",
+        "approve": "Approve Payment",
+        "pay": "Make Payment"
+    },
+    "stats": {
+        "totalPending": "Total Pending",
+        "totalApproved": "Total Approved",
+        "totalPaid": "Total Paid",
+        "overduePayments": "Overdue Payments"
+    },
+    "totalAmount": "Total Amount",
+    "pendingPayments": "Pending Payments",
+    "anticipatedExpenses": "Anticipated Expenses",
+    "voucherQuantity": "Voucher Quantity",
+    "paymentTrends": "Payment Trends",
+    "suppliersByStatus": "Suppliers by Status"
+}

@@ -1,0 +1,69 @@
+{
+    "title": "Gestión de Adquisiciones",
+    "message": "Adquisición",
+    "table": {
+        "code": "Código",
+        "legalPersonCode": "Código Persona Jurídica",
+        "activeCode": "Código Activo",
+        "personCode": "Código Persona",
+        "acquisitionTypeCode": "Tipo de Adquisición",
+        "acquisitionStartDate": "Fecha de Inicio",
+        "acquisitionEndDate": "Fecha de Fin",
+        "acquisitionAmount": "Monto de Adquisición",
+        "periodicityCode": "Código de Periodicidad",
+        "acquisitionStatusCode": "Estado de Adquisición",
+        "contractDescription": "Descripción del Contrato",
+        "actions": "Acciones"
+    },
+    "form": {
+        "code": "Código",
+        "legalPersonCode": "Código Persona Jurídica",
+        "activeCode": "Código Activo",
+        "personCode": "Código Persona",
+        "acquisitionTypeCode": "Tipo de Adquisición",
+        "acquisitionStartDate": "Fecha de Inicio",
+        "acquisitionEndDate": "Fecha de Fin",
+        "acquisitionAmount": "Monto de Adquisición",
+        "periodicityCode": "Código de Periodicidad",
+        "acquisitionStatusCode": "Estado de Adquisición",
+        "contractDescription": "Descripción del Contrato"
+    },
+    "placeholders": {
+        "legalPersonCode": "Seleccione persona jurídica",
+        "activeCode": "Ingrese código de activo",
+        "personCode": "Ingrese código de persona",
+        "acquisitionTypeCode": "Ingrese tipo de adquisición",
+        "acquisitionAmount": "Ingrese monto de adquisición",
+        "periodicityCode": "Ingrese código de periodicidad",
+        "acquisitionStatusCode": "Ingrese estado de adquisición",
+        "contractDescription": "Ingrese descripción del contrato",
+        "acquisitionStartDate": "Seleccione fecha de inicio",
+        "acquisitionEndDate": "Seleccione fecha de fin"
+    },
+    "options": {
+        "add": "Agregar Adquisición",
+        "edit": "Editar adquisición",
+        "delete": "Eliminar adquisición",
+        "view": "Ver adquisición"
+    },
+    "validations": {
+        "required": "Este campo es requerido",
+        "invalidAmount": "Debe ser un monto válido mayor a 0",
+        "invalidDate": "Debe ser una fecha válida",
+        "maxLength": "El texto es demasiado largo"
+    },
+    "actions": {
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "create": "Crear",
+        "update": "Actualizar"
+    },
+    "filters": {
+        "category": "Filtrar por categoría",
+        "allCategories": "Todas las categorías"
+    },
+    "dialog": {
+        "newTitle": "Nueva Adquisición",
+        "editTitle": "Editar Adquisición"
+    }
+}

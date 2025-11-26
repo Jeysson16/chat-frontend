@@ -1,0 +1,32 @@
+{
+    "title": "Permission List - Modules",
+    "message": "Module of the permission list",
+    "subtitle": "Administration > User Management > Permission List > Modules ",
+    "title-table": "Module Permission List",
+    "title-bu": "New Module",
+    "messageChangeStatus": {
+        "title": "Confirm status change",
+        "message": "Are you sure you want to change the status of this record?"
+    },
+    "showWarning": "Implement password policies for the company",
+    "table": {
+        "code": "Code",
+        "name": "Name",
+        "add": "Allow adding",
+        "options": "Options"
+    },
+    "bu": {
+        "add": "Add Module",
+        "edit": "Edit Module",
+        "delete": "Delete Module",
+        "detail": "View permission lists that include the module."
+    },
+    "form": {
+        "permission": "Permission list"
+    },
+    "module":{
+        "title": "Permission List by Module",
+        "title-table": "The module {{nameModule}} is registered in these permission lists.",
+        "title-bu": "Go to Modules Definition"
+    }
+}

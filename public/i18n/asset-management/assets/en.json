@@ -1,0 +1,130 @@
+{
+    "title": "Asset Management",
+    "message": "Assets",
+    "selectType": "Select Type",
+    "options": {
+        "add": "Add Asset",
+        "edit": "Edit asset",
+        "delete": "Delete asset",
+        "view": "View asset",
+        "location1": "Warehouse",
+        "location2": "Office",
+        "location3": "Field"
+    },
+    "table": {
+        "code": "Code",
+        "photo": "Photo",
+        "description": "Description",
+        "typeAsset": "Asset Type",
+        "classAsset": "Asset Class",
+        "categoryAsset": "Asset Category",
+        "statusAsset": "Asset Status",
+        "acquisitionDate": "Acquisition Date",
+        "acquisitionValue": "Acquisition Value",
+        "currentValue": "Current Value",
+        "locationCode": "Location",
+        "nature": "Nature",
+        "contractualStatus": "Contractual Status",
+        "legalStatus": "Legal Status",
+        "accountingStatus": "Accounting Status",
+        "options": "Options"
+    },
+    "filters": {
+        "category": "Filter by category",
+        "allCategories": "All categories",
+        "status": "Filter by status",
+        "allStatuses": "All statuses"
+    },
+    "actions": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "create": "Create",
+        "update": "Update",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View"
+    },
+    "dialog": {
+        "newTitle": "New Asset",
+        "editTitle": "Edit Asset",
+        "deleteTitle": "Delete Asset",
+        "deleteMessage": "Are you sure you want to delete this asset?"
+    },
+    "form": {
+        "description": "Description",
+        "typeAssetCode": "Asset Type",
+        "classAssetCode": "Asset Class",
+        "categoryAssetCode": "Category",
+        "acquisitionDate": "Acquisition Date",
+        "acquisitionValue": "Acquisition Value",
+        "currentValue": "Current Value",
+        "locationCode": "Location"
+    },
+    "placeholders": {
+        "description": "Enter asset description",
+        "acquisitionValue": "Enter acquisition value",
+        "currentValue": "Enter current value"
+    },
+    "tabs": {
+        "general": "General",
+        "documents": "Documents",
+        "acquisition": "Acquisition"
+    },
+    "documents": {
+        "title": "Documents",
+        "addNew": "Add New Document",
+        "edit": "Edit Document",
+        "name": "Document Name",
+        "type": "Document Type",
+        "number": "Document Number",
+        "issueDate": "Issue Date",
+        "expirationDate": "Expiration Date",
+        "file": "File",
+        "observations": "Observations",
+        "fields": {
+            "name": "Document Name",
+            "type": "Document Type",
+            "number": "Document Number",
+            "issueDate": "Issue Date",
+            "expirationDate": "Expiration Date",
+            "file": "File",
+            "observations": "Observations"
+        },
+        "dragDrop": "Drag and drop files here or click to select",
+        "allowedFormats": "Allowed formats: PDF, DOC, DOCX, JPG, PNG",
+        "types": {
+            "invoice": "Invoice",
+            "warranty": "Warranty",
+            "manual": "Manual",
+            "certificate": "Certificate",
+            "unknown": "Unknown"
+        }
+    },
+    "acquisition": {
+        "title": "Acquisition",
+        "edit": "Edit Acquisition",
+        "save": "Save Acquisition",
+        "clear": "Clear",
+        "legalPersonCode": "Legal Person Code",
+        "acquisitionType": "Acquisition Type",
+        "date": "Acquisition Date",
+        "amount": "Amount",
+        "status": "Status",
+        "description": "Description",
+        "fields": {
+            "legalPersonCode": "Legal Person Code",
+            "acquisitionType": "Acquisition Type",
+            "date": "Acquisition Date",
+            "amount": "Amount",
+            "status": "Status",
+            "description": "Description"
+        },
+        "payments": {
+            "title": "Payments",
+            "showHide": "Show/Hide Payments",
+            "addPayment": "Add Payment"
+        },
+        "showPayments": "Show Payments",
+        "hidePayments": "Hide Payments"
+    }
+}

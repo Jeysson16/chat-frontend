@@ -1,0 +1,65 @@
+{
+    "title": "Pagos",
+    "message": "Pago",
+    "table": {
+        "code": "Código",
+        "legalPersonCode": "Código Persona Jurídica",
+        "acquisitionCode": "Código Adquisición",
+        "paymentDate": "Fecha de Pago",
+        "paymentAmount": "Monto de Pago",
+        "currencyCode": "Código Moneda",
+        "paymentMethodCode": "Método de Pago",
+        "paymentStatusCode": "Estado del Pago",
+        "observations": "Observaciones",
+        "dueDate": "Fecha de Vencimiento",
+        "options": "Opciones"
+    },
+    "form": {
+        "code": "Código",
+        "legalPersonCode": "Código Persona Jurídica",
+        "acquisitionCode": "Código Adquisición",
+        "paymentDate": "Fecha de Pago",
+        "paymentAmount": "Monto de Pago",
+        "currencyCode": "Código Moneda",
+        "paymentMethodCode": "Método de Pago",
+        "paymentStatusCode": "Estado del Pago",
+        "observations": "Observaciones",
+        "dueDate": "Fecha de Vencimiento"
+    },
+    "placeholders": {
+        "legalPersonCode": "Seleccione persona jurídica",
+        "acquisitionCode": "Seleccione adquisición",
+        "paymentAmount": "Ingrese monto del pago",
+        "currencyCode": "Seleccione moneda",
+        "paymentMethodCode": "Seleccione método de pago",
+        "paymentStatusCode": "Seleccione estado del pago",
+        "observations": "Ingrese observaciones",
+        "paymentDate": "Seleccione fecha de pago",
+        "dueDate": "Seleccione fecha de vencimiento"
+    },
+    "options": {
+        "add": "Agregar nuevo pago",
+        "edit": "Editar pago",
+        "delete": "Eliminar pago",
+        "view": "Ver pago"
+    },
+    "validations": {
+        "required": "Este campo es requerido",
+        "invalidAmount": "Debe ser un monto válido mayor a 0",
+        "invalidDate": "Debe ser una fecha válida"
+    },
+    "actions": {
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "create": "Crear",
+        "update": "Actualizar"
+    },
+    "filters": {
+        "category": "Filtrar por categoría",
+        "allCategories": "Todas las categorías"
+    },
+    "dialog": {
+        "newTitle": "Nuevo Pago",
+        "editTitle": "Editar Pago"
+    }
+}

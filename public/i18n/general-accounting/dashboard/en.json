@@ -1,0 +1,53 @@
+{
+    "title": "General Accounting",
+    "subtitle": "Accounting Management > General Accounting",
+    "message": "Accounting Entry",
+    "headerTable": {
+        "entryNumber": "Entry Number",
+        "description": "Description",
+        "entryDate": "Entry Date",
+        "amount": "Amount",
+        "entryType": "Type",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "form": {
+        "entryNumber": "Entry Number",
+        "description": "Description",
+        "currency": "Currency",
+        "entryDate": "Entry Date",
+        "amount": "Amount",
+        "entryType": "Entry Type",
+        "account": "Account",
+        "debitAmount": "Debit Amount",
+        "creditAmount": "Credit Amount",
+        "reference": "Reference",
+        "comment": "Comment"
+    },
+    "icons": {
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete",
+        "approve": "Approve",
+        "post": "Post"
+    },
+    "options": {
+        "add": "Add Accounting Entry",
+        "edit": "Edit Accounting Entry",
+        "approve": "Approve Entry",
+        "post": "Post Entry"
+    },
+    "stats": {
+        "totalEntries": "Total Entries",
+        "approvedEntries": "Approved Entries",
+        "pendingEntries": "Pending Entries",
+        "automaticEntries": "Automatic Entries"
+    },
+    "totalAmount": "Total Amount",
+    "dailyEntries": "Entries Registered per Day",
+    "monthlyEntries": "Entries Registered per Month",
+    "entriesRegisteredPerModule": "Entries Registered per Module",
+    "automaticEntries": "Automatic Mode Entries",
+    "entryTrends": "Entry Trends",
+    "accountsByStatus": "Accounts by Status"
+}

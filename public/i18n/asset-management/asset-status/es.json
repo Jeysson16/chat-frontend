@@ -1,0 +1,28 @@
+{
+    "title": "Estados de Activos",
+    "subtitle": "Gestión de Activos > Estados de Activos",
+    "message": "Estado de Activo",
+    "headerTable": {
+        "code": "Código",
+        "name": "Nombre",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario",
+        "registerDate": "Fecha de Registro",
+        "registerUser": "Usuario de Registro",
+        "status": "Estado",
+        "actions": "Acciones"
+    },
+    "form": {
+        "name": "Nombre",
+        "effectiveDate": "Fecha Efectiva",
+        "comment": "Comentario"
+    },
+    "icons": {
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "options": {
+        "add": "Agregar Estado"
+    }
+}
