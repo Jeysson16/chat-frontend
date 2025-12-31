@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, from, of, catchError } from 'rxjs';
+import { Observable, catchError, from, map, of, switchMap } from 'rxjs';
 import {
-    ChatMessage,
-    ChatUser,
-    Conversation
+  ChatMessage,
+  ChatUser,
+  Conversation
 } from '../../domain/models/chat.model';
 import { ChatRepository } from '../../domain/repositories/chat.repository';
 import { ChatAdapter } from '../adapters/chat.adapter';
@@ -137,8 +137,10 @@ export class ChatRepositoryImpl extends ChatRepository {
   getConversations(): Observable<Conversation[]> {
     return this.chatApiService.getConversations().pipe(
       map(entities => entities.map(entity => ChatAdapter.toConversation(entity))),
-      catchError(() => of(this.MOCK_CONVERSATIONS)),
-      map(convs => convs && convs.length ? convs : this.MOCK_CONVERSATIONS)
+      catchError(err => {
+        console.error('Error obteniendo conversaciones', err);
+        return of([]);
+      })
     );
   }
 
@@ -149,12 +151,43 @@ export class ChatRepositoryImpl extends ChatRepository {
   }
 
   createConversation(participants: string[], name?: string): Observable<Conversation> {
-    return this.chatApiService.createConversation({ 
-      participante_ids: participants, 
+    return this.chatApiService.createConversation({
+      Nombre: name || '',
+      participante_ids: participants,
       cConversacionesChatNombre: name || '',
       cConversacionesChatTipo: participants.length > 2 ? 'group' : 'individual'
     }).pipe(
-      map(entity => ChatAdapter.toConversation(entity))
+      map(entity => {
+        try {
+          return ChatAdapter.toConversation(entity);
+        } catch {
+          const type = (entity as any)?.cConversacionesChatTipo === 'individual' ? 'private' : 'group';
+          const idVal = (entity as any)?.nConversacionesChatId;
+          return {
+            id: idVal !== undefined && idVal !== null ? String(idVal) : '',
+            name: (entity as any)?.cConversacionesChatNombre || name || '',
+            type,
+            participants: [],
+            lastMessage: undefined,
+            isActive: true,
+            createdAt: new Date(),
+            unreadCount: 0
+          } as Conversation;
+        }
+      }),
+      // Si el backend devuelve id "0" o vacío, recuperar desde el listado
+      switchMap(conv => {
+        if (!conv.id || conv.id === '0') {
+          return this.getConversations().pipe(
+            map(list => {
+              const byName = (name || '').toLowerCase();
+              const found = list.find(c => (c.name || '').toLowerCase() === byName) || conv;
+              return found;
+            })
+          );
+        }
+        return of(conv);
+      })
     );
   }
 
@@ -192,9 +225,11 @@ export class ChatRepositoryImpl extends ChatRepository {
 
   getMessages(conversationId: string, page?: number, limit?: number): Observable<ChatMessage[]> {
     return this.chatApiService.getMessages(conversationId, page, limit).pipe(
-      map(entities => entities.map(entity => ChatAdapter.toMessage(entity))),
-      catchError(() => of(this.MOCK_MESSAGES[conversationId] || [])),
-      map(messages => messages && messages.length ? messages : (this.MOCK_MESSAGES[conversationId] || []))
+      map(entities => Array.isArray(entities) ? entities.map(entity => ChatAdapter.toMessage(entity)) : []),
+      catchError(err => {
+        console.error('Error obteniendo mensajes', err);
+        return of([]);
+      })
     );
   }
 

@@ -73,7 +73,10 @@ export class ApplicationService {
   createApplication(name: string, description: string, code: string, isActive: boolean = true): Observable<{ application: Application; tokens?: any }> {
     const createDto = this.adapter.adaptCreateDto(name, description, code, isActive);
     return this.http.post<any>(this.baseUrl, createDto).pipe(
-      map(response => this.adapter.adaptCreateResponse(response))
+      map(response => {
+        const payload = response?.item ?? response?.data ?? response;
+        return this.adapter.adaptCreateResponse(payload);
+      })
     );
   }
 
@@ -129,7 +132,14 @@ export class ApplicationService {
    * Alias para compatibilidad - Get active applications (Spanish method name)
    */
   getAplicacionesActivas(): Observable<IAplicacion[]> {
-    return this.http.get<IAplicacion[]>(`${this.baseUrl}/activas`);
+    return this.http.get<any>(`${this.baseUrl}/activas`).pipe(
+      map(res => {
+        const items = Array.isArray(res)
+          ? res
+          : (res.lstItem ?? res.LstItem ?? res.listItem ?? res.items ?? res.data ?? []);
+        return Array.isArray(items) ? (items as IAplicacion[]) : [];
+      })
+    );
   }
 
   /**

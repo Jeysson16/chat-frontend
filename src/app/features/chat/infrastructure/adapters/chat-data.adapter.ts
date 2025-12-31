@@ -82,21 +82,44 @@ export class ChatDataAdapter {
     };
   }
 
-  adaptConversationPreview(dto: ChatConversacionDto): Conversation {
+  adaptConversationPreview(dto: ChatConversacionDto | any): Conversation {
+    const id = (dto.id ?? dto.nConversacionesChatId ?? dto.nconversacioneschatid ?? '').toString();
+    const typeRaw = (dto.tipo ?? dto.cConversacionesChatTipo ?? dto.cconversacioneschattype ?? '').toString().toLowerCase();
+    const tipo = typeRaw === 'individual' ? 'private' : 'group';
+    const participantsRaw = dto.participantes ?? dto.participants ?? [];
+    const participants = Array.isArray(participantsRaw) ? participantsRaw.map((p: any) => this.adaptChatUser(p)) : [];
+    const last = dto.ultimo_mensaje ?? undefined;
+    const lastText = dto.clastmessagetext ?? last?.texto ?? undefined;
+    const lastSenderId = dto.clastmessagesenderid ?? last?.usuario_id ?? undefined;
+    const lastSenderName = dto.clastmessagesendername ?? last?.usuario_nombre ?? undefined;
+    const lastTime = dto.dtlastmessagetimestamp ?? last?.fecha_envio ?? undefined;
+    const name = dto.nombre ?? dto.cConversacionesChatNombre ?? dto.cconversacioneschatname ?? dto.cdisplayname ?? '';
+    const createdAtRaw = dto.fecha_creacion ?? dto.dConversacionesChatFechaCreacion ?? dto.dtconversacioneschatcreatedat ?? new Date().toISOString();
+    const unread = dto.mensajes_no_leidos ?? dto.nunreadcount ?? 0;
     return {
-      id: dto.id.toString(),
-      name: dto.nombre,
-      type: dto.tipo === 'individual' ? 'private' : 'group',
-      participants: dto.participantes.map(p => this.adaptChatUser(p)),
-      lastMessage: dto.ultimo_mensaje ? this.adaptChatMessage(dto.ultimo_mensaje) : undefined,
-      unreadCount: dto.mensajes_no_leidos || 0,
+      id,
+      name,
+      type: tipo,
+      participants,
+      lastMessage: lastText ? {
+        id: (dto.ultimo_mensaje?.id ?? 0).toString(),
+        conversationId: id,
+        senderId: (lastSenderId ?? '').toString(),
+        senderName: lastSenderName ?? '',
+        content: lastText,
+        type: 'text',
+        timestamp: lastTime ? new Date(lastTime) : new Date(),
+        isRead: false
+      } : undefined,
+      unreadCount: Number(unread) || 0,
       isActive: true,
-      createdAt: new Date(dto.fecha_creacion)
+      createdAt: new Date(createdAtRaw)
     };
   }
 
   adaptCreateConversationToBackend(dto: CreateConversationRequest): CrearConversacionDto {
     return {
+      Nombre: dto.name || '',
       cConversacionesChatNombre: dto.name || '',
       cConversacionesChatTipo: dto.type,
       participante_ids: dto.participantIds

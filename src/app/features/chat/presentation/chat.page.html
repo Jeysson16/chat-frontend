@@ -4,39 +4,45 @@
     <!-- Header section at the top -->
     <div class="p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
       <!-- Admin navigation if user is admin -->
-      <div class="flex items-center justify-between mb-3" *ngIf="currentUser?.role === 'admin'">
+      @if (currentUser?.role === 'admin') {
+      <div class="flex items-center justify-between mb-3">
         <div class="flex space-x-1">
           <button 
             (click)="navigateToChat()" 
-            [class.bg-blue-100]="isChatView"
-            [class.text-blue-700]="isChatView"
+            [style.backgroundColor]="isChatView ? 'var(--primary-color-light)' : null"
+            [style.color]="isChatView ? 'var(--primary-color)' : null"
             [class.text-secondary]="!isChatView"
             class="px-2 py-1 rounded text-xs font-medium hover:bg-tertiary transition-colors duration-200">
             Chat
           </button>
           <button 
             (click)="navigateToAdmin()" 
-            [class.bg-blue-100]="!isChatView"
-            [class.text-blue-700]="!isChatView"
+            [style.backgroundColor]="!isChatView ? 'var(--primary-color-light)' : null"
+            [style.color]="!isChatView ? 'var(--primary-color)' : null"
             [class.text-secondary]="isChatView"
             class="px-2 py-1 rounded text-xs font-medium hover:bg-tertiary transition-colors duration-200">
             Admin
           </button>
         </div>
       </div>
+      }
       
       <div class="flex items-center justify-between mb-4">
-        <h1 class="text-xl font-semibold text-gray-900 dark:text-gray-100 ">Chats</h1>
+        <h1 class="text-xl font-semibold text-gray-900 dark:text-gray-100 "><span translateLabel="Chats"></span></h1>
         <div class="flex items-center space-x-2">
           <!-- Translation Status Indicator -->
-          <div *ngIf="isTranslationEnabled" class="flex items-center space-x-1 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">
+          @if (isTranslationEnabled) {
+          <div class="flex items-center space-x-1 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">
             <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span>Translation: {{translationStatus}}</span>
+            <span><span translateLabel="Translation:"></span> {{translationStatus}}</span>
           </div>
-          <div *ngIf="!isTranslationEnabled && translationStatus !== 'not-initialized'" class="flex items-center space-x-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-300 rounded-full text-xs">
+          }
+          @if (!isTranslationEnabled && translationStatus !== 'not-initialized') {
+          <div class="flex items-center space-x-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-300 rounded-full text-xs">
             <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
-            <span>Translation: Off</span>
+            <span><span translateLabel="Translation:"></span> <span translateLabel="Off"></span></span>
           </div>
+          }
           <button (click)="onNewChat()" class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-200 hover:opacity-90" 
                   [style.background-color]="currentTheme === 'dark' ? null : currentPrimaryColor">
             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,14 +53,11 @@
       </div>
       
       <!-- Search mode indicator -->
-      <div *ngIf="isSearchMode" class="mb-3 p-2 bg-tertiary border border-primary rounded-lg">
-        <div class="flex items-center space-x-2">
-          <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-          </svg>
-          <span class="text-sm text-blue-700 font-medium" translateLabel="Searching users..."></span>
-        </div>
+        @if (isSearchMode) {
+      <div class="mb-2 text-right">
+        <button (click)="exitSearchMode()" class="text-xs hover:underline text-[var(--primary-color)]"><span translateLabel="Back to conversations"></span></button>
       </div>
+      }
       
       <div class="relative">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -66,21 +69,22 @@
           type="text" 
           (input)="onSearchConversations(getInputValue($event))" 
           [placeholder]="isSearchMode ? 'Buscar usuarios...' : 'Buscar conversaciones...'" 
-          class="block w-full pl-10 pr-3 py-2 border border-gray-200 dark:border-gray-800 rounded-lg text-sm bg-white dark:bg-gray-900 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200" />
+          class="block w-full pl-10 pr-3 py-2 border border-gray-200 dark:border-gray-800 rounded-lg text-sm bg-white dark:bg-gray-900 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all duration-200" />
       </div>
     </div>
     
     <div class="flex-1 overflow-y-auto">
       <app-chat-sidebar 
         [compact]="false" 
-        [conversations]="conversations" 
+        [conversations]="displayedConversations" 
         [selectedConversationId]="selectedConversationId" 
-        [isLoading]="isLoadingConversations" 
+        [isLoading]="isSearchMode ? isLoadingContacts : isLoadingConversations" 
         [isSearchMode]="isSearchMode" 
         [contacts]="filteredContacts" 
         [currentUserId]="currentUserId || ''" 
         [isTranslationEnabled]="isTranslationEnabled"
         [currentLanguage]="currentLanguage"
+        [searchQuery]="isSearchMode ? contactSearchTerm : conversationSearchQuery"
         (conversationSelect)="onConversationSelect($event)" 
         (newChat)="onNewChat()" 
         (searchChange)="onSearchConversations($event)" 
@@ -109,7 +113,8 @@
   <!-- Chat Window -->
   <div class="flex-1 flex flex-col h-full bg-white dark:bg-black">
     <!-- Profile dropdown for sidebar -->
-    <div *ngIf="showUserProfile" class="absolute bottom-20 left-4 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 z-50">
+    @if (showUserProfile) {
+    <div class="absolute bottom-20 left-4 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 z-50">
       <div class="p-4 border-b border-gray-200 dark:border-gray-800">
         <div class="flex items-center space-x-3">
           <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-medium text-lg" [style.background-color]="currentTheme === 'dark' ? null : currentPrimaryColor">
@@ -118,7 +123,7 @@
           <div class="flex-1">
             <h3 class="font-medium text-gray-900 dark:text-gray-100">{{ currentUser?.name || getUserNameFromLocalStorage() || 'Usuario' }}</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400">{{ currentUser?.email || getUserEmailFromLocalStorage() || 'Sin email' }}</p>
-            <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full capitalize mt-1">
+            <span class="inline-block px-2 py-1 text-xs font-medium rounded-full capitalize mt-1" [style.backgroundColor]="'var(--primary-color-light)'" [style.color]="'var(--primary-color)'">
               {{ currentUser?.role || 'usuario' }}
             </span>
           </div>
@@ -132,8 +137,8 @@
           <div class="space-y-1">
             <button
               (click)="onThemeChange('light'); showUserProfile = false"
-              [class.bg-blue-50]="currentTheme === 'light'"
-              [class.text-blue-700]="currentTheme === 'light'"
+              [style.backgroundColor]="currentTheme === 'light' ? 'var(--primary-color-light)' : null"
+              [style.color]="currentTheme === 'light' ? 'var(--primary-color)' : null"
               class="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-tertiary transition-colors duration-200 flex items-center space-x-2"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,8 +148,8 @@
             </button>
             <button
               (click)="onThemeChange('dark'); showUserProfile = false"
-              [class.bg-blue-50]="currentTheme === 'dark'"
-              [class.text-blue-700]="currentTheme === 'dark'"
+              [style.backgroundColor]="currentTheme === 'dark' ? 'var(--primary-color-light)' : null"
+              [style.color]="currentTheme === 'dark' ? 'var(--primary-color)' : null"
               class="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-tertiary transition-colors duration-200 flex items-center space-x-2"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,8 +164,8 @@
         <div class="mb-3">
           <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Color Primario</h4>
           <div class="flex space-x-2">
+            @for (color of colorOptions; track color.value) {
             <button
-              *ngFor="let color of colorOptions"
               (click)="onPrimaryColorChange(color.value); showUserProfile = false"
               [class.ring-2]="currentPrimaryColor === color.value"
               [class.ring-gray-400]="currentPrimaryColor === color.value"
@@ -168,6 +173,7 @@
               class="w-6 h-6 rounded-full border border-primary hover:scale-110 transition-transform duration-200"
               [title]="color.name"
             ></button>
+            }
           </div>
         </div>
 
@@ -177,14 +183,17 @@
           <select
             (change)="onLanguageChange($event); showUserProfile = false"
             [disabled]="translationStatus === 'not-supported'"
-            class="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
+            class="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
           >
-            <option *ngFor="let lang of availableLanguages" [value]="lang.code" [selected]="currentLanguage === lang.code">
+            @for (lang of availableLanguages; track lang.code) {
+            <option [value]="lang.code" [selected]="currentLanguage === lang.code">
               {{ lang.name }}
             </option>
+            }
           </select>
-          <div *ngIf="translationStatus === 'not-supported'" class="text-xs text-orange-600 mt-1" translateLabel="Translation not available in this browser">
-          </div>
+          @if (translationStatus === 'not-supported') {
+            <div class="text-xs text-orange-600 mt-1" translateLabel="Translation not available in this browser"></div>
+          }
           
         </div>
 
@@ -202,6 +211,7 @@
         </div>
       </div>
     </div>
+    }
     
     <app-chat-window 
       [selectedUser]="selectedUser" 
@@ -216,6 +226,7 @@
       [isTranslationEnabled]="isTranslationEnabled"
       [currentLanguage]="currentLanguage"
       [currentPrimaryColor]="currentPrimaryColor"
+      [conversationTitle]="getSelectedConversationTitle()"
       (sendMessage)="onSendMessage($event)" 
       (loadOlderMessages)="onLoadOlderMessages()" 
       (attachmentClick)="onAttachmentClick()" 
@@ -235,29 +246,79 @@
       (attachmentSelected)="onAttachmentSelected($event)">
     </app-chat-window>
 
-    <div *ngIf="pendingAttachmentFile" class="fixed bottom-20 right-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg p-4 w-80" data-cy="file-preview">
+    @if (pendingAttachmentFile) {
+    <div class="fixed bottom-20 right-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg p-4 w-80" data-cy="file-preview">
       <div class="flex items-center justify-between mb-2">
         <div class="text-sm font-medium text-primary truncate">{{ pendingAttachmentFile?.name }}</div>
         <button (click)="clearPendingAttachment()" class="text-xs text-red-600">Cancelar</button>
       </div>
-      <div *ngIf="uploadProgress !== null" class="w-full bg-gray-200 dark:bg-gray-800 rounded h-2 mb-3" data-cy="upload-progress">
-        <div class="bg-blue-500 h-2 rounded" [style.width]="uploadProgress + '%' "></div>
-      </div>
-      <button (click)="sendPendingAttachment()" class="w-full py-2 rounded bg-blue-500 text-white" data-cy="send-file-button">
-        Enviar archivo
+      @if (uploadProgress !== null) {
+        <div class="w-full bg-gray-200 dark:bg-gray-800 rounded h-2 mb-3" data-cy="upload-progress">
+          <div class="bg-[var(--primary-color)] h-2 rounded" [style.width]="uploadProgress + '%' "></div>
+        </div>
+      }
+      <button (click)="sendPendingAttachment()" class="w-full py-2 rounded bg-[var(--primary-color)] text-white hover:bg-[var(--primary-color-hover)]" data-cy="send-file-button">
+        Añadir a pendientes
       </button>
     </div>
+    }
+
+    @if (pendingAttachments.length > 0) {
+    <div class="fixed bottom-20 right-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg p-4 w-[28rem] max-h-[60vh] overflow-y-auto z-50" data-cy="pending-attachments-panel">
+      <div class="flex items-center justify-between mb-3">
+        <div class="text-sm font-semibold text-primary">Adjuntos pendientes ({{ pendingAttachments.length }})</div>
+        <button (click)="sendPendingAttachment()" class="px-3 py-1 text-xs bg-[var(--primary-color)] text-white rounded hover:bg-[var(--primary-color-hover)]">Enviar todos</button>
+      </div>
+      <div class="space-y-3">
+        @for (item of pendingAttachments; track item.id) {
+        <div class="border border-gray-200 dark:border-gray-800 rounded p-2">
+          <div class="flex items-start gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-medium text-primary truncate mb-2">{{ item.file.name }}</div>
+              <div class="rounded bg-gray-50 dark:bg-gray-800 p-2 flex items-center justify-center">
+                @if (item.type === 'image') {
+                  <app-image-editor-presenter [file]="item.file" (edited)="applyImageEdit(item.id, $event)"></app-image-editor-presenter>
+                }
+                @if (item.type === 'audio') {
+                  <app-audio-editor-presenter [file]="item.file" (edited)="applyAudioEdit(item.id, $event)"></app-audio-editor-presenter>
+                }
+                @if (item.type === 'video') {
+                  <app-video-editor-presenter [file]="item.file" (edited)="applyVideoEdit(item.id, $event)"></app-video-editor-presenter>
+                }
+                @if (item.type === 'file') {
+                  <div class="text-xs text-secondary">Archivo: {{ item.file.type || 'desconocido' }} ({{ item.file.size / 1024 | number:'1.0-0' }} KB)</div>
+                }
+              </div>
+              @if (item.uploadProgress !== null && item.uploadProgress !== undefined) {
+                <div class="w-full bg-gray-200 dark:bg-gray-800 rounded h-2 mt-2">
+                  <div class="bg-[var(--primary-color)] h-2 rounded" [style.width]="item.uploadProgress + '%' "></div>
+                </div>
+              }
+            </div>
+            <div class="flex flex-col gap-2">
+              <button (click)="sendSingleAttachment(item.id)" class="px-2 py-1 text-xs bg-[var(--primary-color)] text-white rounded hover:bg-[var(--primary-color-hover)]">Enviar</button>
+              <button (click)="removePendingAttachment(item.id)" class="px-2 py-1 text-xs text-red-600">Cancelar</button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
   </div>
 </div>
 
-<div *ngIf="isLoadingConfigurations" class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-80 z-50 flex items-center justify-center">
+@if (isLoadingConfigurations) {
+<div class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-80 z-50 flex items-center justify-center">
   <div class="text-center">
-    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--primary-color)] mx-auto mb-4"></div>
     <p class="text-gray-600 dark:text-gray-300">Loading configuration...</p>
   </div>
 </div>
+}
 
-<div *ngIf="showContactModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+@if (showContactModal) {
+<div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justifycenter p-4">
   <div class="bg-primary dark:bg-gray-900 rounded-lg shadow-xl max-w-md w-full max-h-96">
     <div class="flex items-center justify-between p-4 border-b border-gray-200">
       <h3 class="text-lg font-semibold text-gray-900">Start New Conversation</h3>
@@ -274,7 +335,7 @@
           [(ngModel)]="contactSearchTerm" 
           (input)="onContactSearchInput()" 
           placeholder="Search contacts..." 
-          class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent" />
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -283,22 +344,28 @@
       </div>
     </div>
     <div class="flex-1 overflow-y-auto">
-      <div *ngIf="isLoadingContacts" class="p-8 text-center">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+      @if (isLoadingContacts) {
+      <div class="p-8 text-center">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--primary-color)] mx-auto mb-4"></div>
         <p class="text-gray-600">Loading contacts...</p>
       </div>
-      <div *ngIf="!isLoadingContacts && filteredContacts.length === 0" class="p-8 text-center">
+      }
+      @if (!isLoadingContacts && filteredContacts.length === 0) {
+      <div class="p-8 text-center">
         <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 0 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6 3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
         </svg>
         <p class="text-gray-600">No contacts found</p>
         <p class="text-sm text-gray-500 mt-2">Try adjusting your search or check back later</p>
       </div>
-      <div *ngIf="!isLoadingContacts && filteredContacts.length > 0" class="divide-y divide-gray-200">
-        <div *ngFor="let contact of filteredContacts" (click)="selectContact(contact)" class="p-4 hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+      }
+      @if (!isLoadingContacts && filteredContacts.length > 0) {
+      <div class="divide-y divide-gray-200">
+        @for (contact of filteredContacts; track contact) {
+        <div (click)="selectContact(contact)" class="p-4 hover:bg-gray-50 cursor-pointer transition-colors duration-150">
           <div class="flex items-center space-x-3">
             <div class="flex-shrink-0">
-              <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium">{{ contact.name.charAt(0).toUpperCase() }}</div>
+              <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-medium bg-[var(--primary-color)]">{{ contact.name.charAt(0).toUpperCase() }}</div>
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-gray-900 truncate">{{ contact.name }}</p>
@@ -311,10 +378,38 @@
             </div>
           </div>
         </div>
+        }
       </div>
+      }
     </div>
   </div>
 </div>
+}
+
+@if (isSearchMode && pendingSelectedContact) {
+<div class="fixed bottom-4 right-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg p-4 w-96 z-50">
+  <div class="flex items-center mb-3">
+    <div class="w-8 h-8 rounded-full bg-[var(--primary-color)] text-white flex items-center justify-center mr-2">
+      {{ pendingSelectedContact.name.charAt(0).toUpperCase() }}
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="text-sm font-medium text-gray-900 truncate">{{ pendingSelectedContact.name }}</div>
+      <div class="text-[11px] text-gray-500 truncate">{{ pendingSelectedContact.email || 'Sin email' }}</div>
+    </div>
+  </div>
+  <label class="text-xs text-gray-600">Nombre de la conversación (opcional)</label>
+  <input [(ngModel)]="pendingConversationName" type="text" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" placeholder="Ej: Proyecto SICOM" />
+  <div class="mt-3 flex gap-2 justify-end">
+    <button (click)="cancelCreateConversation()" class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">Cancelar</button>
+    <button (click)="confirmCreateConversation()" [disabled]="creatingConversation" class="px-3 py-1 text-sm bg-[var(--primary-color)] text-white rounded hover:bg-[var(--primary-color-hover)]">
+      {{ creatingConversation ? 'Creando...' : 'Crear conversación' }}
+    </button>
+  </div>
+  @if (creationError) {
+    <div class="mt-2 text-xs text-red-600">{{ creationError }}</div>
+  }
+</div>
+}
 
 <!-- Translation Loader Overlay -->
 <app-translation-loader 

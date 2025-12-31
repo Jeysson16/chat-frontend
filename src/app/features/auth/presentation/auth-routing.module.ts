@@ -4,6 +4,7 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { RoleSelectionComponent } from './components/role-selection/role-selection.component';
+import { RedirectAuthenticatedGuard } from '../infrastructure/guards/redirect-authenticated.guard';
 
 const routes: Routes = [
   {
@@ -17,11 +18,13 @@ const routes: Routes = [
       },
       {
         path: 'sign-in',
-        component: SignInComponent
+        component: SignInComponent,
+        canActivate: [RedirectAuthenticatedGuard]
       },
       {
         path: 'sign-up',
-        component: SignUpComponent
+        component: SignUpComponent,
+        canActivate: [RedirectAuthenticatedGuard]
       }
     ]
   },

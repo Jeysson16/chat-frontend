@@ -10,11 +10,10 @@ import { TranslationService } from '@/app/features/chat/infrastructure/services/
     <div class="relative">
       <button
         (click)="toggleTranslation()"
-        [class.bg-blue-500]="isTranslationEnabled"
-        [class.text-white]="isTranslationEnabled"
-        [class.bg-gray-100]="!isTranslationEnabled"
-        [class.text-gray-600]="!isTranslationEnabled"
-        class="p-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 bg-white dark:bg-black"
+        class="p-2 rounded-lg transition-colors duration-200 bg-white dark:bg-black"
+        [style.backgroundColor]="isTranslationEnabled ? 'var(--primary-color)' : null"
+        [style.color]="isTranslationEnabled ? '#ffffff' : null"
+        [class.hover:bg-[var(--primary-color-hover)]]="isTranslationEnabled"
         [title]="getTooltipText()"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,8 +29,8 @@ import { TranslationService } from '@/app/features/chat/infrastructure/services/
             <button
               *ngFor="let lang of availableLanguages"
               (click)="selectLanguage(lang.code)"
-              [class.bg-blue-50]="currentLanguage === lang.code"
-              [class.text-blue-700]="currentLanguage === lang.code"
+              [style.backgroundColor]="currentLanguage === lang.code ? 'var(--primary-color-light)' : null"
+              [style.color]="currentLanguage === lang.code ? 'var(--primary-color)' : null"
               class="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 text-gray-900 dark:text-gray-100"
             >
               {{ lang.name }}

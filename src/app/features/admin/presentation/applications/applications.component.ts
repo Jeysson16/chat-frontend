@@ -1049,16 +1049,23 @@ export class AplicacionesComponent implements OnInit, OnDestroy {
   }
 
   goTo(section: 'config' | 'users' | 'companies', application: Application): void {
-    const appId = parseInt(application.id);
+    const appIdNum = Number(application.id);
+    const queryParams: any = {};
+    if (!Number.isNaN(appIdNum)) {
+      queryParams.appId = appIdNum;
+    }
+    if (application.code) {
+      queryParams.appCode = application.code;
+    }
     switch (section) {
       case 'config':
-        this.router.navigate(['/admin/configuraciones'], { queryParams: { appId } });
+        this.router.navigate(['/admin/configuraciones'], { queryParams });
         break;
       case 'users':
-        this.router.navigate(['/admin/usuarios-chat'], { queryParams: { appId } });
+        this.router.navigate(['/admin/usuarios-chat'], { queryParams });
         break;
       case 'companies':
-        this.router.navigate(['/admin/empresas'], { queryParams: { appId } });
+        this.router.navigate(['/admin/empresas'], { queryParams });
         break;
     }
   }

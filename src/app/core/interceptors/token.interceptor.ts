@@ -46,15 +46,17 @@ export class TokenInterceptor implements HttpInterceptor {
    */
   private addAuthHeaders(request: HttpRequest<any>): HttpRequest<any> {
     const authHeaders = this.authTokensService.getAuthHeaders();
+    const isMultipart = request.body instanceof FormData;
     
     // Clone the request and add headers
-    return request.clone({
-      setHeaders: {
-        'Authorization': authHeaders.get('Authorization') || '',
-        'X-App-Code': authHeaders.get('X-App-Code') || '',
-        'Content-Type': authHeaders.get('Content-Type') || 'application/json'
-      }
-    });
+    const headerSet: Record<string, string> = {
+      'Authorization': authHeaders.get('Authorization') || '',
+      'X-App-Code': authHeaders.get('X-App-Code') || ''
+    };
+    if (!isMultipart) {
+      headerSet['Content-Type'] = authHeaders.get('Content-Type') || 'application/json';
+    }
+    return request.clone({ setHeaders: headerSet });
   }
 
   /**

@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ChatMessage, ChatUser } from '../../../domain/models/chat.model';
 import { MessageBubbleComponent } from '../message-bubble/message-bubble.component';
+import { TranslateLabelPipe } from '../../pipes/translate-label.pipe';
 
 @Component({
   selector: 'app-message-list',
   standalone: true,
-  imports: [CommonModule, MessageBubbleComponent],
+  imports: [CommonModule, MessageBubbleComponent, TranslateLabelPipe],
   template: `
     <div 
       #messageContainer
@@ -14,58 +15,63 @@ import { MessageBubbleComponent } from '../message-bubble/message-bubble.compone
       (scroll)="onScroll($event)"
     >
       <!-- Loading indicator for loading older messages -->
-      <div 
-        *ngIf="isLoadingOlder" 
-        class="flex justify-center py-4"
-      >
-        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-      </div>
+      @if (isLoadingOlder) {
+        <div class="flex justify-center py-4">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--primary-color)]"></div>
+        </div>
+      }
 
       <!-- Empty state -->
+      @if (messages.length === 0 && !isLoading) {
       <div 
-        *ngIf="messages.length === 0 && !isLoading" 
         class="flex flex-col items-center justify-center h-full"
       >
-        <svg class="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-16 h-16 text-[var(--primary-color)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
         </svg>
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" translateLabel="Start the conversation by sending the first message"></p>
       </div>
+      }
 
       <!-- Loading state -->
-      <div 
-        *ngIf="isLoading" 
-        class="flex justify-center items-center h-full"
-      >
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-      </div>
+      @if (isLoading) {
+        <div 
+          class="flex justify-center items-center h-full"
+        >
+          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--primary-color)]"></div>
+        </div>
+      }
 
       <!-- Messages -->
-      <div *ngIf="!isLoading" class="space-y-4">
+      @if (!isLoading) {
+      <div class="space-y-4">
         <!-- Date separator -->
-        <ng-container *ngFor="let message of messages; let i = index; trackBy: trackByMessageId">
+        @for (message of messages; track trackByMessageId($index, message)) {
           <!-- Show date separator if this is the first message of a new day -->
-          <div 
-            *ngIf="shouldShowDateSeparator(message, i)" 
-            class="flex justify-center my-6"
-          >
-            <span class="bg-white dark:bg-gray-900 px-3 py-1 rounded-full text-xs text-gray-500 dark:text-gray-300 border border-gray-200 dark:border-gray-800">
-              {{ formatDateSeparator(message.timestamp) }}
-            </span>
-          </div>
+          @if (shouldShowDateSeparator(message, $index)) {
+            <div 
+              class="flex justify-center my-6"
+            >
+              <span class="bg-white dark:bg-gray-900 px-3 py-1 rounded-full text-xs text-gray-500 dark:text-gray-300 border border-gray-200 dark:border-gray-800">
+                {{ formatDateSeparator(message.timestamp) | translateLabel }}
+              </span>
+            </div>
+          }
 
           <!-- Message bubble -->
           <app-message-bubble
             [message]="message"
             [currentUserId]="currentUserId"
-            [showAvatar]="shouldShowAvatar(message, i)"
+            [showAvatar]="shouldShowAvatar(message, $index)"
+            [currentLanguage]="currentLanguage"
           ></app-message-bubble>
-        </ng-container>
+        }
       </div>
+      }
 
       <!-- Typing indicator -->
+      @if (typingUsers.length > 0) {
       <div 
-        *ngIf="typingUsers.length > 0" 
         class="flex items-center space-x-2 px-4 py-2"
       >
         <div class="flex space-x-1">
@@ -74,25 +80,27 @@ import { MessageBubbleComponent } from '../message-bubble/message-bubble.compone
           <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
         </div>
         <span class="text-sm text-gray-500">
-          <ng-container *ngIf="typingUsers.length === 1">
+          @if (typingUsers.length === 1) {
             {{ typingUsers[0].name }} is typing...
-          </ng-container>
-          <ng-container *ngIf="typingUsers.length > 1">
+          }
+          @else if (typingUsers.length > 1) {
             {{ typingUsers.length }} people are typing...
-          </ng-container>
+          }
         </span>
       </div>
+      }
 
       <!-- Scroll to bottom button -->
+      @if (showScrollToBottom) {
       <button
-        *ngIf="showScrollToBottom"
         (click)="scrollToBottom()"
-        class="fixed bottom-20 right-6 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors z-10"
+        class="fixed bottom-20 right-6 bg-[var(--primary-color)] text-white p-3 rounded-full shadow-lg hover:bg-[var(--primary-color-hover)] transition-colors z-10"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
       </button>
+      }
     </div>
   `,
   styles: []
@@ -160,7 +168,10 @@ export class MessageListComponent implements OnChanges, AfterViewChecked {
   }
 
   trackByMessageId(index: number, message: ChatMessage): string {
-    return message.id.toString();
+    const id = message.id ? message.id.toString() : '';
+    if (id && id !== '0') return id;
+    const ts = message.timestamp instanceof Date ? message.timestamp.getTime() : new Date(message.timestamp).getTime();
+    return `${message.senderId}-${ts}-${index}`;
   }
 
   shouldShowDateSeparator(message: ChatMessage, index: number): boolean {
@@ -194,7 +205,7 @@ export class MessageListComponent implements OnChanges, AfterViewChecked {
     } else if (messageDate.toDateString() === yesterday.toDateString()) {
       return 'Yesterday';
     } else {
-      return messageDate.toLocaleDateString('en-US', {
+      return messageDate.toLocaleDateString(this.currentLanguage || 'en', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',

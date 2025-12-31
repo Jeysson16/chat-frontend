@@ -9,7 +9,7 @@ import {
   IUsuarioChatResponse,
   IBuscarUsuarioChatDto,
   IUsuarioChatExtendido
-} from '../../../../shared/chat-user.interface';
+} from '../../domain/entities/usuario-chat.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -173,6 +173,10 @@ export class ChatUserService {
 
   obtenerTotalUsuariosEnLinea(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/estadisticas/en-linea`);
+  }
+
+  obtenerConversacionesHoy(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/estadisticas/conversaciones-hoy`);
   }
 
   /**

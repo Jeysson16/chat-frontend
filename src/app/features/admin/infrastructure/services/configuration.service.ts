@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   IConfiguracionAplicacion,
   ICreateConfiguracionAplicacionDto,
@@ -30,29 +31,81 @@ export class ConfigurationService {
    * Obtener configuraciones de aplicación con paginación
    */
   getConfiguracionesAplicacion(page: number = 1, limit: number = 10, aplicacionId?: number): Observable<IConfiguracionAplicacionResponse> {
+    const toList = (obj: any, appId?: number): IConfiguracionAplicacion[] => {
+      if (!obj || typeof obj !== 'object') return [];
+      const entries = Object.keys(obj)
+        .filter(k => !['dFechaCreacion','dFechaActualizacion','bEsActiva','clientName','serverName','isSuccess','lstError','pagination','userName','ticket'].includes(k))
+        .map(k => {
+          const v = (obj as any)[k];
+          const t = typeof v === 'number' ? 'number' : typeof v === 'boolean' ? 'boolean' : (typeof v === 'object' ? 'json' : 'string');
+          return {
+            nConfiguracionAplicacionId: 0,
+            nAplicacionesId: appId ?? (obj.nAplicacionesId ?? 0),
+            cConfiguracionAplicacionClave: k,
+            cConfiguracionAplicacionValor: typeof v === 'object' ? JSON.stringify(v) : String(v ?? ''),
+            cConfiguracionAplicacionTipo: t,
+            bConfiguracionAplicacionEsActiva: obj.bEsActiva ?? true
+          } as IConfiguracionAplicacion;
+        });
+      return entries;
+    };
+
+    const toResponse = (res: any): IConfiguracionAplicacionResponse => {
+      let items: any = Array.isArray(res) ? res : (res.lstItem ?? res.LstItem ?? res.items ?? res.data);
+      if (!Array.isArray(items)) {
+        const single = Array.isArray(res?.item) ? res.item : (res?.item ?? items);
+        items = Array.isArray(single) ? single : toList(single, aplicacionId);
+      }
+      const total = res?.pagination?.total ?? res?.total ?? (Array.isArray(items) ? items.length : 0);
+      const pageNum = res?.pagination?.page ?? res?.page ?? page;
+      const limitNum = res?.pagination?.limit ?? res?.limit ?? limit;
+      return { data: items as IConfiguracionAplicacion[], total, page: pageNum, limit: limitNum };
+    };
+
     if (aplicacionId) {
-      return this.http.get<IConfiguracionAplicacionResponse>(`${this.baseUrl}/configuracion-aplicacion/${aplicacionId}`);
+      return this.http.get<any>(`${this.baseUrl}/configuracion-aplicacion/${aplicacionId}`).pipe(
+        map(toResponse)
+      );
     }
 
     const app = this.storage.getApplication();
     if (app?.code) {
-      return this.http.get<IConfiguracionAplicacionResponse>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/${app.code}`);
+      return this.http.get<any>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/${app.code}`).pipe(
+        map(toResponse)
+      );
     }
     if (app?.id) {
-      return this.http.get<IConfiguracionAplicacionResponse>(`${this.baseUrl}/configuracion-aplicacion/${app.id}`);
+      return this.http.get<any>(`${this.baseUrl}/configuracion-aplicacion/${app.id}`).pipe(
+        map(toResponse)
+      );
     }
-    return this.http.get<IConfiguracionAplicacionResponse>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/SICOM_CHAT_2024`);
+    return this.http.get<any>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/SICOM_CHAT_2024`).pipe(
+      map(toResponse)
+    );
   }
 
   /**
    * Obtener configuraciones de aplicación utilizando el código guardado en local storage
    */
   getConfiguracionesAplicacionPorCodigoFromStorage(): Observable<IConfiguracionAplicacionResponse> {
+    const toResponse = (res: any): IConfiguracionAplicacionResponse => {
+      let items: any = Array.isArray(res) ? res : (res.lstItem ?? res.LstItem ?? res.items ?? res.data);
+      if (!Array.isArray(items)) {
+        const single = Array.isArray(res?.item) ? res.item : (res?.item ?? items);
+        items = Array.isArray(single) ? single : [];
+      }
+      const total = res?.pagination?.total ?? res?.total ?? (Array.isArray(items) ? items.length : 0);
+      return { data: items as IConfiguracionAplicacion[], total, page: 1, limit: items.length ?? 0 };
+    };
     const app = this.storage.getApplication();
     if (app?.code) {
-      return this.http.get<IConfiguracionAplicacionResponse>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/${app.code}`);
+      return this.http.get<any>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/${app.code}`).pipe(
+        map(toResponse)
+      );
     }
-    return this.http.get<IConfiguracionAplicacionResponse>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/SICOM_CHAT_2024`);
+    return this.http.get<any>(`${this.baseUrl}/configuracion-aplicacion/por-codigo/SICOM_CHAT_2024`).pipe(
+      map(toResponse)
+    );
   }
 
   /**

@@ -23,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'configuraciones',
-        loadComponent: () => import('./configurations/configurations.component').then(m => m.ConfiguracionesComponent)
+        loadComponent: () => import('./configurations/configurations.component').then(m => m.ConfigurationsComponent)
       },
       {
         path: 'usuarios-chat',
@@ -31,7 +31,11 @@ const routes: Routes = [
       },
       {
         path: 'empresas',
-        loadComponent: () => import('../../companies/presentation/companies.component').then(m => m.EmpresasComponent)
+        loadComponent: () => import('./companies/companies.component').then(m => m.EmpresasComponent)
+      },
+      {
+        path: 'empresas/:empresaId/configuraciones',
+        loadComponent: () => import('./company-configurations/company-configurations.component').then(m => m.CompanyConfigurationsComponent)
       }
     ]
   }

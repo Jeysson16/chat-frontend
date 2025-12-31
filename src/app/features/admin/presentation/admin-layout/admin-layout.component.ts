@@ -23,29 +23,23 @@ import { AdminSidebarComponent } from '../admin-sidebar/admin-sidebar.component'
       <!-- Main Content -->
       <div class="flex-1 flex flex-col overflow-hidden transition-all duration-300">
         <!-- Header -->
-        <header class="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-900">Panel de Administración</h1>
-              <p class="text-gray-600 text-sm mt-1">Gestiona aplicaciones, empresas, usuarios y configuraciones del sistema de chat</p>
-            </div>
+        <header class="bg-white border-b border-gray-200 px-4 py-2">
+          <div class="flex items-center justify-end">
             <div class="flex items-center space-x-3">
               <ng-container *ngIf="isAdmin">
-                <button [matMenuTriggerFor]="modeMenu" class="px-3 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm">
+                <button [matMenuTriggerFor]="modeMenu" class="px-2 py-1 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs">
                   Cambiar vista
                 </button>
                 <mat-menu #modeMenu="matMenu" class="admin-menu">
                   <button mat-menu-item (click)="switchTo('admin')">
-                    <span class="mat-mdc-menu-item-text" translateLabel="Administración"></span>
+                    <span>Administración</span>
                   </button>
                   <button mat-menu-item (click)="switchTo('chat')">
-                    <span class="mat-mdc-menu-item-text" translateLabel="Chat"></span>
+                    <span>Chat</span>
                   </button>
                 </mat-menu>
               </ng-container>
               <div class="flex items-center space-x-3">
-                <span class="text-sm text-gray-600">{{ currentUser?.name || 'Usuario' }}</span>
-                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full capitalize">{{ currentUser?.role || 'user' }}</span>
                 <button [matMenuTriggerFor]="userMenu" class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm">
                   {{ userInitials }}
                 </button>

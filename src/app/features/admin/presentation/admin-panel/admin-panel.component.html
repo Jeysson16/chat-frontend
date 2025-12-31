@@ -56,7 +56,8 @@
 
       <mat-sidenav-content class="main-content">
         <!-- Dashboard Content -->
-        <div *ngIf="showDashboard" class="dashboard-content">
+        @if (showDashboard) {
+        <div class="dashboard-content">
           <div class="dashboard-header">
             <h1>Dashboard de Administración</h1>
             <p>Resumen general del sistema</p>
@@ -130,19 +131,23 @@
                 <mat-card-subtitle>Últimas acciones en el sistema</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <mat-list *ngIf="actividadReciente.length > 0; else noActivity">
-                  <mat-list-item *ngFor="let actividad of actividadReciente">
+                @if (actividadReciente.length > 0) {
+                  <mat-list>
+                    @for (actividad of actividadReciente; track actividad) {
+                  <mat-list-item>
                     <mat-icon matListIcon>{{ getActivityIcon(actividad.tipo) }}</mat-icon>
                     <div matLine>{{ actividad.descripcion }}</div>
                     <div matLine class="activity-time">{{ actividad.fecha | date:'short' }}</div>
                   </mat-list-item>
-                </mat-list>
-                <ng-template #noActivity>
+                    }
+                  </mat-list>
+                }
+                @else {
                   <div class="no-activity">
                     <mat-icon>info</mat-icon>
                     <p>No hay actividad reciente</p>
                   </div>
-                </ng-template>
+                }
               </mat-card-content>
             </mat-card>
           </div>
@@ -178,9 +183,10 @@
             </mat-card>
           </div>
         </div>
+        }
 
         <!-- Router Outlet for Child Components -->
-        <router-outlet *ngIf="!showDashboard"></router-outlet>
+        @if (!showDashboard) { <router-outlet></router-outlet> }
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>

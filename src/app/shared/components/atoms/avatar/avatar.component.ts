@@ -1,40 +1,43 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-avatar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   template: `
     <div 
       class="relative inline-block"
       [ngClass]="sizeClasses"
     >
-      <img 
-        *ngIf="src; else initials"
-        [src]="src" 
-        [alt]="alt"
-        class="w-full h-full object-cover rounded-full"
-        [class.border-2]="showBorder"
-        [class.border-white]="showBorder"
-      />
-      <ng-template #initials>
+      @if (src) {
+        <img 
+          [src]="src" 
+          [alt]="alt"
+          class="w-full h-full object-cover rounded-full"
+          [class.border-2]="showBorder"
+          [class.border-white]="showBorder"
+        />
+      }
+      @else {
         <div 
           class="w-full h-full rounded-full bg-gray-400 flex items-center justify-center text-white font-medium"
           [class.border-2]="showBorder"
           [class.border-white]="showBorder"
           [ngClass]="textSizeClasses"
         >
-          {{ getInitials() }}
+          @if (name) { {{ getInitials() }} } @else { <mat-icon>person</mat-icon> }
         </div>
-      </ng-template>
+      }
       
       <!-- Online status indicator -->
-      <div 
-        *ngIf="showOnlineStatus && isOnline"
-        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"
-        [ngClass]="statusSizeClasses"
-      ></div>
+      @if (showOnlineStatus && isOnline) {
+        <div 
+          class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"
+          [ngClass]="statusSizeClasses"
+        ></div>
+      }
     </div>
   `,
   styles: []

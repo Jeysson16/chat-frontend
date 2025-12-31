@@ -21,7 +21,7 @@ import { MessageListComponent } from '../message-list/message-list.component';
         <div class="text-center max-w-md mx-auto px-6">
           <!-- Simple chat icon -->
           <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto shadow-md">
-            <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-12 h-12 text-[var(--primary-color)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
             </svg>
           </div>
@@ -53,6 +53,7 @@ import { MessageListComponent } from '../message-list/message-list.component';
         <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
           <app-chat-header
           [user]="selectedUser"
+          [title]="conversationTitle"
           [isTranslationEnabled]="isTranslationEnabled"
           [currentLanguage]="currentLanguage"
           (phoneCall)="onPhoneCall()"
@@ -121,6 +122,7 @@ export class ChatWindowComponent implements OnChanges {
   @Input() isTranslationEnabled: boolean = false;
   @Input() currentLanguage: string = 'es';
   @Input() currentPrimaryColor: string = '#3B82F6';
+  @Input() conversationTitle: string = '';
   
   inputPlaceholder: string = 'Select a conversation...';
   

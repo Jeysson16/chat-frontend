@@ -5,18 +5,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, forkJoin, takeUntil } from 'rxjs';
-import { IAplicacion } from '../../../../shared/application.interface';
 import {
   IBuscarUsuarioChatDto,
   ICreateUsuarioChatDto,
   IUpdateUsuarioChatDto,
   IUsuarioChat,
   IUsuarioChatExtendido
-} from '../../../../shared/chat-user.interface';
+} from '../../../chat/domain/entities/usuario-chat.entity';
 import { ChatUserService } from '../../../chat/infrastructure/services/chat-user.service';
-import { CompanyService } from '../../../companies/infrastructure/services/company.service';
-import { IEmpresaSelect } from '../../../companies/shared/interfaces';
+import { IEmpresaSelect } from '../../domain/entities/company.interfaces';
 import { ApplicationService } from '../../infrastructure/services/application.service';
+import { CompanyService } from '../../infrastructure/services/company.service';
+import { IAplicacion } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-usuarios-chat',
@@ -42,7 +42,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
       </div>
 
       <!-- Filtros y búsqueda -->
-      <div class="bg-white rounded-lg shadow-sm border p-4 mb-6">
+      <div class="bg-white rounded-lg shadow-sm ring-1 ring-gray-200 p-4 mb-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Buscar</label>
@@ -51,7 +51,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
               [ngModel]="searchTerm()"
               (ngModelChange)="searchTerm.set($event); onSearchChange()"
               placeholder="Nombre, email o código..."
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
           </div>
           <div>
@@ -59,7 +59,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
             <select
               [ngModel]="selectedEmpresaId()"
               (ngModelChange)="selectedEmpresaId.set($event ? +$event : null); onFilterChange()"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Todas las empresas</option>
               <option *ngFor="let empresa of empresas" [value]="empresa.nEmpresasId">
@@ -72,7 +72,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
             <select
               [ngModel]="selectedAplicacionId()"
               (ngModelChange)="selectedAplicacionId.set($event ? +$event : null); onFilterChange()"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Todas las aplicaciones</option>
               <option *ngFor="let app of aplicaciones" [value]="app.nAplicacionesId">
@@ -85,7 +85,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
             <select
               [ngModel]="selectedEstado()"
               (ngModelChange)="selectedEstado.set($event); onFilterChange()"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Todos</option>
               <option value="activo">Activos</option>
@@ -99,7 +99,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
 
       <!-- Estadísticas -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div class="bg-white rounded-lg shadow-sm border p-4">
+        <div class="bg-white rounded-lg shadow-sm ring-1 ring-gray-200 p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
@@ -115,7 +115,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
           </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-sm border p-4">
+        <div class="bg-white rounded-lg shadow-sm ring-1 ring-gray-200 p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -131,7 +131,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
           </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-sm border p-4">
+        <div class="bg-white rounded-lg shadow-sm ring-1 ring-gray-200 p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
@@ -147,7 +147,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
           </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-sm border p-4">
+        <div class="bg-white rounded-lg shadow-sm ring-1 ring-gray-200 p-4">
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
@@ -165,7 +165,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
       </div>
 
       <!-- Tabla de usuarios -->
-      <div class="bg-white rounded-lg shadow-sm border overflow-hidden">
+      <div class="bg-white rounded-lg shadow-sm ring-1 ring-gray-200 overflow-hidden">
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
@@ -276,19 +276,19 @@ import { ApplicationService } from '../../infrastructure/services/application.se
         </div>
 
         <!-- Paginación -->
-        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-100 sm:px-6">
           <div class="flex-1 flex justify-between sm:hidden">
             <button
               (click)="previousPage()"
               [disabled]="currentPage() === 1"
-              class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+              class="relative inline-flex items-center px-4 py-2 border border-gray-200 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
             >
               Anterior
             </button>
             <button
               (click)="nextPage()"
               [disabled]="currentPage() >= totalPages()"
-              class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+              class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-200 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
             >
               Siguiente
             </button>
@@ -310,7 +310,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
                 <button
                   (click)="previousPage()"
                   [disabled]="currentPage() === 1"
-                  class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                  class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-200 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
                 >
                   <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -320,7 +320,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
                 <button
                   *ngFor="let page of getVisiblePages()"
                   (click)="goToPage(page)"
-                  [class]="page === currentPage() ? 'bg-blue-50 border-blue-500 text-blue-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'"
+                  [class]="page === currentPage() ? 'bg-blue-50 border-blue-500 text-blue-600' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'"
                   class="relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
                   {{ page }}
@@ -329,7 +329,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
                 <button
                   (click)="nextPage()"
                   [disabled]="currentPage() >= totalPages()"
-                  class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                  class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-200 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
                 >
                   <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -364,7 +364,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
 
     <!-- Modal para crear/editar usuario -->
     <div *ngIf="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+      <div class="relative top-20 mx-auto p-5 ring-1 ring-gray-200 w-96 shadow-lg rounded-md bg-white">
         <div class="mt-3">
           <h3 class="text-lg font-medium text-gray-900 mb-4">
             {{ isEditing ? 'Editar Usuario' : 'Nuevo Usuario' }}
@@ -376,7 +376,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
               <input
                 type="text"
                 formControlName="cUsuariosCodigo"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Código único del usuario"
               >
             </div>
@@ -386,7 +386,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
               <input
                 type="text"
                 formControlName="cUsuariosNombre"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Nombre completo"
               >
             </div>
@@ -396,7 +396,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
               <input
                 type="email"
                 formControlName="cUsuariosEmail"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="correo@ejemplo.com"
               >
             </div>
@@ -405,7 +405,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
               <label class="block text-sm font-medium text-gray-700 mb-1">Empresa *</label>
               <select
                 formControlName="nEmpresasId"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Seleccionar empresa</option>
                 <option *ngFor="let empresa of empresas" [value]="empresa.nEmpresasId">
@@ -418,7 +418,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
               <label class="block text-sm font-medium text-gray-700 mb-1">Aplicación *</label>
               <select
                 formControlName="nAplicacionesId"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Seleccionar aplicación</option>
                 <option *ngFor="let app of aplicaciones" [value]="app.nAplicacionesId">
@@ -444,7 +444,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
                 <input
                   type="checkbox"
                   formControlName="bUsuariosEsActivo"
-                  class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                  class="rounded border-gray-200 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 >
                 <span class="ml-2 text-sm text-gray-700">Usuario activo</span>
               </label>
@@ -473,7 +473,7 @@ import { ApplicationService } from '../../infrastructure/services/application.se
 
     <!-- Modal de detalles del usuario -->
     <div *ngIf="showDetailsModal && selectedUser" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-10 mx-auto p-5 border w-2/3 max-w-4xl shadow-lg rounded-md bg-white">
+      <div class="relative top-10 mx-auto p-5 ring-1 ring-gray-200 w-2/3 max-w-4xl shadow-lg rounded-md bg-white">
         <div class="mt-3">
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg font-medium text-gray-900">Detalles del Usuario</h3>
@@ -682,6 +682,7 @@ export class UsuariosChatComponent implements OnInit, OnDestroy {
           this.usuarios.set(response);
           this.totalItems.set(response.length);
           this.isLoading.set(false);
+          this.loadEstadisticas();
         },
         error: (error: any) => {
           console.error('Error loading usuarios:', error);
@@ -691,13 +692,25 @@ export class UsuariosChatComponent implements OnInit, OnDestroy {
   }
 
   loadEstadisticas(): void {
-    // Crear estadísticas mock por ahora
-    this.estadisticas = {
-      totalUsuarios: this.usuarios().length,
-      usuariosActivos: this.usuarios().filter(u => u.bUsuariosEsActivo).length,
-      usuariosOnline: this.usuarios().filter(u => u.cUsuariosEstado === 'online').length,
-      conversacionesHoy: 0
-    };
+    forkJoin({
+      total: this.chatUserService.obtenerTotalUsuarios(),
+      activos: this.chatUserService.obtenerTotalUsuariosActivos(),
+      online: this.chatUserService.obtenerTotalUsuariosEnLinea(),
+      conversacionesHoy: this.chatUserService.obtenerConversacionesHoy()
+    }).pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => {
+          this.estadisticas = {
+            totalUsuarios: data.total ?? 0,
+            usuariosActivos: data.activos ?? 0,
+            usuariosOnline: data.online ?? 0,
+            conversacionesHoy: data.conversacionesHoy ?? 0
+          };
+        },
+        error: (err) => {
+          console.error('Error cargando métricas:', err);
+        }
+      });
   }
 
   onSearchChange(): void {

@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { Conversation } from '../../../domain/models/chat.model';
 
 @Component({
   selector: 'app-contact-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './contact-item.component.html',
   styles: []
 })
@@ -17,9 +18,9 @@ export class ContactItemComponent {
   @Output() contactClick = new EventEmitter<Conversation>();
 
   get contactItemClasses(): string {
-    const baseClasses = 'flex items-center space-x-3 py-2.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors duration-200';
+    const baseClasses = 'flex items-center space-x-2 py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors duration-200';
     return this.isSelected 
-      ? `${baseClasses} bg-blue-50 dark:bg-gray-800 border-r-2 border-blue-500`
+      ? `${baseClasses} bg-[var(--primary-color-light)] dark:bg-gray-800 border-r-2 border-[var(--primary-color)]`
       : baseClasses;
   }
 
@@ -31,7 +32,7 @@ export class ContactItemComponent {
   }
 
   get lastMessageClasses(): string {
-    const baseClasses = 'text-xs truncate leading-snug';
+    const baseClasses = 'text-xs truncate leading-tight';
     return (this.conversation.unreadCount || 0) > 0
       ? `${baseClasses} text-gray-700 dark:text-gray-300 font-medium`
       : `${baseClasses} text-gray-500 dark:text-gray-400`;

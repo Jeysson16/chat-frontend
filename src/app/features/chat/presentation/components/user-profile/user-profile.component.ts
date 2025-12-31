@@ -12,7 +12,7 @@ import { ChatUser } from '../../../domain/models/chat.model';
         (click)="toggleProfile()"
         class="flex items-center space-x-2 p-2 rounded-lg hover:bg-secondary transition-colors duration-200"
       >
-        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+        <div class="w-8 h-8 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white font-medium">
           {{ user?.name?.charAt(0).toUpperCase() || 'U' }}
         </div>
         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -24,13 +24,13 @@ import { ChatUser } from '../../../domain/models/chat.model';
       <div *ngIf="showProfile" class="absolute top-full right-0 mt-2 w-64 bg-primary rounded-lg shadow-lg border border-gray-200 z-50">
         <div class="p-4 border-b border-gray-200">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium text-lg">
+            <div class="w-12 h-12 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white font-medium text-lg">
               {{ user?.name?.charAt(0).toUpperCase() || 'U' }}
             </div>
             <div class="flex-1">
               <h3 class="font-medium text-gray-900">{{ user?.name || 'Unknown User' }}</h3>
               <p class="text-sm text-gray-500">{{ user?.email || 'No email' }}</p>
-              <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full capitalize mt-1">
+              <span class="inline-block px-2 py-1 text-xs font-medium rounded-full capitalize mt-1" [style.backgroundColor]="'var(--primary-color-light)'" [style.color]="'var(--primary-color)'">
                 {{ user?.role || 'user' }}
               </span>
             </div>
@@ -44,8 +44,8 @@ import { ChatUser } from '../../../domain/models/chat.model';
             <div class="space-y-1">
               <button
                 (click)="toggleTheme('light')"
-                [class.bg-blue-50]="currentTheme === 'light'"
-                [class.text-blue-700]="currentTheme === 'light'"
+                [style.backgroundColor]="currentTheme === 'light' ? 'var(--primary-color-light)' : null"
+                [style.color]="currentTheme === 'light' ? 'var(--primary-color)' : null"
                 class="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-secondary transition-colors duration-200 flex items-center space-x-2"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,8 +55,8 @@ import { ChatUser } from '../../../domain/models/chat.model';
               </button>
               <button
                 (click)="toggleTheme('dark')"
-                [class.bg-blue-50]="currentTheme === 'dark'"
-                [class.text-blue-700]="currentTheme === 'dark'"
+                [style.backgroundColor]="currentTheme === 'dark' ? 'var(--primary-color-light)' : null"
+                [style.color]="currentTheme === 'dark' ? 'var(--primary-color)' : null"
                 class="w-full text-left px-3 py-2 text-sm rounded-md hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,7 +75,7 @@ import { ChatUser } from '../../../domain/models/chat.model';
                 *ngFor="let color of colorOptions"
                 (click)="selectPrimaryColor(color.value)"
                 [class.ring-2]="currentPrimaryColor === color.value"
-                [class.ring-blue-500]="currentPrimaryColor === color.value"
+                [class.ring-[var(--primary-color)]]="currentPrimaryColor === color.value"
                 [style.background-color]="color.value"
                 class="w-6 h-6 rounded-full border border-gray-200 hover:scale-110 transition-transform duration-200"
                 [title]="color.name"
@@ -89,7 +89,7 @@ import { ChatUser } from '../../../domain/models/chat.model';
             <select
               (change)="onLanguageChange($event)"
               [disabled]="!isTranslationSupported"
-              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+              class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] disabled:bg-gray-100 disabled:cursor-not-allowed"
             >
               <option *ngFor="let lang of availableLanguages" [value]="lang.code" [selected]="currentLanguage === lang.code">
                 {{ lang.name }}

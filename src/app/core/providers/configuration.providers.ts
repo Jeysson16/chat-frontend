@@ -17,8 +17,8 @@ import { CompanyRepositoryImpl } from '../../features/admin/infrastructure/repos
 import { IConfigurationValidator, INotificationService } from '../interfaces/configuration.interface';
 
 // Service Implementations
-import { ConfigurationValidatorService } from '../../shared/services/configuration-validator.service';
-import { NotificationService } from '../../shared/services/notification.service';
+import { ConfigurationValidatorService } from '../../features/admin/infrastructure/services/configuration-validator.service';
+import { NotificationService } from '../../features/admin/infrastructure/services/notification.service';
 
 // Injection Tokens
 import { 

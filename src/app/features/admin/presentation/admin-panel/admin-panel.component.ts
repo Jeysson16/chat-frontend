@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Subject, forkJoin, takeUntil } from 'rxjs';
+import { AdminService } from '../../infrastructure/services/admin.service';
 import { ApplicationService } from '../../infrastructure/services/application.service';
-import { CompanyService } from '../../../companies/infrastructure/services/company.service';
+import { CompanyService } from '../../infrastructure/services/company.service';
 import { ChatUserService } from '../../../chat/infrastructure/services/chat-user.service';
 import { ConfigurationService } from '../../infrastructure/services/configuration.service';
 
@@ -227,7 +228,8 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
     private applicationService: ApplicationService,
     private companyService: CompanyService,
     private chatUserService: ChatUserService,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private adminService: AdminService
   ) {}
 
   ngOnInit(): void {
@@ -242,63 +244,80 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
 
   private loadDashboardData(): void {
     this.loading = true;
+    this.adminService.getDashboardStats().pipe(takeUntil(this.destroy$)).subscribe({
+      next: (dto) => {
+        this.stats = {
+          totalAplicaciones: dto.totalAplicaciones ?? 0,
+          aplicacionesActivas: dto.aplicacionesActivas ?? 0,
+          totalEmpresas: dto.totalEmpresas ?? 0,
+          empresasActivas: dto.empresasActivas ?? 0,
+          totalUsuarios: dto.totalUsuarios ?? 0,
+          usuariosActivos: dto.usuariosActivos ?? 0,
+          usuariosOnline: dto.usuariosOnline ?? 0,
+          totalConfiguraciones: dto.totalConfiguraciones ?? 0,
+          configuracionesAplicacion: dto.configuracionesAplicacion ?? 0,
+          configuracionesEmpresa: dto.configuracionesEmpresa ?? 0
+        };
+        this.loading = false;
+      },
+      error: () => {
+        const apps$ = this.applicationService.getApplications(1, 1000);
+        const appsActive$ = this.applicationService.getAplicacionesActivas();
+        const companies$ = this.companyService.getEmpresas(1, 1000);
+        const companiesActive$ = this.companyService.getEmpresasActivas();
+        const usersTotal$ = this.chatUserService.obtenerTotalUsuarios();
+        const usersActive$ = this.chatUserService.obtenerTotalUsuariosActivos();
+        const usersOnline$ = this.chatUserService.obtenerTotalUsuariosEnLinea();
+        const configApp$ = this.configurationService.getConfiguracionesAplicacion(1, 1000);
+        const configCompany$ = this.configurationService.getConfiguracionesEmpresa(1, 1000);
 
-    const apps$ = this.applicationService.getApplications(1, 1000);
-    const appsActive$ = this.applicationService.getAplicacionesActivas();
-    const companies$ = this.companyService.getEmpresas(1, 1000);
-    const companiesActive$ = this.companyService.getEmpresasActivas();
-    const usersTotal$ = this.chatUserService.obtenerTotalUsuarios();
-    const usersActive$ = this.chatUserService.obtenerTotalUsuariosActivos();
-    const usersOnline$ = this.chatUserService.obtenerTotalUsuariosEnLinea();
-    const configApp$ = this.configurationService.getConfiguracionesAplicacion(1, 1000);
-    const configCompany$ = this.configurationService.getConfiguracionesEmpresa(1, 1000);
-
-    forkJoin({
-      apps: apps$,
-      appsActive: appsActive$,
-      companies: companies$,
-      companiesActive: companiesActive$,
-      usersTotal: usersTotal$,
-      usersActive: usersActive$,
-      usersOnline: usersOnline$,
-      configApp: configApp$,
-      configCompany: configCompany$
-    }).pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (res) => {
-          console.log('Dashboard data loaded:', res);
-          this.stats = {
-            totalAplicaciones: res.apps?.applications?.length ?? 0,
-            aplicacionesActivas: res.appsActive?.length ?? 0,
-            totalEmpresas: res.companies?.total ?? 0,
-            empresasActivas: res.companiesActive?.length ?? 0,
-            totalUsuarios: res.usersTotal ?? 0,
-            usuariosActivos: res.usersActive ?? 0,
-            usuariosOnline: res.usersOnline ?? 0,
-            totalConfiguraciones: (res.configApp?.data?.length ?? 0) + (res.configCompany?.data?.length ?? 0),
-            configuracionesAplicacion: res.configApp?.data?.length ?? 0,
-            configuracionesEmpresa: res.configCompany?.data?.length ?? 0
-          };
-          this.loading = false;
-        },
-        error: (error) => {
-          console.error('Error loading dashboard data:', error);
-          this.loading = false;
-          // Set default values on error
-          this.stats = {
-            totalAplicaciones: 0,
-            aplicacionesActivas: 0,
-            totalEmpresas: 0,
-            empresasActivas: 0,
-            totalUsuarios: 0,
-            usuariosActivos: 0,
-            usuariosOnline: 0,
-            totalConfiguraciones: 0,
-            configuracionesAplicacion: 0,
-            configuracionesEmpresa: 0
-          };
-        }
-      });
+        forkJoin({
+          apps: apps$,
+          appsActive: appsActive$,
+          companies: companies$,
+          companiesActive: companiesActive$,
+          usersTotal: usersTotal$,
+          usersActive: usersActive$,
+          usersOnline: usersOnline$,
+          configApp: configApp$,
+          configCompany: configCompany$
+        }).pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: (res) => {
+              console.log('Dashboard data loaded:', res);
+              this.stats = {
+                totalAplicaciones: res.apps?.applications?.length ?? 0,
+                aplicacionesActivas: res.appsActive?.length ?? 0,
+                totalEmpresas: res.companies?.total ?? 0,
+                empresasActivas: res.companiesActive?.length ?? 0,
+                totalUsuarios: res.usersTotal ?? 0,
+                usuariosActivos: res.usersActive ?? 0,
+                usuariosOnline: res.usersOnline ?? 0,
+                totalConfiguraciones: (res.configApp?.data?.length ?? 0) + (res.configCompany?.data?.length ?? 0),
+                configuracionesAplicacion: res.configApp?.data?.length ?? 0,
+                configuracionesEmpresa: res.configCompany?.data?.length ?? 0
+              };
+              this.loading = false;
+            },
+            error: (error) => {
+              console.error('Error loading dashboard data:', error);
+              this.loading = false;
+               this.stats = {
+                totalAplicaciones: 0,
+                aplicacionesActivas: 0,
+                totalEmpresas: 0,
+                empresasActivas: 0,
+                totalUsuarios: 0,
+                usuariosActivos: 0,
+                usuariosOnline: 0,
+                totalConfiguraciones: 0,
+                configuracionesAplicacion: 0,
+                configuracionesEmpresa: 0
+              };
+            }
+          });
+      }
+    });
   }
 
   private loadRecentActivity(): void {

@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { IConfigurationValidator, ValidationResult } from '../../core/interfaces/configuration.interface';
 import { ApplicationSettings } from '../../domain/entities/application.entity';
 import { CompanyConfiguration } from '../../domain/entities/company.entity';
+
+export interface ValidationResult { isValid: boolean; errors: string[] }
+export interface IConfigurationValidator {
+  validateApplication(application: any): ValidationResult;
+  validateApplicationConfig(config: ApplicationSettings): ValidationResult;
+  validateCompany(company: any): ValidationResult;
+  validateCompanyConfig(config: CompanyConfiguration): ValidationResult;
+}
 
 @Injectable({
   providedIn: 'root'

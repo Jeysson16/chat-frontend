@@ -96,7 +96,7 @@ export class FallbackTranslationService {
       'pt': 'Online'
     },
     'Offline': {
-      'es': 'Desconectado',
+      'es': 'En linea',
       'fr': 'Hors ligne',
       'de': 'Offline',
       'it': 'Offline',
@@ -136,6 +136,112 @@ export class FallbackTranslationService {
       'de': 'Keine Kontakte gefunden',
       'it': 'Nessun contatto trovato',
       'pt': 'Nenhum contato encontrado'
+    }
+    ,
+    'Chats': {
+      'es': 'Chats',
+      'fr': 'Discussions',
+      'de': 'Chats',
+      'it': 'Chat',
+      'pt': 'Chats'
+    },
+    'Back to conversations': {
+      'es': 'Volver a conversaciones',
+      'fr': 'Retour aux conversations',
+      'de': 'Zurück zu Gesprächen',
+      'it': 'Torna alle conversazioni',
+      'pt': 'Voltar às conversas'
+    },
+    'Search users...': {
+      'es': 'Buscar usuarios...',
+      'fr': 'Rechercher des utilisateurs...',
+      'de': 'Benutzer suchen...',
+      'it': 'Cerca utenti...',
+      'pt': 'Pesquisar usuários...'
+    },
+    'Search conversations...': {
+      'es': 'Buscar conversaciones...',
+      'fr': 'Rechercher des conversations...',
+      'de': 'Unterhaltungen suchen...',
+      'it': 'Cerca conversazioni...',
+      'pt': 'Pesquisar conversas...'
+    },
+    'Translation not available in this browser': {
+      'es': 'La traducción no está disponible en este navegador',
+      'fr': 'La traduction n’est pas disponible sur ce navigateur',
+      'de': 'Übersetzung ist in diesem Browser nicht verfügbar',
+      'it': 'La traduzione non è disponibile su questo browser',
+      'pt': 'Tradução não disponível neste navegador'
+    },
+    'Type to search users': {
+      'es': 'Escribe para buscar usuarios',
+      'fr': 'Tapez pour rechercher des utilisateurs',
+      'de': 'Tippen, um Benutzer zu suchen',
+      'it': 'Digita per cercare utenti',
+      'pt': 'Digite para buscar usuários'
+    },
+    'Start typing a name or email': {
+      'es': 'Comienza a escribir un nombre o correo',
+      'fr': 'Commencez à taper un nom ou un e-mail',
+      'de': 'Beginnen Sie, einen Namen oder eine E-Mail zu tippen',
+      'it': 'Inizia a digitare un nome o email',
+      'pt': 'Comece digitando um nome ou e-mail'
+    },
+    'Start the conversation by sending the first message': {
+      'es': 'Inicia la conversación enviando el primer mensaje',
+      'fr': 'Commencez la conversation en envoyant le premier message',
+      'de': 'Beginnen Sie das Gespräch, indem Sie die erste Nachricht senden',
+      'it': 'Inizia la conversazione inviando il primo messaggio',
+      'pt': 'Comece a conversa enviando a primeira mensagem'
+    },
+    'Today': {
+      'es': 'Hoy',
+      'fr': 'Aujourd’hui',
+      'de': 'Heute',
+      'it': 'Oggi',
+      'pt': 'Hoje'
+    },
+    'Yesterday': {
+      'es': 'Ayer',
+      'fr': 'Hier',
+      'de': 'Gestern',
+      'it': 'Ieri',
+      'pt': 'Ontem'
+    },
+    'Pending': {
+      'es': 'Pendiente',
+      'fr': 'En attente',
+      'de': 'Ausstehend',
+      'it': 'In sospeso',
+      'pt': 'Pendente'
+    },
+    'Processing': {
+      'es': 'Procesando',
+      'fr': 'Traitement en cours',
+      'de': 'Verarbeitung',
+      'it': 'Elaborazione',
+      'pt': 'Processando'
+    },
+    'Error': {
+      'es': 'Error',
+      'fr': 'Erreur',
+      'de': 'Fehler',
+      'it': 'Errore',
+      'pt': 'Erro'
+    },
+    'Translation:': {
+      'es': 'Traducción:',
+      'fr': 'Traduction :',
+      'de': 'Übersetzung:',
+      'it': 'Traduzione:',
+      'pt': 'Tradução:'
+    },
+    'Off': {
+      'es': 'Desactivado',
+      'fr': 'Désactivé',
+      'de': 'Aus',
+      'it': 'Disattivato',
+      'pt': 'Desativado'
     }
   };
 

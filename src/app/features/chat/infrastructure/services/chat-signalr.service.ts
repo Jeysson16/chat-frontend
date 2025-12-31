@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HubConnection, HubConnectionBuilder, LogLevel, HttpTransportType } from '@microsoft/signalr';
+import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 // Domain Models
-import { ChatMessage, ChatUser, Conversation, TypingIndicator } from '../../domain/models/chat.model';
 import { AuthService } from '../../../auth/infrastructure/services/auth.service';
+import { ChatMessage, Conversation, TypingIndicator } from '../../domain/models/chat.model';
 import { ChatAdapter } from '../adapters/chat.adapter';
 
 @Injectable({
@@ -33,6 +33,13 @@ export class ChatSignalRService {
   
   // Conversation events
   private conversationUpdated = new Subject<{ conversationId: string; lastActivity: Date }>();
+  private conversationCreated = new Subject<Conversation>();
+  private conversationJoined = new Subject<{ conversationId: string }>();
+  private conversationLeft = new Subject<{ conversationId: string }>();
+  private conversationMemberJoined = new Subject<{ conversationId: string; userId: string; userName?: string; joinedAt?: Date }>();
+  private conversationMemberLeft = new Subject<{ conversationId: string; userId: string; userName?: string; leftAt?: Date }>();
+
+  private activeConversations = new Set<string>();
 
   constructor(private authService: AuthService) {
     // Don't initialize connection immediately - wait for explicit call
@@ -93,13 +100,11 @@ export class ChatSignalRService {
     
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(connectionUrl, {
-        transport: HttpTransportType.WebSockets,
-        skipNegotiation: true,
         accessTokenFactory: () => {
           const token = this.authService.getToken();
           return token || '';
         },
-        headers: this.getAuthHeadersWithUserApp() // Add headers for HTTP fallback transports
+        headers: this.getAuthHeadersWithUserApp()
       })
       .withAutomaticReconnect([0, 2000, 5000])
       .configureLogging(LogLevel.Debug)
@@ -120,6 +125,11 @@ export class ChatSignalRService {
       this.messageReceived.next(this.mapToChatMessage(message));
     });
 
+    // Error events (from hub)
+    this.hubConnection.on('Error', (error: any) => {
+      console.warn('SignalR Error event:', error);
+    });
+
     this.hubConnection.on('MessageDelivered', (data: any) => {
       console.log('SignalR MessageDelivered:', data);
       this.messageDelivered.next({
@@ -136,28 +146,72 @@ export class ChatSignalRService {
       });
     });
 
+    this.hubConnection.on('MessagesMarkedAsRead', (data: any) => {
+      console.log('SignalR MessagesMarkedAsRead:', data);
+      const convId = (data?.ConversationId || data?.conversationId || '').toString();
+      const ts = new Date(data?.ReadAt || data?.readAt || Date.now());
+      this.conversationUpdated.next({ conversationId: convId, lastActivity: ts });
+    });
+
+    // Conversation membership events
+    this.hubConnection.on('JoinedConversation', (conversationId: any) => {
+      const convId = (conversationId || '').toString();
+      console.log('SignalR JoinedConversation:', convId);
+      if (convId) this.activeConversations.add(convId);
+      this.conversationJoined.next({ conversationId: convId });
+    });
+
+    this.hubConnection.on('LeftConversation', (conversationId: any) => {
+      const convId = (conversationId || '').toString();
+      console.log('SignalR LeftConversation:', convId);
+      if (convId) this.activeConversations.delete(convId);
+      this.conversationLeft.next({ conversationId: convId });
+    });
+
+    this.hubConnection.on('UserJoinedConversation', (data: any) => {
+      const convId = (data?.ConversationId || data?.conversationId || '').toString();
+      const userId = (data?.UserId || data?.userId || '').toString();
+      const userName = data?.UserName || data?.userName || '';
+      const joinedAt = new Date(data?.JoinedAt || data?.joinedAt || Date.now());
+      console.log('SignalR UserJoinedConversation:', { convId, userId, userName, joinedAt });
+      this.conversationMemberJoined.next({ conversationId: convId, userId, userName, joinedAt });
+    });
+
+    this.hubConnection.on('UserLeftConversation', (data: any) => {
+      const convId = (data?.ConversationId || data?.conversationId || '').toString();
+      const userId = (data?.UserId || data?.userId || '').toString();
+      const userName = data?.UserName || data?.userName || '';
+      const leftAt = new Date(data?.LeftAt || data?.leftAt || Date.now());
+      console.log('SignalR UserLeftConversation:', { convId, userId, userName, leftAt });
+      this.conversationMemberLeft.next({ conversationId: convId, userId, userName, leftAt });
+    });
+
     // User events
     this.hubConnection.on('UserConnected', (data: any) => {
       console.log('SignalR UserConnected:', data);
+      const uid = (data?.UserId || data?.userId || '').toString();
       this.userOnline.next({
-        userId: data.userId?.toString() || '',
+        userId: uid,
         isOnline: true
       });
     });
 
     this.hubConnection.on('UserDisconnected', (data: any) => {
       console.log('SignalR UserDisconnected:', data);
+      const uid = (data?.UserId || data?.userId || '').toString();
       this.userOnline.next({
-        userId: data.userId?.toString() || '',
+        userId: uid,
         isOnline: false
       });
     });
 
     this.hubConnection.on('UserOnline', (data: any) => {
       console.log('SignalR UserOnline:', data);
+      const uid = (data?.UserId || data?.userId || '').toString();
+      const online = (data?.IsOnline ?? data?.isOnline ?? true) as boolean;
       this.userOnline.next({
-        userId: data.userId?.toString() || '',
-        isOnline: data.isOnline ?? true
+        userId: uid,
+        isOnline: online
       });
     });
 
@@ -170,6 +224,20 @@ export class ChatSignalRService {
         isTyping: data.isTyping ?? true,
         timestamp: new Date(data.timestamp || Date.now())
       });
+    });
+
+    // Alertas de nuevos mensajes (evento dirigido a usuario)
+    this.hubConnection.on('NewMessageAlert', (data: any) => {
+      console.log('SignalR NewMessageAlert:', data);
+      const convId = (data?.conversationId || '').toString();
+      const ts = new Date(data?.timestamp || Date.now());
+      this.conversationUpdated.next({ conversationId: convId, lastActivity: ts });
+    });
+
+    this.hubConnection.on('ConversationCreated', (data: any) => {
+      console.log('SignalR ConversationCreated:', data);
+      const conv = this.mapToConversation(data);
+      this.conversationCreated.next(conv);
     });
 
     // Connection events
@@ -460,14 +528,20 @@ export class ChatSignalRService {
   }
 
   private mapToChatMessage(backendMessage: any): ChatMessage {
-    // Handle both frontend DTO format and backend ChatMensajeDto format
+    const fileUrl = backendMessage.archivo_url || backendMessage.archivoUrl || backendMessage.urlArchivo || (backendMessage.adjunto?.url) || '';
+    const mime = backendMessage.archivo_tipo || backendMessage.archivoTipo || backendMessage.mime_type || backendMessage.mimeType || '';
+    const inferredType = mime.startsWith('image/') ? 'image' : mime.startsWith('audio/') ? 'audio' : mime ? 'file' : undefined;
+    const baseType = this.mapMessageType(backendMessage.cMensajesChatTipo || backendMessage.type || backendMessage.tipo);
+    const finalType = inferredType || baseType;
+    const texto = backendMessage.cMensajesChatTexto || backendMessage.content || backendMessage.texto || '';
+    const finalContent = fileUrl || texto;
     return {
       id: backendMessage.nMensajesChatId?.toString() || backendMessage.id?.toString() || '',
       conversationId: backendMessage.nMensajesChatConversacionId?.toString() || backendMessage.conversationId?.toString() || backendMessage.conversacion_id?.toString() || '',
       senderId: backendMessage.cMensajesChatRemitenteId?.toString() || backendMessage.senderId?.toString() || backendMessage.usuario_id?.toString() || '',
       senderName: backendMessage.cMensajesChatRemitenteNombre || backendMessage.senderName || backendMessage.usuario_nombre || '',
-      content: backendMessage.cMensajesChatTexto || backendMessage.content || backendMessage.texto || '',
-      type: this.mapMessageType(backendMessage.cMensajesChatTipo || backendMessage.type || backendMessage.tipo),
+      content: finalContent,
+      type: finalType,
       timestamp: new Date(backendMessage.dMensajesChatFechaHora || backendMessage.timestamp || backendMessage.fecha_envio || Date.now()),
       isRead: backendMessage.bMensajesChatEstaLeido ?? backendMessage.isRead ?? backendMessage.leido ?? false
     };
@@ -475,8 +549,21 @@ export class ChatSignalRService {
 
   private rejoinConversations(): void {
     console.log('Rejoining conversations after reconnection...');
-    // Aquí deberías implementar la lógica para re-unirse a las conversaciones activas
-    // Por ahora solo logueamos que se intentó
+    const convs = Array.from(this.activeConversations);
+    if (!this.hubConnection || this.hubConnection.state !== 'Connected') {
+      console.log('Skipping rejoin: connection not in Connected state');
+      return;
+    }
+    convs.forEach(async (id) => {
+      try {
+        const idNum = Number(id);
+        if (!Number.isFinite(idNum) || idNum <= 0) return;
+        await this.hubConnection!.invoke('JoinConversation', Math.trunc(idNum));
+        console.log('Rejoined conversation:', id);
+      } catch (e) {
+        console.warn('Failed to rejoin conversation', id, e);
+      }
+    });
     console.log('Rejoin conversations completed');
   }
 
@@ -494,6 +581,23 @@ export class ChatSignalRService {
       'SISTEMA': 'system'
     };
     return typeMap[type] || 'text';
+  }
+
+  private mapToConversation(dto: any): Conversation {
+    const rawType = (dto?.cConversacionesChatTipo || dto?.type || '').toString().toLowerCase();
+    const preferredName = rawType === 'individual'
+      ? (dto?.cdisplayname || dto?.cConversacionesChatNombre || dto?.name || '')
+      : (dto?.cConversacionesChatNombre || dto?.name || '');
+    return {
+      id: (dto?.nConversacionesChatId || dto?.id || '').toString(),
+      name: preferredName,
+      type: rawType === 'individual' ? 'private' : 'group',
+      participants: [],
+      isActive: Boolean(dto?.bConversacionesChatEstaActiva ?? true),
+      createdAt: new Date(dto?.dConversacionesChatFechaCreacion || Date.now()),
+      lastMessage: undefined,
+      unreadCount: 0
+    };
   }
 
   // Connection methods
@@ -628,16 +732,50 @@ export class ChatSignalRService {
         cMensajesChatTipo: type
       });
       console.log('Message sent via SignalR, response:', response);
-      // Mapear la respuesta del backend a nuestro modelo ChatMessage
-      return this.mapToChatMessage(response);
+      // Mapear la respuesta del backend a nuestro modelo ChatMessage si existe
+      if (response) {
+        return this.mapToChatMessage(response);
+      }
+      // Fallback seguro si el hub no devuelve respuesta: construir mensaje local
+      let currentUserId = '';
+      try {
+        const stored = localStorage.getItem('user') || sessionStorage.getItem('user') || '';
+        if (stored) currentUserId = (JSON.parse(stored)?.id || JSON.parse(stored)?.cPerCodigo || '').toString();
+      } catch {}
+      return {
+        id: '0',
+        conversationId: conversationId.toString(),
+        senderId: currentUserId || '',
+        senderName: '',
+        content,
+        type: this.mapMessageType(type),
+        timestamp: new Date(),
+        isRead: false
+      };
     } catch (error) {
       console.error('Error sending message via SignalR:', error);
       throw error;
     }
   }
 
+  async getConversationMessages(conversationId: string, page: number = 1, pageSize: number = 50): Promise<ChatMessage[]> {
+    if (!this.hubConnection || this.hubConnection.state !== 'Connected') {
+      throw new Error('SignalR connection is not established');
+    }
+    try {
+      const convId = parseInt(conversationId);
+      const backendMessages: any[] = await this.hubConnection.invoke('GetConversationMessages', convId, page, pageSize);
+      return (backendMessages || []).map(m => this.mapToChatMessage(m));
+    } catch (error) {
+      console.error('Error fetching messages via SignalR:', error);
+      throw error;
+    }
+  }
+
   async joinConversation(conversationId: string): Promise<void> {
     if (!this.hubConnection || this.hubConnection.state !== 'Connected') {
+      // Persist intent to join and retry when connection is re-established
+      if (conversationId) this.activeConversations.add(conversationId.toString());
       return;
     }
     try {
@@ -647,6 +785,7 @@ export class ChatSignalRService {
         return;
       }
       await this.hubConnection.invoke('JoinConversation', Math.trunc(idNum));
+      this.activeConversations.add(conversationId.toString());
     } catch (error) {
       console.error('Error joining conversation:', error);
     }
@@ -654,24 +793,38 @@ export class ChatSignalRService {
 
   async leaveConversation(conversationId: string): Promise<void> {
     if (!this.hubConnection || this.hubConnection.state !== 'Connected') {
+      this.activeConversations.delete(conversationId.toString());
       return;
     }
     try {
       await this.hubConnection.invoke('LeaveConversation', parseInt(conversationId));
+      this.activeConversations.delete(conversationId.toString());
     } catch (error) {
       console.error('Error leaving conversation:', error);
     }
   }
 
-  // Typing indicators (desactivado porque no está implementado en el backend)
+  // Typing indicators
   async startTyping(conversationId: string): Promise<void> {
-    console.log('Typing indicators not implemented in backend');
-    // await this.hubConnection?.invoke('StartTyping', parseInt(conversationId));
+    if (!this.hubConnection || this.hubConnection.state !== 'Connected') return;
+    try {
+      const idNum = Number(conversationId);
+      if (!Number.isFinite(idNum) || idNum <= 0) return;
+      await this.hubConnection.invoke('StartTyping', Math.trunc(idNum));
+    } catch (error) {
+      console.warn('Failed to emit StartTyping:', error);
+    }
   }
 
   async stopTyping(conversationId: string): Promise<void> {
-    console.log('Typing indicators not implemented in backend');
-    // await this.hubConnection?.invoke('StopTyping', parseInt(conversationId));
+    if (!this.hubConnection || this.hubConnection.state !== 'Connected') return;
+    try {
+      const idNum = Number(conversationId);
+      if (!Number.isFinite(idNum) || idNum <= 0) return;
+      await this.hubConnection.invoke('StopTyping', Math.trunc(idNum));
+    } catch (error) {
+      console.warn('Failed to emit StopTyping:', error);
+    }
   }
 
   // Observable streams
@@ -701,6 +854,26 @@ export class ChatSignalRService {
 
   get conversationUpdated$(): Observable<{ conversationId: string; lastActivity: Date }> {
     return this.conversationUpdated.asObservable();
+  }
+
+  get conversationCreated$(): Observable<Conversation> {
+    return this.conversationCreated.asObservable();
+  }
+
+  get conversationJoined$(): Observable<{ conversationId: string }> {
+    return this.conversationJoined.asObservable();
+  }
+
+  get conversationLeft$(): Observable<{ conversationId: string }> {
+    return this.conversationLeft.asObservable();
+  }
+
+  get conversationMemberJoined$(): Observable<{ conversationId: string; userId: string; userName?: string; joinedAt?: Date }> {
+    return this.conversationMemberJoined.asObservable();
+  }
+
+  get conversationMemberLeft$(): Observable<{ conversationId: string; userId: string; userName?: string; leftAt?: Date }> {
+    return this.conversationMemberLeft.asObservable();
   }
 
   // Utility methods

@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { User } from '../../../auth/domain/models/user.model';
 import { ChatAdapter } from '../adapters/chat.adapter';
 import { BackendChatResponse, ChatConversacionEntity, ChatMensajeEntity, ChatUsuarioEntity } from '../entities/chat.entity';
@@ -14,6 +14,7 @@ export interface EnviarMensajeDto {
 }
 
 export interface CrearConversacionDto {
+  Nombre?: string;
   cConversacionesChatNombre: string;
   cConversacionesChatTipo: string;
   participante_ids: string[];
@@ -73,8 +74,7 @@ export interface BackendResponse<T> {
 export class ChatApiService {
   private readonly apiBase = `${import.meta.env.NG_APP_API_URL || 'http://localhost:5406/api'}`;
   private getChatBase(): string {
-    const mode = (localStorage.getItem('chat_conversation_api_mode') || 'modern').toString().toLowerCase();
-    return mode === 'legacy' ? `${this.apiBase}/v1/chat-legacy` : `${this.apiBase}/v1/chat`;
+    return `${this.apiBase}/chat`;
   }
   private readonly MOCK_USERS: ChatUsuarioEntity[] = [
     { nUsuariosChatId: 1, cUsuariosChatId: 'u1', cUsuariosChatNombre: 'Ana García', cUsuariosChatEmail: 'ana.garcia@example.com', cUsuariosChatRol: 'user', bUsuariosChatEstaActivo: true, bUsuariosChatEstaEnLinea: true },
@@ -189,8 +189,109 @@ export class ChatApiService {
     
     console.log('getConversations - Query parameters being sent:', params.toString());
     
-    return this.http.get<BackendChatResponse<ChatConversacionEntity>>(`${this.getChatBase()}/conversations`, { headers, params })
-      .pipe(map(response => response.lstItem || []));
+    return this.http.get<BackendChatResponse<ChatConversacionEntity[]>>(`${this.getChatBase()}/conversations`, { headers, params })
+      .pipe(
+        map(response => {
+          const dataAny: any = response as any;
+          const rawArr = Array.isArray(dataAny) ? dataAny : (Array.isArray(dataAny?.data) ? dataAny.data : (Array.isArray(dataAny?.LstItem) ? dataAny.LstItem : (Array.isArray(dataAny?.lstItem) ? dataAny.lstItem : [])));
+          const normalized = (rawArr || []).map((it: any) => {
+            const id = it.nConversacionesChatId ?? it.nconversacioneschatid ?? it.id ?? 0;
+            const name = it.cConversacionesChatNombre ?? it.cconversacioneschatname ?? it.nombre ?? it.cdisplayname ?? '';
+            const type = it.cConversacionesChatTipo ?? it.cconversacioneschattype ?? it.tipo ?? '';
+            const createdAt = it.dConversacionesChatFechaCreacion ?? it.dtconversacioneschatcreatedat ?? it.fecha_creacion ?? new Date().toISOString();
+            const updatedAt = it.dConversacionesChatUltimaActividad ?? it.dtconversacioneschatupdatedat ?? new Date().toISOString();
+            const isActive = it.bConversacionesChatEstaActiva ?? it.bconversacioneschatisactive ?? true;
+            const appCode = it.cConversacionesChatAppCodigo ?? '';
+            const creatorId = it.cConversacionesChatUsuarioCreadorId ?? '';
+            const lastText = it.clastmessagetext ?? it.ultimo_mensaje?.texto ?? '';
+            const lastSenderId = it.clastmessagesenderid ?? it.ultimo_mensaje?.usuario_id ?? '';
+            const lastSenderName = it.clastmessagesendername ?? it.ultimo_mensaje?.usuario_nombre ?? '';
+            const lastTime = it.dtlastmessagetimestamp ?? it.ultimo_mensaje?.fecha_envio ?? '';
+            const unread = it.nunreadcount ?? it.mensajes_no_leidos ?? 0;
+            const participants = it.participants ?? it.participantes ?? [];
+            const displayName = it.cdisplayname ?? '';
+            return {
+              nConversacionesChatId: Number(id),
+              cConversacionesChatAppCodigo: appCode,
+              cConversacionesChatNombre: String(name),
+              cConversacionesChatTipo: String(type),
+              cConversacionesChatUsuarioCreadorId: String(creatorId),
+              dConversacionesChatFechaCreacion: String(createdAt),
+              dConversacionesChatUltimaActividad: String(updatedAt),
+              bConversacionesChatEstaActiva: Boolean(isActive),
+              clastmessagetext: lastText,
+              clastmessagesenderid: lastSenderId,
+              clastmessagesendername: lastSenderName,
+              dtlastmessagetimestamp: lastTime,
+              nunreadcount: unread,
+              participants: participants,
+              cdisplayname: displayName
+            } as ChatConversacionEntity;
+          });
+          return normalized as ChatConversacionEntity[];
+        }),
+        switchMap(list => {
+          if (Array.isArray(list) && list.length > 0) return of(list);
+          const supabaseUrl = (import.meta as any).env?.NG_APP_SUPABASE_URL || '';
+          const supabaseKey = (import.meta as any).env?.NG_APP_SUPABASE_ANON_KEY || '';
+          const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user') || '{}';
+          let userId = '';
+          try { const u = JSON.parse(storedUser); userId = (u?.id || u?.cPerCodigo || '').toString(); } catch {}
+          if (!supabaseUrl || !supabaseKey || !userId) return of(list);
+          const headersRpc: Record<string, string> = { 'apikey': supabaseKey, 'Content-Type': 'application/json', 'Accept': 'application/json', 'Prefer': 'return=representation' };
+          const mapRow = (it: any): ChatConversacionEntity => {
+              const id = it.nconversacioneschatid ?? 0;
+              const name = it.cconversacioneschatname ?? it.cdisplayname ?? '';
+              const type = it.cconversacioneschattype ?? '';
+              const createdAt = it.dtconversacioneschatcreatedat ?? new Date().toISOString();
+              const updatedAt = it.dtconversacioneschatupdatedat ?? new Date().toISOString();
+              const isActive = it.bconversacioneschatisactive ?? true;
+              const lastText = it.clastmessagetext ?? '';
+              const lastSenderId = it.clastmessagesenderid ?? '';
+              const lastSenderName = it.clastmessagesendername ?? '';
+              const lastTime = it.dtlastmessagetimestamp ?? '';
+              const unread = it.nunreadcount ?? 0;
+              const displayName = it.cdisplayname ?? '';
+              return {
+                nConversacionesChatId: Number(id),
+                cConversacionesChatAppCodigo: '',
+                cConversacionesChatNombre: String(name),
+                cConversacionesChatTipo: String(type),
+                cConversacionesChatUsuarioCreadorId: '',
+                dConversacionesChatFechaCreacion: String(createdAt),
+                dConversacionesChatUltimaActividad: String(updatedAt),
+                bConversacionesChatEstaActiva: Boolean(isActive),
+                clastmessagetext: lastText,
+                clastmessagesenderid: lastSenderId,
+                clastmessagesendername: lastSenderName,
+                dtlastmessagetimestamp: lastTime,
+                nunreadcount: unread,
+                participants: [],
+                cdisplayname: displayName
+              } as ChatConversacionEntity;
+          };
+          // Primero intentar el SP solicitado por el flujo
+          const uspUrl = `${supabaseUrl}/rest/v1/rpc/USP_Chat_GetUserConversations`;
+          const appRaw = localStorage.getItem('application') || sessionStorage.getItem('application') || '{}';
+          let appCode = 'SICOM_CHAT_2024';
+          let perJurCodigo = 'DEFAULT';
+          try { const app = JSON.parse(appRaw); appCode = app?.code || appCode; } catch {}
+          try { const u = JSON.parse(storedUser); perJurCodigo = (u?.cPerJurCodigo || 'DEFAULT').toString(); } catch {}
+          return this.http.post<any[]>(uspUrl, { cAppCodigo: appCode, cUsuarioId: userId, nPage: 1, nPageSize: 50, perJurCodigo }, { headers: headersRpc }).pipe(
+            map(rows => (Array.isArray(rows) ? rows : []).map(mapRow)),
+            catchError(() => of([])),
+            switchMap(rows => {
+              if (Array.isArray(rows) && rows.length > 0) return of(rows);
+              // Fallback a la función
+              const fnUrl = `${supabaseUrl}/rest/v1/rpc/fn_listar_conversaciones_por_usuario`;
+              return this.http.post<any[]>(fnUrl, { cUsuarioId: userId }, { headers: headersRpc }).pipe(
+                map(fnRows => (Array.isArray(fnRows) ? fnRows : []).map(mapRow)),
+                catchError(() => of([]))
+              );
+            })
+          );
+        })
+      );
   }
 
   getConversation(conversationId: string): Observable<ChatConversacionEntity> {
@@ -198,9 +299,68 @@ export class ChatApiService {
     return this.http.get<ChatConversacionEntity>(`${this.getChatBase()}/conversations/${conversationId}`, { headers });
   }
 
+  getConversationParticipants(conversationId: string): Observable<ChatUsuarioEntity[]> {
+    const headers = this.getAuthHeaders();
+    const modernUrl = `${this.getChatBase()}/conversations/${conversationId}/participants`;
+    return this.http.get<any>(modernUrl, { headers }).pipe(
+      map((response: any) => {
+        const arr = Array.isArray(response) ? response : (Array.isArray(response?.data) ? response.data : (Array.isArray(response?.lstItem) ? response.lstItem : []));
+        return (arr || []) as ChatUsuarioEntity[];
+      }),
+      catchError(() => of([]))
+    );
+  }
+
   createConversation(dto: CrearConversacionDto): Observable<ChatConversacionEntity> {
     const headers = this.getAuthHeaders();
-    return this.http.post<ChatConversacionEntity>(`${this.getChatBase()}/conversations`, dto, { headers });
+    // Enriquecer DTO con formato esperado por backend
+    const storedAppRaw = localStorage.getItem('application') || sessionStorage.getItem('application') || '{}';
+    const storedUserRaw = localStorage.getItem('user') || sessionStorage.getItem('user') || '{}';
+    let appCode = '';
+    let creatorId = '';
+    try {
+      const appParsed = JSON.parse(storedAppRaw);
+      appCode = appParsed?.code || '';
+    } catch {}
+    try {
+      const userParsed = JSON.parse(storedUserRaw);
+      creatorId = (userParsed?.id || userParsed?.cPerCodigo || '').toString();
+    } catch {}
+
+    const validatedType = ((dto.cConversacionesChatTipo || '').toString().trim() || (dto.participante_ids && dto.participante_ids.length > 2 ? 'group' : 'individual')).toLowerCase();
+    const payload: any = {
+      ...dto,
+      cConversacionesChatTipo: validatedType,
+      cAppCodigo: appCode,
+      cConversacionesChatUsuarioCreadorId: creatorId,
+      participante_ids: Array.isArray(dto.participante_ids) ? dto.participante_ids : [],
+      participantes: Array.isArray(dto.participante_ids) ? dto.participante_ids : []
+    };
+    return this.http.post<any>(`${this.getChatBase()}/conversations`, payload, { headers }).pipe(
+      map((response: any) => {
+        const dataAny = response as any;
+        // Prefer explicit item if present
+        let entity = dataAny?.item || dataAny?.Item || dataAny?.data || dataAny?.lstItem || dataAny?.LstItem || dataAny?.resultado || dataAny;
+        if (Array.isArray(entity)) {
+          entity = entity[0];
+        }
+        // If resultado is a numeric ID, build a minimal entity
+        if (typeof entity === 'number' && entity > 0) {
+          const createdId = entity;
+          return {
+            nConversacionesChatId: createdId,
+            cConversacionesChatAppCodigo: '',
+            cConversacionesChatNombre: dto.cConversacionesChatNombre,
+            cConversacionesChatTipo: dto.cConversacionesChatTipo,
+            cConversacionesChatUsuarioCreadorId: '',
+            dConversacionesChatFechaCreacion: new Date().toISOString(),
+            dConversacionesChatUltimaActividad: new Date().toISOString(),
+            bConversacionesChatEstaActiva: true
+          } as ChatConversacionEntity;
+        }
+        return entity as ChatConversacionEntity;
+      })
+    );
   }
 
   joinConversation(conversationId: string): Observable<void> {
@@ -218,9 +378,37 @@ export class ChatApiService {
     let params = new HttpParams();
     if (page !== undefined) params = params.set('page', page.toString());
     if (limit !== undefined) params = params.set('limit', limit.toString());
-    
     const headers = this.getAuthHeaders();
-    return this.http.get<ChatMensajeEntity[]>(`${this.getChatBase()}/conversations/${conversationId}/messages`, { headers, params });
+    return this.http.get<any>(`${this.getChatBase()}/conversations/${conversationId}/messages`, { headers, params }).pipe(
+      map((response: any) => {
+        const arr = Array.isArray(response)
+          ? response
+          : (Array.isArray(response?.data) ? response.data
+          : (Array.isArray(response?.LstItem) ? response.LstItem
+          : (Array.isArray(response?.lstItem) ? response.lstItem : [])));
+        const normalized = (arr || []).map((it: any) => {
+          const id = it.nMensajesChatId ?? it.nmensajeschatid ?? it.id ?? 0;
+          const convId = it.nMensajesChatConversacionId ?? it.nconversacioneschatid ?? it.conversacion_id ?? conversationId;
+          const senderId = it.cMensajesChatRemitenteId ?? it.cmensajeschatemisorid ?? it.usuario_id ?? '';
+          const senderName = it.cMensajesChatRemitenteNombre ?? it.csendername ?? it.usuario_nombre ?? '';
+          const text = it.cMensajesChatTexto ?? it.cmensajeschattexto ?? it.texto ?? '';
+          const type = it.cMensajesChatTipo ?? it.cmensajeschattype ?? it.tipo ?? 'text';
+          const ts = it.dMensajesChatFechaHora ?? it.dtmensajeschattimestamp ?? it.fecha_envio ?? new Date().toISOString();
+          const read = it.bMensajesChatEstaLeido ?? it.bmensajeschatleido ?? it.leido ?? false;
+          return {
+            nMensajesChatId: Number(id),
+            nMensajesChatConversacionId: Number(convId),
+            cMensajesChatRemitenteId: String(senderId),
+            cMensajesChatRemitenteNombre: senderName || undefined,
+            cMensajesChatTexto: String(text),
+            cMensajesChatTipo: String(type),
+            dMensajesChatFechaHora: String(ts),
+            bMensajesChatEstaLeido: Boolean(read)
+          } as ChatMensajeEntity;
+        });
+        return normalized as ChatMensajeEntity[];
+      })
+    );
   }
 
   sendMessage(dto: EnviarMensajeDto): Observable<ChatMensajeEntity> {

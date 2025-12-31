@@ -23,6 +23,7 @@ export class AuthRepositoryImpl extends AuthRepository {
 
   register(email: string, password: string, name: string): Observable<AuthResult> {
     const registerData: RegisterData = {
+      username: name,
       email,
       password,
       name,

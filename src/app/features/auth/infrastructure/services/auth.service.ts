@@ -4,12 +4,12 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 
 // Domain Models
-import { Application, User, AuthResult, LoginCredentials, RegisterData } from '../../domain/models/application.model';
+import { Application, AuthResult, LoginCredentials, RegisterData, User } from '../../domain/models/application.model';
 
 // Infrastructure
-import { BackendAuthResponse } from '../interfaces/backend-auth-response.interface';
 import { AuthenticationAdapter } from '../adapters/authentication-adapter';
 import { RegisterAdapter } from '../adapters/register-adapter';
+import { BackendAuthResponse } from '../interfaces/backend-auth-response.interface';
 import { AuthTokensService } from './auth-tokens.service';
 
 // Repository Interface
@@ -38,7 +38,7 @@ export class AuthService implements IAuthService {
     const storedUser = localStorage.getItem('user');
     const storedApplication = localStorage.getItem('application');
     
-    if (token && storedUser) {
+    if (storedUser) {
       try {
         const user = JSON.parse(storedUser) as User;
         const application = storedApplication ? JSON.parse(storedApplication) as Application : null;
@@ -108,7 +108,7 @@ export class AuthService implements IAuthService {
 
   register(data: RegisterData): Observable<AuthResult> {
     const prefixed = RegisterAdapter.toBackendPayload({
-      username: data.name,
+      username: data.username,
       email: data.email,
       password: data.password,
       confirmPassword: data.confirmPassword,
@@ -202,11 +202,10 @@ export class AuthService implements IAuthService {
 
   isAuthenticated(): Observable<boolean> {
     const token = this.getToken();
-    if (!token) {
-      return of(false);
+    if (token) {
+      return this.validateToken(token);
     }
-    
-    return this.validateToken(token);
+    return of(false);
   }
 
   getToken(): string | null {

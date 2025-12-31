@@ -35,6 +35,9 @@ export interface ChatMessage {
   readBy?: ReadReceipt[];
   attachments?: Attachment[];
   replyTo?: string;
+  state?: 'pending' | 'uploading' | 'processing' | 'ready' | 'error';
+  uploadProgress?: number | null;
+  localPreviewUrl?: string;
 }
 
 export interface ReadReceipt {

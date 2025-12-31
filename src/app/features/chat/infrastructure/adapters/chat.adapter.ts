@@ -1,6 +1,6 @@
-import { ChatConversacionEntity, ChatMensajeEntity, ChatUsuarioEntity } from '../entities/chat.entity';
-import { Conversation, ChatMessage, ChatUser } from '../../domain/models/chat.model';
 import { User } from '../../../auth/domain/models/user.model';
+import { ChatMessage, ChatUser, Conversation } from '../../domain/models/chat.model';
+import { ChatConversacionEntity, ChatMensajeEntity, ChatUsuarioEntity } from '../entities/chat.entity';
 
 /**
  * Adapter to convert between backend entities (database field names) and frontend models (clean English names)
@@ -11,15 +11,44 @@ export class ChatAdapter {
    * Convert ChatConversacionEntity to ChatConversation model
    */
   static toConversation(entity: ChatConversacionEntity): Conversation {
+    const rawType = (entity.cConversacionesChatTipo || '').toString().toLowerCase();
+    const participantsRaw: any[] = (entity as any).participants || [];
+    const displayName: string = (entity as any).cdisplayname || '';
+    const participants: ChatUser[] = participantsRaw.map(p => ({
+      id: p.cParticipantesChatUsuarioId || p.cparticipanteschatuserid || '',
+      name: p.cUsuariosChatNombre || p.cusuarioschatname || displayName || '',
+      email: p.cUsuariosChatEmail || p.cusuarioschatmail || '',
+      avatar: p.cUsuariosChatAvatar || p.cusuarioschatavatar || '',
+      role: p.cParticipantesChatRol || p.cparticipanteschatrol || 'user',
+      isActive: p.bParticipantesChatEstaActivo ?? p.bparticipanteschatisactive ?? true,
+      isOnline: p.bUsuariosChatEstaEnLinea ?? p.bisonline ?? false
+    }));
+    if (participants.length === 0 && rawType === 'individual' && displayName) {
+      participants.push({ id: (entity as any).clastmessagesenderid || '', name: displayName, email: '', role: 'user', isActive: true, isOnline: (entity as any).botherparticipantisonline ?? false, avatar: '' });
+    }
+    const lastText: string | undefined = (entity as any).clastmessagetext || undefined;
+    const lastTime: string | undefined = (entity as any).dtlastmessagetimestamp || undefined;
+    const lastSenderId: string | undefined = (entity as any).clastmessagesenderid || undefined;
+    const lastSenderName: string | undefined = (entity as any).clastmessagesendername || undefined;
+    const unread: number = (entity as any).nunreadcount ?? 0;
     return {
-      id: entity.nConversacionesChatId.toString(),
-      name: entity.cConversacionesChatNombre,
-      type: entity.cConversacionesChatTipo === 'individual' ? 'private' : 'group',
-      createdAt: new Date(entity.dConversacionesChatFechaCreacion),
+      id: String(entity.nConversacionesChatId ?? (entity as any).nconversacioneschatid ?? ''),
+      name: entity.cConversacionesChatNombre || displayName || '',
+      type: rawType === 'individual' ? 'private' : 'group',
+      createdAt: new Date(entity.dConversacionesChatFechaCreacion || (entity as any).dtconversacioneschatcreatedat || new Date().toISOString()),
       isActive: entity.bConversacionesChatEstaActiva,
-      participants: [], // Will be populated separately
-      lastMessage: undefined, // Will be populated separately
-      unreadCount: 0 // Will be populated separately
+      participants,
+      lastMessage: lastText ? {
+        id: '0',
+        conversationId: String(entity.nConversacionesChatId ?? ''),
+        senderId: String(lastSenderId || ''),
+        senderName: lastSenderName || 'Usuario',
+        content: lastText,
+        type: 'text',
+        timestamp: lastTime ? new Date(lastTime) : new Date(),
+        isRead: false
+      } : undefined,
+      unreadCount: unread
     };
   }
 
@@ -145,8 +174,8 @@ export class ChatAdapter {
     const params: Record<string, string> = {};
     
     if (user?.id) {
-      // Frontend User.id maps to backend nPerId (person ID)
       params['userId'] = user.id.toString();
+      params['userid'] = user.id.toString();
       params['nPerId'] = user.id.toString();
     }
     
@@ -159,11 +188,9 @@ export class ChatAdapter {
     }
     
     if (user?.companyId) {
-      // Frontend User.companyId maps to backend cPerJurCodigo (company/jurisdiction code)
       params['perJurCodigo'] = user.companyId;
       params['cPerJurCodigo'] = user.companyId;
     } else {
-      // Default company code if not set
       params['perJurCodigo'] = 'DEFAULT';
       params['cPerJurCodigo'] = 'DEFAULT';
     }

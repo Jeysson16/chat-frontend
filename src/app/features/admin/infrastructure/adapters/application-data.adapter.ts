@@ -10,6 +10,7 @@ export class ApplicationDataAdapter {
       nAplicacionesId: dto.nAplicacionesId || dto.id,
       cAplicacionesNombre: dto.cAplicacionesNombre || dto.name,
       cAplicacionesDescripcion: dto.cAplicacionesDescripcion || dto.description,
+      cAplicacionesCodigo: dto.cAplicacionesCodigo || dto.code,
       bAplicacionesEsActiva: dto.bAplicacionesEsActiva !== undefined ? dto.bAplicacionesEsActiva : dto.isActive,
       dAplicacionesFechaCreacion: dto.dAplicacionesFechaCreacion || dto.createdAt,
       dAplicacionesFechaModificacion: dto.dAplicacionesFechaModificacion || dto.updatedAt
@@ -20,8 +21,11 @@ export class ApplicationDataAdapter {
     return this.adaptToExtendedEntity(dto);
   }
 
-  adaptToEntities(dtos: any[]): any[] {
-    return dtos.map(dto => this.adaptToEntity(dto));
+  adaptToEntities(dtos: any): any[] {
+    const items = Array.isArray(dtos)
+      ? dtos
+      : (dtos?.lstItem ?? dtos?.LstItem ?? dtos?.listItem ?? dtos?.items ?? dtos?.data ?? []);
+    return (items as any[]).map(dto => this.adaptToEntity(dto));
   }
 
   adaptCreateDto(name: string, description: string, code: string, isActive: boolean): any {

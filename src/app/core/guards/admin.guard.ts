@@ -42,7 +42,8 @@ export class AdminGuard implements CanActivate {
   }
 
   private isAdminUser(user: any): boolean {
-    const adminRoles = ['SUPER_ADMIN', 'ADMIN'];
-    return user && user.role && adminRoles.includes(user.role.toUpperCase());
+    const role = (user && user.role) ? String(user.role).toLowerCase() : '';
+    const adminRoles = ['admin', 'administrator', 'super_admin'];
+    return adminRoles.includes(role);
   }
 }

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '../../../../../shared/components/atoms/button/button.component';
-import { IconComponent } from '../../../../../shared/components/atoms/icon/icon.component';
+import { ButtonComponent } from '../button/button.component';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-message-input',
@@ -34,7 +34,7 @@ import { IconComponent } from '../../../../../shared/components/atoms/icon/icon.
           (input)="onInput()"
           (focus)="onFocus()"
           (blur)="onBlur()"
-          class="w-full resize-none border border-gray-300 dark:border-gray-800 rounded-lg px-4 py-2 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent max-h-32 min-h-[40px] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+          class="w-full resize-none border border-gray-300 dark:border-gray-800 rounded-lg px-4 py-2 pr-12 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent max-h-32 min-h-[40px] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
           rows="1"
         ></textarea>
         
@@ -52,10 +52,36 @@ import { IconComponent } from '../../../../../shared/components/atoms/icon/icon.
 
       <!-- Voice/Send button -->
       <div class="flex-shrink-0 flex items-center gap-2">
-        <span *ngIf="isRecording" class="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700 animate-pulse">Grabando…</span>
-        <div *ngIf="isRecording" class="h-2 w-24 bg-red-50 rounded overflow-hidden">
-          <div class="h-full bg-red-500" [style.width.%]="audioLevel * 100"></div>
+        <!-- Pretty recording panel -->
+        <div *ngIf="isRecording" class="rounded-2xl p-[1px] bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 shadow">
+          <div class="flex items-center gap-3 bg-white dark:bg-gray-900 rounded-2xl px-3 py-2">
+            <!-- Play/Pause -->
+            <button (click)="togglePause()" class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+              <svg *ngIf="!isPaused" class="w-4 h-4 text-gray-700 dark:text-gray-200" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7-11-7z" />
+              </svg>
+              <svg *ngIf="isPaused" class="w-4 h-4 text-gray-700 dark:text-gray-200" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 5h4v14H7zM13 5h4v14h-4z" />
+              </svg>
+            </button>
+
+            <!-- Waveform -->
+            <canvas #waveformCanvas class="h-8 w-40"></canvas>
+
+            <!-- Timer -->
+            <div class="text-xs font-mono text-gray-700 dark:text-gray-200">{{ elapsedTime }}</div>
+
+            <!-- Stop -->
+            <button (click)="onStopVoiceRecording()" class="w-8 h-8 rounded-full flex items-center justify-center bg-red-500 hover:bg-red-600 text-white transition">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+            </button>
+
+            <!-- Cancel -->
+            <button (click)="onCancelVoiceRecording()" class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">Cancelar</button>
+          </div>
         </div>
+
+        <!-- Mic button when not recording -->
         <app-button
           *ngIf="!messageText.trim() && !isRecording"
           variant="ghost"
@@ -66,17 +92,8 @@ import { IconComponent } from '../../../../../shared/components/atoms/icon/icon.
         >
           <app-icon name="microphone" size="sm" class="text-gray-500 dark:text-gray-400"></app-icon>
         </app-button>
-        
-        <app-button
-          *ngIf="!messageText.trim() && isRecording"
-          variant="danger"
-          size="sm"
-          (click)="onStopVoiceRecording()"
-          class="p-2 animate-pulse"
-        >
-          <app-icon name="microphone" size="sm" class="text-white"></app-icon>
-        </app-button>
-        
+
+        <!-- Send button when text -->
         <app-button
           *ngIf="messageText.trim()"
           variant="primary"
@@ -115,6 +132,12 @@ export class MessageInputComponent {
   messageText: string = '';
   isRecording: boolean = false;
   audioLevel: number = 0;
+  isPaused: boolean = false;
+  private pausedTotalMs: number = 0;
+  private pauseStart?: number;
+  private recordStartTs: number = 0;
+  private elapsedMs: number = 0;
+  @ViewChild('waveformCanvas') waveformCanvas?: ElementRef<HTMLCanvasElement>;
   private mediaRecorder?: MediaRecorder;
   private audioChunks: Blob[] = [];
   private audioStream?: MediaStream;
@@ -194,16 +217,54 @@ export class MessageInputComponent {
       this.analyser!.fftSize = 2048;
       this.sourceNode = ctx.createMediaStreamSource(stream);
       this.sourceNode!.connect(this.analyser!);
-      const updateMeter = () => {
-        const buffer = new Uint8Array(this.analyser!.frequencyBinCount);
-        this.analyser!.getByteFrequencyData(buffer);
-        let sum = 0;
-        for (let i = 0; i < buffer.length; i++) sum += buffer[i];
-        const avg = sum / buffer.length;
-        this.audioLevel = Math.min(1, avg / 128);
-        this.meterTimer = requestAnimationFrame(updateMeter);
+      this.recordStartTs = performance.now();
+      this.pausedTotalMs = 0;
+      this.isPaused = false;
+      const updateAnim = () => {
+        // Level (for potential future use)
+        const freq = new Uint8Array(this.analyser!.frequencyBinCount);
+        this.analyser!.getByteFrequencyData(freq);
+        let sum = 0; for (let i = 0; i < freq.length; i++) sum += freq[i];
+        this.audioLevel = Math.min(1, (sum / freq.length) / 128);
+
+        // Waveform draw
+        const canvas = this.waveformCanvas?.nativeElement;
+        if (canvas) {
+          const w = canvas.offsetWidth || 160;
+          const h = canvas.offsetHeight || 32;
+          canvas.width = w * (window.devicePixelRatio || 1);
+          canvas.height = h * (window.devicePixelRatio || 1);
+          const g = canvas.getContext('2d');
+          if (g) {
+            const time = new Uint8Array(this.analyser!.fftSize);
+            this.analyser!.getByteTimeDomainData(time);
+            g.clearRect(0, 0, canvas.width, canvas.height);
+            g.lineWidth = 2 * (window.devicePixelRatio || 1);
+            const grad = g.createLinearGradient(0, 0, canvas.width, 0);
+            grad.addColorStop(0, '#ef4444');
+            grad.addColorStop(0.5, '#ec4899');
+            grad.addColorStop(1, '#8b5cf6');
+            g.strokeStyle = grad;
+            g.beginPath();
+            const mid = canvas.height / 2;
+            for (let i = 0; i < time.length; i++) {
+              const x = (i / (time.length - 1)) * canvas.width;
+              const v = (time[i] - 128) / 128;
+              const y = mid + v * (mid * 0.8);
+              if (i === 0) g.moveTo(x, y); else g.lineTo(x, y);
+            }
+            g.stroke();
+          }
+        }
+
+        // Timer update
+        const now = performance.now();
+        const paused = this.isPaused && this.pauseStart ? (now - this.pauseStart) : 0;
+        const effectivePaused = this.pausedTotalMs + (paused > 0 ? paused : 0);
+        this.elapsedMs = Math.max(0, now - this.recordStartTs - effectivePaused);
+        this.meterTimer = requestAnimationFrame(updateAnim);
       };
-      updateMeter();
+      updateAnim();
       this.audioChunks = [];
       this.mediaRecorder = new MediaRecorder(stream);
       this.mediaRecorder.ondataavailable = e => { if (e.data.size > 0) this.audioChunks.push(e.data); };
@@ -239,7 +300,56 @@ export class MessageInputComponent {
       this.audioContext = undefined;
       this.analyser = undefined;
       this.sourceNode = undefined;
+      this.isPaused = false;
+      this.pausedTotalMs = 0;
+      this.pauseStart = undefined;
     }
+  }
+
+  onCancelVoiceRecording(): void {
+    if (!this.isRecording) return;
+    this.isRecording = false;
+    this.voiceRecordingStop.emit();
+    try {
+      if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+        // Do not emit attachment on cancel
+        this.mediaRecorder.stop();
+      }
+    } finally {
+      if (this.meterTimer) cancelAnimationFrame(this.meterTimer);
+      this.audioLevel = 0;
+      if (this.audioStream) this.audioStream.getTracks().forEach(t => t.stop());
+      if (this.audioContext) this.audioContext.close();
+      this.mediaRecorder = undefined;
+      this.audioStream = undefined;
+      this.audioContext = undefined;
+      this.analyser = undefined;
+      this.sourceNode = undefined;
+      this.isPaused = false;
+      this.pausedTotalMs = 0;
+      this.pauseStart = undefined;
+    }
+  }
+
+  togglePause(): void {
+    if (!this.isRecording || !this.mediaRecorder) return;
+    if (!this.isPaused) {
+      try { this.mediaRecorder.pause(); } catch {}
+      this.isPaused = true;
+      this.pauseStart = performance.now();
+    } else {
+      try { this.mediaRecorder.resume(); } catch {}
+      this.isPaused = false;
+      if (this.pauseStart) this.pausedTotalMs += performance.now() - this.pauseStart;
+      this.pauseStart = undefined;
+    }
+  }
+
+  get elapsedTime(): string {
+    const total = Math.floor((this.elapsedMs || 0) / 1000);
+    const mm = String(Math.floor(total / 60)).padStart(2, '0');
+    const ss = String(total % 60).padStart(2, '0');
+    return `${mm}:${ss}`;
   }
 
   private adjustTextareaHeight(): void {

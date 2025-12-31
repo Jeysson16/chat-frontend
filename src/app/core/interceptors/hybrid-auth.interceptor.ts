@@ -50,9 +50,11 @@ export class HybridAuthInterceptor implements HttpInterceptor {
    * Add authentication headers to the request
    */
   private addAuthHeaders(request: HttpRequest<any>): HttpRequest<any> {
-    let headers: { [key: string]: string } = {
-      'content-type': 'application/json'
-    };
+    const isMultipart = request.body instanceof FormData;
+    let headers: { [key: string]: string } = {};
+    if (!isMultipart) {
+      headers['content-type'] = 'application/json';
+    }
 
     // Determinar qué tipo de autenticación usar basado en la URL
     if (this.isChatEndpoint(request.url)) {
@@ -118,8 +120,6 @@ export class HybridAuthInterceptor implements HttpInterceptor {
           this.refreshTokenSubject.next(true);
           return next.handle(this.addAuthHeaders(request));
         } else {
-          // No hay token de usuario, redirigir al login
-          console.log('HybridAuthInterceptor: No user token found, redirecting to login');
           this.redirectToLogin();
           return throwError(() => new Error('Token de usuario no encontrado'));
         }

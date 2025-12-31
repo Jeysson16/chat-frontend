@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ChatConfigResolver } from './features/chat/infrastructure/resolvers/chat-config.resolver';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AdminGuard } from './core/guards/admin.guard';
 
@@ -7,13 +8,15 @@ export const routes: Routes = [
         path: '',
         loadComponent: () => import('./features/chat/presentation/chat.page').then((m) => m.ChatPage),
         title: 'Chat - Chat System',
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        resolve: { companyConfig: ChatConfigResolver }
     },
     {
         path: 'chat',
         loadComponent: () => import('./features/chat/presentation/chat.page').then((m) => m.ChatPage),
         title: 'Chat - Chat System',
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        resolve: { companyConfig: ChatConfigResolver }
     },
     {
         path: 'configuration',
